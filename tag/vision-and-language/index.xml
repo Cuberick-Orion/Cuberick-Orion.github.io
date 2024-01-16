@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vision-and-language | Zheyuan (David) Liu - Homepage</title>
+    <link>https://Cuberick-Orion.github.io/tag/vision-and-language/</link>
+      <atom:link href="https://Cuberick-Orion.github.io/tag/vision-and-language/index.xml" rel="self" type="application/rss+xml" />
+    <description>vision-and-language</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://Cuberick-Orion.github.io/media/icon_hub6d7474a8c364153ab2360beb78e3026_67667_512x512_fill_lanczos_center_3.png</url>
+      <title>vision-and-language</title>
+      <link>https://Cuberick-Orion.github.io/tag/vision-and-language/</link>
+    </image>
+    
+    <item>
+      <title>Bi-Directional Training for Composed Image Retrieval via Text Prompt Learning</title>
+      <link>https://Cuberick-Orion.github.io/publication/wacv_24_0/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://Cuberick-Orion.github.io/publication/wacv_24_0/</guid>
+      <description>&lt;!-- &lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+ --&gt;
+&lt;!-- 
+Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/). --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Image retrieval on real-life images with pre-trained vision-and-language models</title>
+      <link>https://Cuberick-Orion.github.io/publication/iccv_21_0/</link>
+      <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://Cuberick-Orion.github.io/publication/iccv_21_0/</guid>
+      <description>&lt;!-- &lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+ --&gt;
+&lt;!-- 
+Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/). --&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
