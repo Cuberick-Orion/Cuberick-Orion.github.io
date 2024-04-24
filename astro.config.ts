@@ -7,7 +7,9 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: THEME_CONFIG.website,
+  // site: THEME_CONFIG.website,
+  site: 'https://zheyuanliu.me',
+  // base: '/personal_homepage_astro_typography',
   prefetch: true,
   markdown: {
     shikiConfig: {
