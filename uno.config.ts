@@ -7,7 +7,7 @@ import {
 import transformerDirectives from "@unocss/transformer-directives";
 import { THEME_CONFIG } from "./src/theme.config";
 
-const {socials, themeStyle} = THEME_CONFIG;
+const {socials, academics, themeStyle} = THEME_CONFIG;
 
 let foreground = "#2e405b";
 let background = "#ffffff";
@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     presetAttributify({ nonValuedAttribute: true }),
     presetIcons({
-      scale: 1.2,
+      scale: 1.5,
       warn: true,
     }),
   ],
@@ -55,6 +55,7 @@ export default defineConfig({
   ],
   safelist: [
     ...socials.map((social) => `i-mdi-${social.name}`),
+    ...socials.map((social) => `i-academicons-${social.name}`),
     'i-mdi-content-copy',
     'i-mdi-check',
   ],

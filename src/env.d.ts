@@ -19,6 +19,8 @@ declare namespace App {
       socials: Array<{
         name: string;
         href: string;
+        title: string;
+        iconlink: string;
       }>,
       /** your header info */
       header: Object<{

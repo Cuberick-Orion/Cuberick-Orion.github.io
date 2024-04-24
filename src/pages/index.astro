@@ -1,24 +1,38 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import Post from '~/components/Post.astro'
-import { getPosts, getPostDescription } from '~/utils'
-import Pagination from '~/components/Pagination.astro'
 
-const posts = (await getPosts()).slice(0, 5)
+import {Content as About_Content_Main} from '~/pages/about_main.md'
+import {Content as About_Content} from '~/pages/about.md'
 
 const { translate: t } = Astro.locals
 
 ---
 
 <LayoutDefault>
+  <main un-lg="py-20 min-w-xl animate-fadein-down" class="p-7.5"> 
+
+  <img class="rounded"
+      style="height:150px; width:120px"
+      src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
+  
   <section contain-layout un-flex="~ col gap-7.5">
-    {
-      posts.map((post) => (
-        <Post post={post}>
-          <p class="line-clamp-4">{getPostDescription(post)}</p>
-        </Post>
-      ))
-    }
-    <Pagination showLeft={false} showPageCount={false} rightTitle={t('all_posts')} rightUrl={'posts/page/1'} />
-  </section>
-</LayoutDefault>
+      
+    <article class="heti">
+    </br>
+    <About_Content_Main />
+    </article>
+  </section>  
+  
+  <section contain-layout un-flex="~ col gap-7.5">
+      
+    <article class="heti">
+    </br>
+    <About_Content />
+    </article>
+    
+    
+  </section>  
+  </main>
+
+  </LayoutDefault>
+
