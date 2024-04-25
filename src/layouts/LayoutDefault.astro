@@ -6,6 +6,7 @@ import Header from '~/components/Header.astro'
 import Footer from '~/components/Footer.astro'
 import { SEO } from 'astro-seo'
 import { getImage } from 'astro:assets'
+import { Tooltips } from 'astro-tooltips';
 
 interface Props {
   title?: string
@@ -59,6 +60,7 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
         }
       }}
     />
+    <Tooltips interactive={false} delay={[15, 14000]} />
   </head>
   <body>
     <div un-max-lg="animate-fadein-down" un-lg="flex flex-row-reverse justify-between gap-4 px-8 mx-auto max-w-6xl" class="container contain-layout m-a">
