@@ -3,6 +3,9 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 
 import {Content as About_Content_Main} from '~/pages/about_main.md'
 import {Content as About_Content} from '~/pages/about.md'
+import {Content as About_Content_Recent_Research} from '~/pages/about_recent_research.md'
+import {Content as About_Content_Contact} from '~/pages/about_contact.md'
+import {Content as About_Content_News} from '~/pages/about_news.md'
 
 const { translate: t } = Astro.locals
 
@@ -38,22 +41,40 @@ const { translate: t } = Astro.locals
 
     </div>
   <section contain-layout un-flex="~ col gap-7.5">
-      
     <article class="heti">
-    </br>
-    <About_Content_Main />
+      </br>
+      <About_Content_Main />
     </article>
   </section>  
   
   <section contain-layout un-flex="~ col gap-7.5">
-      
     <article class="heti">
-    </br>
-    <About_Content />
+      </br>
+      <About_Content />
     </article>
-    
-    
   </section>  
+
+  <section contain-layout un-flex="~ col gap-7.5">
+    <article class="heti">
+      </br>
+      <About_Content_Recent_Research />
+    </article>
+  </section>  
+
+  <section contain-layout un-flex="~ col gap-7.5">
+    <article class="heti">
+      </br>
+      <About_Content_Contact />
+    </article>
+  </section>  
+
+  <section contain-layout un-flex="~ col gap-7.5">
+    <article class="heti">
+      </br>
+      <About_Content_News />
+    </article>
+  </section>  
+
   </main>
 </br>
   <hr style="height:2px;border-width:0;color:rgba(188, 188, 188, 0.589);background-color:rgba(194, 194, 194, 0.306)">
