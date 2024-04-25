@@ -9,17 +9,20 @@ I obtained my PhD from the Australian National University in 2024, supervised by
 Prior to that, I obtained my bachelor's degree in Electronics Engineering (R&D) with first-class honours from the Australian National University in 2018.
 
 <br/>
+<br/>
 
-For research publications, see [my Google Scholar](https://scholar.google.com/citations?hl=en&user=2lWQHxIAAAAJ&view_op=list_works&sortby=pubdate).
+### Recent Research
 
---
+I maintain my research publications at [Google Scholar](https://scholar.google.com/citations?hl=en&user=2lWQHxIAAAAJ&view_op=list_works&sortby=pubdate).
+
+<br/>
+
+### Contact
 
 To contact me, email zheyuan.liu [at] adelaide [dot] edu [dot] au __or__ zheyuan.david.liu [at] outlook [dot] com.
 
 <br/>
 
-<br/>
-
 ### News
 
-__Apr 2024__ I will commence at [AIML](https://www.adelaide.edu.au/aiml/) as a postdoctoral research fellow.
+__Apr 2024__ - I will commence at [AIML](https://www.adelaide.edu.au/aiml/) as a postdoctoral research fellow.

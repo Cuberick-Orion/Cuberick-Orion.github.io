@@ -24,7 +24,7 @@ export default defineConfig({
     }),
     presetAttributify({ nonValuedAttribute: true }),
     presetIcons({
-      scale: 1.5,
+      scale: 1.6,
       warn: true,
     }),
   ],
