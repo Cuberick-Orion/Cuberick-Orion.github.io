@@ -25,4 +25,16 @@ To contact me, email zheyuan.liu [at] adelaide [dot] edu [dot] au __or__ zheyuan
 
 ### News
 
-__Apr 2024__ - I will commence at [AIML](https://www.adelaide.edu.au/aiml/) as a postdoctoral research fellow.
+<style>
+table, td, th {
+   border: none!important;
+}
+table {
+    border-collapse: collapse!important;
+}
+</style>
+
+|     |     |
+| -------- | ------- |
+| __Apr 2024__  | - I will commence at [AIML](https://www.adelaide.edu.au/aiml/) as a postdoctoral research fellow in May.    |
+|  | - Gave this webpage a refreshing new look.|

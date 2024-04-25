@@ -6,9 +6,8 @@ import {Content as About_Content} from '~/pages/about.md'
 
 const { translate: t } = Astro.locals
 
-let date = new Date();
-let options = {timeZone: 'Australia/Adelaide'};
-let adelaideTime = date.toLocaleString('en-US', options);
+// const apiUrl_time = "https://timeapi.io/api/Time/current/zone?timeZone=Australia/Adelaide"
+
 ---
 
 <LayoutDefault>
@@ -26,10 +25,12 @@ let adelaideTime = date.toLocaleString('en-US', options);
           <article class="heti">
         </br>
         <div class="i-mdi:location"></div>
-        Adelaide, Australia 
+        <div style="margin-bottom:0.005em;">Adelaide, Australia</div>
+
         </br>
+
         <div class="i-mdi:timezone"></div>
-         {adelaideTime}
+        ACST/ACDT
         
       </article>
         </div>
@@ -53,6 +54,7 @@ let adelaideTime = date.toLocaleString('en-US', options);
     
   </section>  
   </main>
+</br>
+  <hr style="height:2px;border-width:0;color:rgba(188, 188, 188, 0.589);background-color:rgba(194, 194, 194, 0.306)">
 
   </LayoutDefault>
-
