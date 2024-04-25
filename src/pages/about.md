@@ -36,5 +36,6 @@ table {
 
 |     |     |
 | -------- | ------- |
+| __Apr 2024__  | - Gave this webpage a refreshing new look.  |
 | __Apr 2024__  | - I will commence at [AIML](https://www.adelaide.edu.au/aiml/) as a postdoctoral research fellow in May.    |
-|  | - Gave this webpage a refreshing new look.|
+|  | - I have received my award of PhD from ANU. A big thank you to my supervisors, my parents and all my friends for their kind support through this journey.|
