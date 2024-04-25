@@ -6,15 +6,35 @@ import {Content as About_Content} from '~/pages/about.md'
 
 const { translate: t } = Astro.locals
 
+let date = new Date();
+let options = {timeZone: 'Australia/Adelaide'};
+let adelaideTime = date.toLocaleString('en-US', options);
 ---
 
 <LayoutDefault>
   <main un-lg="py-20 min-w-xl animate-fadein-down" class="p-7.5"> 
-
-  <img class="rounded"
-      style="height:150px; width:120px"
-      src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
   
+    <div class="flex grid grid-cols-4 gap-4">
+
+      <div>
+      <img class="rounded"
+      style="width:120px"
+      src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
+      </div>
+
+        <div class="col-start-2 col-span-3">
+          <article class="heti">
+        </br>
+        <div class="i-mdi:location"></div>
+        Adelaide, Australia 
+        </br>
+        <div class="i-mdi:timezone"></div>
+         {adelaideTime}
+        
+      </article>
+        </div>
+
+    </div>
   <section contain-layout un-flex="~ col gap-7.5">
       
     <article class="heti">
