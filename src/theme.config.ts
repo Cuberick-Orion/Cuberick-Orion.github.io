@@ -31,12 +31,12 @@ export const THEME_CONFIG: App.Locals['config'] = {
       title: "Twitter",
       iconlink: "i-mdi-twitter",
     },
-    {
-      name: "UofA",
-      href: "https://www.adelaide.edu.au/directory/zheyuan.liu",
-      title: "University directory",
-      iconlink: "i-mdi-academic-cap",
-    },
+    // {
+    //   name: "UofA",
+    //   href: "https://www.adelaide.edu.au/directory/zheyuan.liu",
+    //   title: "University directory",
+    //   iconlink: "i-mdi-academic-cap",
+    // },
     {
       name: "google-scholar-square",
       title: "Google Scholar",
