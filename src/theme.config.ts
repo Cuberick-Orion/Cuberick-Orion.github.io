@@ -35,7 +35,7 @@ export const THEME_CONFIG: App.Locals['config'] = {
       name: "UofA",
       href: "https://www.adelaide.edu.au/directory/zheyuan.liu",
       title: "University directory",
-      iconlink: "i-mdi:academic-cap",
+      iconlink: "i-mdi-academic-cap",
     },
     {
       name: "google-scholar-square",
