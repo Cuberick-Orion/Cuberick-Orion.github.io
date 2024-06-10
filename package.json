@@ -24,7 +24,7 @@
     "astro-tooltips": "^0.6.2",
     "giscus": "^1.5.0",
     "typescript": "^5.3.3",
-    "vite": "^5.2.8"
+    "vite": "^5.2.13"
   },
   "devDependencies": {
     "@iconify-json/academicons": "^1.1.14",
