@@ -16,28 +16,21 @@ const { translate: t } = Astro.locals
 <LayoutDefault>
   <main un-lg="py-20 min-w-xl animate-fadein-down" class="p-7.5"> 
   
-    <div class="flex grid grid-cols-4 gap-4">
+    <div class="flex items-center grid grid-cols-4 gap-4">
+    <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
 
       <div>
-      <img class="rounded"
-      style="width:120px"
-      src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
+        <img class="rounded" style="width:120px" src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
       </div>
 
-        <div class="col-start-2 col-span-3">
-          <article class="heti">
-        </br>
-        <!-- <div class="i-mdi:location"></div> -->
-        <div style="margin-bottom:0.005em;"><span class="i-mdi:location"></span> Adelaide, Australia</div>
+      <div class="col-start-2 col-span-3">
+        <article class="heti">
 
-        </br>
-
-        <!-- <div class="i-mdi:email-arrow-left"></div> -->
-        <div style="margin-bottom:0.005em;"><span class="i-mdi:email-arrow-left"></span> zheyuan.david.liu [at] outlook [dot] com</div>
-        <!-- <a href="https://www.adelaide.edu.au/directory/zheyuan.liu">university directory</a> -->
-        
-      </article>
-        </div>
+          <div style="margin-bottom:0.5em;"><span class="i-mdi:email-arrow-left">Contact</span>zheyuan.david.liu [at] outlook.com</div>
+          <div style="margin-bottom:0.5em;"><span class="i-mdi:resume">Contact</span><a href="https://onedrive.live.com/download?resid=3178E74E5EC9EA02%21932379&authkey=!AEJaBY63IIaglmQ&em=2">curriculum vitae</a></div>
+      
+        </article>
+      </div>
 
     </div>
   <section contain-layout un-flex="~ col gap-7.5">

@@ -9,6 +9,6 @@ I maintain my publication record at [Google Scholar](https://scholar.google.com/
 
 My research has focused on the following aspects:
 
-- multi-modal learning, specifically, vision-and-language tasks
+- multi-modal learning, in particular, vision-and-language tasks
 - weakly-supervised learning
 - generative model
