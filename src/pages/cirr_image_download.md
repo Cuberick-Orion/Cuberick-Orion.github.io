@@ -11,7 +11,7 @@ Recently, we have received emails from a number of groups stating that the NLVR 
 
 <br/>
 
-Please know that we only provide this alternative download option after we have confirmed with you that the NLVR2 Google form "requesting raw images" has been submitted -- therefore, you agree to their terms of service.
+Please know that we only provide this alternative download option after we have confirmed with you that the NLVR2 Google form "requesting raw images" has been submitted -- therefore, you agree to their terms of service. For this purpose, the following shared files are password-protected.
 
 <br/>
 
@@ -19,11 +19,11 @@ Please know that we only provide this alternative download option after we have 
 
 <br/>
 
-Please download the images (zipped) at [https://drive.google.com/file/d/1iFyNFHxsvvWFhnH9xDnhIgVJ49_Ngxrj/view?usp=sharing](https://drive.google.com/file/d/1iFyNFHxsvvWFhnH9xDnhIgVJ49_Ngxrj/view?usp=sharing)
+Please download the images (zipped) at [https://1drv.ms/u/s!AgLqyV5O53gxuPtR7-YdzZN_V9gKHQ?e=QnO2AC](https://1drv.ms/u/s!AgLqyV5O53gxuPtR7-YdzZN_V9gKHQ?e=QnO2AC)
 
 <br/>
 
-After downloading, please check the file SHA1 and compare it with the value recorded in [https://drive.google.com/file/d/1q_z6eivTEnyp-4dGQISAhivrlUfc6KpF/view?usp=sharing](https://drive.google.com/file/d/1q_z6eivTEnyp-4dGQISAhivrlUfc6KpF/view?usp=sharing). 
+After downloading, please check the file SHA1 and compare it with the value recorded in [https://1drv.ms/u/s!AgLqyV5O53gxuPtNM8Dyw5iRngTzlw?e=BYujaz](https://1drv.ms/u/s!AgLqyV5O53gxuPtNM8Dyw5iRngTzlw?e=BYujaz). 
 
 <br/>
 
@@ -40,4 +40,4 @@ As a final remark, if you are the author/s of the NLVR2 dataset and reading this
 
 --
 
-This page is last modified on 'May 14 2024'.
+This page is last modified on 'Jun 26 2024'.
