@@ -12,6 +12,27 @@ article p {
     font-size: 11.5pt;
 }
 
+.research_h1 {
+    display: inline-block;
+    line-height: 16px;
+}
+
+details {
+    text-indent: -2%;
+    font-size: 11.5pt;
+    margin-bottom: 15px;
+}
+
+details summary>* {
+    font-size: 11.5pt;
+    position: relative;
+    display: block;
+    line-height: 10px;
+    text-indent: -2%;
+    /* text-decoration: underline #4f4f4f7f dotted; */
+    text-underline-offset: 4px;
+}
+
 
 /* article s-compact {
     text-align: left;
