@@ -13,7 +13,10 @@ export default defineConfig({
   prefetch: true,
   markdown: {
     shikiConfig: {
-      theme: 'one-light',
+      themes: {
+        light: 'min-light',
+        dark: 'one-dark-pro',
+      },
       langs: [],
       wrap: true,
     },
