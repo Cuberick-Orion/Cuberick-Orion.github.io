@@ -1,12 +1,29 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { Image } from 'astro:assets';
 
 import {Content as About_Content_Main} from '~/pages/about_main.md'
 import {Content as About_Content} from '~/pages/about.md'
 import {Content as About_Content_Recent_Research} from '~/pages/about_recent_research.md'
 import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
-import {Content as About_Content_Research_Details} from '~/pages/about_research_details.mdx'
+
+import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
+import anu_logo_img from '~/pages/research_publications_mdx/anu_logo_0.png';
+import tmlr2024_0_img from '~/pages/research_publications_mdx/tmlr2024_0.png';
+import wacv2024_0_img from '~/pages/research_publications_mdx/wacv2024_0.png';
+import iccv2023_0_colab_img from '~/pages/research_publications_mdx/iccv2023_0_colab.png';
+import cvpr2023_0_colab_img from '~/pages/research_publications_mdx/cvpr2023_0_colab.png';
+import iccv2021_0_img from '~/pages/research_publications_mdx/iccv2021_0.png';
+
+import {Content as Research_eccv2024_0_colab} from '~/pages/research_publications_mdx/eccv2024_0_colab.mdx'
+import {Content as Research_phd_thesis} from '~/pages/research_publications_mdx/phd_thesis_0.mdx'
+import {Content as Research_tmlr2024_0} from '~/pages/research_publications_mdx/tmlr2024_0.mdx'
+import {Content as Research_wacv2024_0} from '~/pages/research_publications_mdx/wacv2024_0.mdx'
+import {Content as Research_iccv2023_0_colab} from '~/pages/research_publications_mdx/iccv2023_0_colab.mdx'
+import {Content as Research_cvpr2023_0_colab} from '~/pages/research_publications_mdx/cvpr2023_0_colab.mdx'
+import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/iccv2021_0.mdx'
+
 
 const { translate: t } = Astro.locals
 
@@ -67,8 +84,85 @@ const { translate: t } = Astro.locals
 
   <section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      <div style="font-size: 13.5pt;font-weight: bold;"><center>Recent Publications</center></div>
-      <About_Content_Research_Details />
+      <div style="font-size: 13.5pt; font-weight: bold; padding-bottom: 15px"><center>Recent Publications</center></div>
+      
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={placeholder_img} alt="placeholder_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_eccv2024_0_colab />
+          </div>
+        </div>
+      </div>
+      
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={anu_logo_img} alt="anu_logo_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_phd_thesis />
+          </div>
+        </div>
+      </div>
+      
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={tmlr2024_0_img} alt="tmlr2024_0_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_tmlr2024_0 />
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={wacv2024_0_img} alt="wacv2024_0_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_wacv2024_0 />
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={iccv2023_0_colab_img} alt="iccv2023_0_colab_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_iccv2023_0_colab />
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_cvpr2023_0_colab />
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="rounded-xl shadow-md w-full object-cover md:md:w-70" style="padding-top: 15px" src={iccv2021_0_img} alt="iccv2021_0_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_iccv2021_0 />
+          </div>
+        </div>
+      </div>
+
     </article>
   </section> 
 
