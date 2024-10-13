@@ -35,16 +35,8 @@ details summary>* {
 
 
 .news-badge {
-    display: inline-block;
-    width: 40px; /* Set the width to the desired length */
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Hides overflow text */
-    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
-  }
-
-.news-time-badge {
     display: inline-flex;
-    width: 68px; /* Set the width to the desired length */
+    width: 40px; /* Set the width to the desired length */
     white-space: nowrap; /* Prevents text from wrapping */
     overflow: hidden; /* Hides overflow text */
     text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
@@ -53,14 +45,37 @@ details summary>* {
     text-align: center;
   }
 
+.news-time-badge {
+    display: inline-flex;
+    background-color: #ffffff; 
+    /* background-color: #6B7280;  */
+    /* color: #FFFFFF; */
+    width: 68px; /* Set the width to the desired length */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
 .split-badge {
-    display: inline-block;
-    padding: 0.5em 1em;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    border-radius: 5px;
-    background: linear-gradient(to right, red 50%, gray 50%);
+    display: inline-flex;
+    /* background-color: #ffffff;  */
+    /* background-color: #6B7280;  */
+    /* color: #FFFFFF; */
+    width: 108px; /* Set the width to the desired length */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(to right, #ffffff, #ffffff, #ef4444);
   }
 /* article s-compact {
     text-align: left;
