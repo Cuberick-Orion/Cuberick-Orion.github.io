@@ -57,7 +57,23 @@ details summary>* {
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    transition: all 0.3s ease;
+  }
+
+.news-time-combined-badge {
+    display: inline-flex;
+    background-color: #ffffff; 
+    /* background-color: #6B7280;  */
+    /* color: #FFFFFF; */
+    width: 93px; /* Set the width to the desired length */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     transition: all 0.3s ease;
   }
 
