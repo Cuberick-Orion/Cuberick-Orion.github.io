@@ -26,7 +26,7 @@ article.heti a code {
     padding: 2px;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
+    text-underline-offset: 2px;
 }
 
 a:link,
@@ -35,7 +35,7 @@ article.heti a code:link,
 a:hover,
 article.heti a:hover,
 article.heti a code:hover {
-    text-decoration: underline #4f4f4f7f dotted;
+    text-decoration: underline #4f4f4f7f;
     /* text-decoration-line: none; */
 }
 

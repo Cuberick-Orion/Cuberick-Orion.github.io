@@ -34,6 +34,34 @@ details summary>* {
 }
 
 
+.news-badge {
+    display: inline-block;
+    width: 40px; /* Set the width to the desired length */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+  }
+
+.news-time-badge {
+    display: inline-flex;
+    width: 68px; /* Set the width to the desired length */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Hides overflow text */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+.split-badge {
+    display: inline-block;
+    padding: 0.5em 1em;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    background: linear-gradient(to right, red 50%, gray 50%);
+  }
 /* article s-compact {
     text-align: left;
     line-height: 2px;
