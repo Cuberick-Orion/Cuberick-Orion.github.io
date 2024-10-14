@@ -6,11 +6,14 @@ import LayoutDefault from "~/layouts/LayoutDefault.astro"
 <LayoutDefault>
   <section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-        <p>My Curriculum Vitae can be downloaded <a href="https://1drv.ms/b/s!AgLqyV5O53gxuPQbQErmXm5QNcXxcQ?e=DAAdg3">here (OneDrive)</a>.</p>
-        <iframe src="https://1drv.ms/b/s!AgLqyV5O53gxuPQbQloFjrcghqCWZA?embed=1&em=2" width="100%" height="1200px">
-            This browser does not support PDFs. Please download the PDF at my OneDrive. 
-        </iframe>
+        <p>PDF (OneDrive) <a href="https://1drv.ms/b/s!AgLqyV5O53gxuPQbQErmXm5QNcXxcQ?e=DAAdg3">download</a>.
+          
+        </p>
     </article>
+    <iframe title="Curriculum Vitae" src="https://1drv.ms/b/s!AgLqyV5O53gxuPQbQloFjrcghqCWZA?embed=1&em=2" width="100%" height="750px" loading="lazy" allow="fullscreen" style="border: none;">
+      This browser does not support PDFs. Please download the PDF and view. 
+  </iframe>
+  <a href="/">Return to home</a>
   </section>  
 
 </LayoutDefault>
