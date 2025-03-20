@@ -14,13 +14,16 @@ article p {
 
 .research_h1 {
     display: inline-block;
-    line-height: 16px;
+    line-height: 8px;
+    /* margin-bottom: -10px; */
+    /* white-space: nowrap; */
 }
 
 details {
     text-indent: -2%;
     font-size: 11.5pt;
     margin-bottom: 15px;
+    line-height: 16px;
 }
 
 details summary>* {
@@ -35,14 +38,19 @@ details summary>* {
 
 
 .news-badge {
-    display: inline-flex;
-    width: 40px; /* Set the width to the desired length */
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Hides overflow text */
-    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: inline-flex;
+  background-color: #ffffff; 
+  /* background-color: #6B7280;  */
+  /* color: #FFFFFF; */
+  width: 40px; /* Set the width to the desired length */
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides overflow text */
+  text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease;
   }
 
 .news-time-badge {

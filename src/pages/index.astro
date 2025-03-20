@@ -9,6 +9,7 @@ import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 
 import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
+import frame_wise_conditioning_img from '~/pages/research_publications_mdx/frame-wise_conditioning.png';
 import eccv2024_0_colab_img from '~/pages/research_publications_mdx/eccv2024_0_colab.png';
 import anu_logo_img from '~/pages/research_publications_mdx/anu_logo_0.png';
 import tmlr2024_0_img from '~/pages/research_publications_mdx/tmlr2024_0.png';
@@ -17,6 +18,7 @@ import iccv2023_0_colab_img from '~/pages/research_publications_mdx/iccv2023_0_c
 import cvpr2023_0_colab_img from '~/pages/research_publications_mdx/cvpr2023_0_colab.png';
 import iccv2021_0_img from '~/pages/research_publications_mdx/iccv2021_0.png';
 
+import {Content as Research_frame_wise_conditioning} from '~/pages/research_publications_mdx/frame-wise_conditioning.mdx'
 import {Content as Research_eccv2024_0_colab} from '~/pages/research_publications_mdx/eccv2024_0_colab.mdx'
 import {Content as Research_phd_thesis} from '~/pages/research_publications_mdx/phd_thesis_0.mdx'
 import {Content as Research_tmlr2024_0} from '~/pages/research_publications_mdx/tmlr2024_0.mdx'
@@ -85,7 +87,18 @@ const { translate: t } = Astro.locals
 
   <section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      <div style="font-size: 13.5pt; font-weight: bold; padding-bottom: 15px"><center>Recent Publications</center></div>
+      <div style="font-size: 13.5pt; font-weight: bold; padding-bottom: 15px"><center>Recent Research</center></div>
+      
+      <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+          <div class="p-3 -mb-6 md:shrink-0">
+            <Image class="mt-3.5 rounded-md shadow-sm w-full object-cover md:md:w-70 hover:shadow-lg" style="transition:all .3s ease-in-out;" src={frame_wise_conditioning_img} alt="frame_wise_conditioning_img"> 
+          </div>
+          <div class="p-3 leading-tight text-slate-700">
+            <Research_frame_wise_conditioning />
+          </div>
+        </div>
+      </div>
       
       <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
         <div class="md:flex">
