@@ -99,6 +99,13 @@ article.heti blockquote p {
     margin-block-end: 12px;
 }
 
+#recent-research {
+    background-color: #fefefe74;
+    padding: 0 15px;
+    /* border: 1px solid #cccccc2d; */
+    margin-top: 10px;
+}
+
 #collapsible-content {
     max-height: 0;
     overflow: hidden;

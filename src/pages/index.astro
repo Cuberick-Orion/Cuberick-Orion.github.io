@@ -33,21 +33,6 @@ const { translate: t } = Astro.locals
 // const apiUrl_time = "https://timeapi.io/api/Time/current/zone?timeZone=Australia/Adelaide"
 
 ---
-<script>
-  const button = document.getElementById('toggle-button');
-  const label = button?.querySelector('.label');
-  const arrow = button?.querySelector('.arrow');
-  const content = document.getElementById('collapsible-content');
-  if (!button || !label || !arrow || !content) return;
-  button.addEventListener('click', () => {
-    content.classList.toggle('open');
-    const isOpen = content.classList.contains('open');
-
-    label.textContent = isOpen ? 'Click to Collapse' : 'Click to Expand';
-    arrow.textContent = isOpen ? '▲' : '▼';
-  });
-</script>
-
 <LayoutDefault>
   <main un-lg="py-20 min-w-xl animate-fadein-down" class="p-7.5"> 
   
