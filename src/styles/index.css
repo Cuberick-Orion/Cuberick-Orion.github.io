@@ -98,3 +98,31 @@ article.heti blockquote p {
     margin-block-start: 12px;
     margin-block-end: 12px;
 }
+
+#collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-out, padding 0.3s ease;
+    background-color: #fefefe74;
+    padding: 0 15px;
+    /* border: 1px solid #cccccc2d; */
+    margin-top: 10px;
+}
+
+#collapsible-content.open {
+    max-height: 5000px; /* Adjust this if you have more content */
+    padding: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    /* font-size: 16px; */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.arrow {
+    font-size: 12px;
+}
