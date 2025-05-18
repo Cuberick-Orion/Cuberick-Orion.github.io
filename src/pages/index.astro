@@ -35,10 +35,10 @@ const { translate: t } = Astro.locals
 ---
 <script>
   const button = document.getElementById('toggle-button');
-  const label = button.querySelector('.label');
-  const arrow = button.querySelector('.arrow');
+  const label = button?.querySelector('.label');
+  const arrow = button?.querySelector('.arrow');
   const content = document.getElementById('collapsible-content');
-
+  if (!button || !label || !arrow || !content) return;
   button.addEventListener('click', () => {
     content.classList.toggle('open');
     const isOpen = content.classList.contains('open');
@@ -141,7 +141,7 @@ const { translate: t } = Astro.locals
         <span class="arrow">▼</span>
       </button>
       <div id="collapsible-content">
-        
+
       <div class="max-w-md mx-auto overflow-hidden md:max-w-2xl">
         <div class="md:flex">
           <div class="p-3 -mb-6 md:shrink-0">
