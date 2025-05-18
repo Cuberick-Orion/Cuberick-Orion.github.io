@@ -8,7 +8,7 @@ pubDate: 'Jul 02 2022'
 
 I am currently working on:
 
-- video generative models.
+- video generative / video editing models.
 
 Previously, I have researched on:
 
