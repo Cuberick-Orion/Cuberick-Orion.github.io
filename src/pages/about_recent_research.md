@@ -8,6 +8,7 @@ pubDate: 'Jul 02 2022'
 
 I am currently working on:
 
+- large language model;
 - video generative / video editing models.
 
 Previously, I have researched on:
@@ -17,3 +18,5 @@ Previously, I have researched on:
 
 I maintain my publication record at [Google Scholar](https://scholar.google.com/citations?hl=en&user=2lWQHxIAAAAJ&view_op=list_works&sortby=pubdate).
 Source code for all first-author projects are available at [GitHub](https://github.com/Cuberick-Orion).
+
+I am actively seeking talented students for research projects, if interested please contact me via the email address above.
