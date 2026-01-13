@@ -100,8 +100,8 @@ article.heti blockquote p {
 }
 
 #recent-research {
-    background-color: #fefefe74;
-    padding: 15px;
+    /* background-color: #fefefe74; */
+    padding: 0 0 15px;
     /* border: 1px solid #cccccc2d; */
     margin-top: 10px;
 }
@@ -111,7 +111,7 @@ article.heti blockquote p {
     overflow: hidden;
     transition: max-height 0.7s ease-out, padding 0.3s ease;
     background-color: #fefefe74;
-    padding: 0 15px;
+    padding: 0 0 15px;
     /* border: 1px solid #cccccc2d; */
     margin-top: 10px;
 }
