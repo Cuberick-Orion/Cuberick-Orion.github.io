@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     --uno: antialiased;
     color: theme("colors.foreground");
@@ -153,7 +157,7 @@ button {
 .affiliation-timeline::before {
     content: "";
     position: absolute;
-    left: 47px;
+    left: 43px;
     top: 8px;
     bottom: 8px;
     width: 2.5px;
@@ -162,7 +166,7 @@ button {
 
 .affiliation-item {
     display: grid;
-    grid-template-columns: 94px 1fr;
+    grid-template-columns: 85px 1fr;
     align-items: center;
     gap: 14px;
     width: 100%;
@@ -172,18 +176,18 @@ button {
 }
 
 .affiliation-logo {
-    width: 94px;
-    height: 94px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
     object-fit: contain;
-    padding: 10px;
+    padding: 9px;
 }
 
 .affiliation-logo--anu {
-    padding: 10px;
+    padding: 14px;
     object-position: center 70%;
     margin: 0 auto;
 }
@@ -216,18 +220,18 @@ button {
 
 @media (max-width: 640px) {
     .affiliation-timeline::before {
-        left: 42px;
+        left: 38px;
     }
 
     .affiliation-item {
-        grid-template-columns: 83px 1fr;
+        grid-template-columns: 75px 1fr;
         gap: 12px;
     }
 
     .affiliation-logo {
-        width: 83px;
-        height: 83px;
-        padding: 9px;
+        width: 75px;
+        height: 75px;
+        padding: 8px;
     }
 
     .affiliation-logo--anu {

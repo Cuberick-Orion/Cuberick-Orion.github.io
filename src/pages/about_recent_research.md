@@ -4,7 +4,7 @@ title: About Me
 pubDate: 'Jul 02 2022'
 ---
 
-#### Research Summary
+#### Research Interests
 
 I am currently working on:
 

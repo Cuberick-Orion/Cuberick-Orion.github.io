@@ -57,22 +57,12 @@ export const THEME_CONFIG: App.Locals['config'] = {
   },
   /** your navigation links */
   navs: [
-    // {
-    //   name: "Posts",
-    //   href: "/posts/page/1",
-    // },
-    // {
-    //   name: "Archive",
-    //   href: "/archive",
-    // },
-    // {
-    //   name: "Categories",
-    //   href: "/categories"
-    // },
-    // {
-    //   name: "About",
-    //   href: "/about",
-    // },
+    { name: "About", href: "#about" },
+    { name: "Research", href: "#recent-research-section" },
+    { name: "News", href: "#news" },
+    { name: "Publications", href: "#recent-research" },
+    { name: "Affiliations", href: "#affiliations" },
+    { name: "Links", href: "#links" },
   ],
   /** your category name mapping, which the `path` will be shown in the url */
   category_map: [
@@ -102,4 +92,3 @@ export const THEME_CONFIG: App.Locals['config'] = {
     // }
   }
 }
-
