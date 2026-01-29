@@ -133,3 +133,105 @@ button {
 .arrow {
     font-size: 12px;
 }
+
+.affiliations {
+    padding: 0 0 12px;
+    margin-top: 10px;
+}
+
+.affiliation-timeline {
+    position: relative;
+    max-width: 680px;
+    width: min(640px, 100%);
+    margin: 0 auto;
+    display: grid;
+    gap: 18px;
+    justify-items: center;
+    padding-left: 0;
+}
+
+.affiliation-timeline::before {
+    content: "";
+    position: absolute;
+    left: 47px;
+    top: 8px;
+    bottom: 8px;
+    width: 2.5px;
+    background: linear-gradient(180deg, rgba(55, 65, 81, 0.18), rgba(55, 65, 81, 0.12));
+}
+
+.affiliation-item {
+    display: grid;
+    grid-template-columns: 94px 1fr;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.affiliation-logo {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    object-fit: contain;
+    padding: 10px;
+}
+
+.affiliation-logo--anu {
+    padding: 10px;
+    object-position: center 70%;
+    margin: 0 auto;
+}
+
+.affiliation-item--multi .affiliation-text {
+    display: grid;
+    gap: 6px;
+}
+
+.affiliation-name {
+    font-weight: bold;
+}
+
+.affiliation-roles {
+    display: grid;
+    gap: 4px;
+    padding-left: 2px;
+}
+
+.affiliation-role {
+    font-size: inherit;
+    color: #374151;
+}
+
+.affiliation-text {
+    font-size: inherit;
+    color: #374151;
+    line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+    .affiliation-timeline::before {
+        left: 42px;
+    }
+
+    .affiliation-item {
+        grid-template-columns: 83px 1fr;
+        gap: 12px;
+    }
+
+    .affiliation-logo {
+        width: 83px;
+        height: 83px;
+        padding: 9px;
+    }
+
+    .affiliation-logo--anu {
+        padding: 14px;
+        object-position: center 56%;
+    }
+}
