@@ -157,7 +157,7 @@ button {
 .affiliation-timeline::before {
     content: "";
     position: absolute;
-    left: 43px;
+    left: 39px;
     top: 8px;
     bottom: 8px;
     width: 2.5px;
@@ -166,7 +166,7 @@ button {
 
 .affiliation-item {
     display: grid;
-    grid-template-columns: 85px 1fr;
+    grid-template-columns: 77px 1fr;
     align-items: center;
     gap: 14px;
     width: 100%;
@@ -176,18 +176,28 @@ button {
 }
 
 .affiliation-logo {
-    width: 85px;
-    height: 85px;
+    width: 77px;
+    height: 77px;
     border-radius: 50%;
     background: #fff;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
     object-fit: contain;
-    padding: 9px;
+    padding: 8px;
+}
+
+.affiliation-logo--text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #1f2937;
+    letter-spacing: 0.3px;
 }
 
 .affiliation-logo--anu {
-    padding: 8px;
+    padding: 10px;
     object-position: center 55%;
     margin: 0 auto;
 }
@@ -208,34 +218,48 @@ button {
 }
 
 .affiliation-role {
-    font-size: inherit;
+    font-size: 0.95em;
     color: #374151;
 }
 
 .affiliation-text {
-    font-size: inherit;
+    font-size: 0.95em;
     color: #374151;
     line-height: 1.4;
 }
 
 @media (max-width: 640px) {
     .affiliation-timeline::before {
-        left: 38px;
+        left: 34px;
     }
 
     .affiliation-item {
-        grid-template-columns: 75px 1fr;
+        grid-template-columns: 68px 1fr;
         gap: 12px;
     }
 
     .affiliation-logo {
-        width: 75px;
-        height: 75px;
-        padding: 8px;
+        width: 68px;
+        height: 68px;
+        padding: 7px;
     }
 
-    .affiliation-logo--anu {
-        padding: 14px;
+.affiliation-logo--anu {
+        padding: 12px;
         object-position: center 56%;
+    }
+}
+
+.hr-heti {
+    width: 30%;
+    height: 1px;
+    margin: 10px auto 5px;
+    border: 0;
+    background-color: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+    .hr-heti {
+        background-color: #404040;
     }
 }

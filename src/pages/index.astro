@@ -83,8 +83,6 @@ const { translate: t } = Astro.locals
 
   <section id="news" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      </br>
-      </br>
       <center><About_Content_News /></center>
     </article>
   </section>  
@@ -202,7 +200,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
       </div>
-
+      <hr class="hr-heti" />
     </article>
   </section> 
 
@@ -213,15 +211,15 @@ const { translate: t } = Astro.locals
       <div class="affiliations">
         <div class="affiliation-timeline">
           <div class="affiliation-item">
-            <img class="affiliation-logo" src="/affiliations/oracle_logo_icon_168918.png" alt="Oracle logo">
+            <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2025</div>
             <div class="affiliation-text"><div style="font-weight: bold">Oracle Health AI</div>Senior Applied Scientist</div>
           </div>
           <div class="affiliation-item">
-            <img class="affiliation-logo" src="/affiliations/australian_institute_for_machine_learning_logo.jpeg" alt="Australian Institute for Machine Learning logo">
+            <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2024</div>
             <div class="affiliation-text"><div style="font-weight: bold">Australian Institute for Machine Learning (AIML)</div>Postdoctoral Research Fellow</div>
           </div>
           <div class="affiliation-item affiliation-item--multi">
-            <img class="affiliation-logo affiliation-logo--anu" src="/affiliations/logo-ANU-black-cropped.png" alt="Australian National University logo">
+           <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2015</div>
             <div class="affiliation-text">
               <div class="affiliation-name">Australian National University (ANU)</div>
               <div class="affiliation-roles">
@@ -233,11 +231,11 @@ const { translate: t } = Astro.locals
         </div>
       </div>
     </article>
+    <hr class="hr-heti" />
   </section>  
 
   <section id="links" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      </br>
       </br>
       <center><Links /></center>
     </article>
