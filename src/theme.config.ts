@@ -57,8 +57,7 @@ export const THEME_CONFIG: App.Locals['config'] = {
   },
   /** your navigation links */
   navs: [
-    { name: "About", href: "#about" },
-    { name: "Research", href: "#recent-research-section" },
+    { name: "About", href: "#profile-top" },
     { name: "News", href: "#news" },
     { name: "Publications", href: "#recent-research" },
     { name: "Affiliations", href: "#affiliations" },
