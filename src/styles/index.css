@@ -111,7 +111,7 @@ article.heti .research_h1 {
 }
 
 article.heti .research_h1 > strong {
-    font-size: 1.01em;
+    font-size: 0.9025em;
     font-weight: 650;
     color: #1f2937;
     letter-spacing: 0.005em;
@@ -148,6 +148,13 @@ article.heti .research_h1 .research-venue {
 
 article.heti .research_h1 > details {
     margin-top: 8px;
+}
+
+article.heti .research_h1 > details summary .text-transition {
+    font-size: 0.93em;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #5f6876;
 }
 
 article.heti details {
@@ -258,6 +265,14 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
     text-indent: 0;
 }
 
+#links .section-heading {
+    margin-top: 6px !important;
+}
+
+#links > article.heti {
+    padding-top: 6px;
+}
+
 .collapse-content {
     max-height: 0;
     overflow: hidden;
@@ -275,6 +290,7 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
 }
 
 .collapse-content--research {
+    background-color: transparent;
     padding: 0;
     margin-top: 0;
 }
@@ -458,6 +474,7 @@ button[data-collapse-target][aria-expanded="true"] {
 }
 
 .affiliation-name {
+    font-size: 0.95em;
     font-weight: 700;
     color: #111827;
 }
@@ -498,6 +515,61 @@ button[data-collapse-target][aria-expanded="true"] {
     line-height: 1.4;
 }
 
+.related-links-board {
+    margin-top: 8px;
+    width: min(640px, 100%);
+}
+
+.related-link-entry {
+    border-left: 2px solid rgba(100, 116, 139, 0.42);
+    padding: 2px 0 3px 10px;
+}
+
+.related-link-title {
+    font-size: 0.9025em;
+    font-weight: 650;
+    color: #1f2937;
+    letter-spacing: 0.005em;
+    margin-bottom: 3px;
+}
+
+.related-link-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+article.heti .related-link-actions a {
+    padding: 0;
+    line-height: 1.5;
+    font-size: 0.93em;
+    font-weight: 400;
+    text-decoration: none;
+    color: #5f6876;
+    background: transparent;
+    border: 0;
+    transition: color 0.18s ease;
+}
+
+article.heti .related-link-actions a + a {
+    margin-left: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+article.heti .related-link-actions a + a::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(100, 116, 139, 0.7);
+}
+
+article.heti .related-link-actions a:hover {
+    color: #0f172a;
+    text-decoration: underline;
+}
+
 @media (max-width: 640px) {
     .affiliation-timeline::before {
         left: 27px;
@@ -517,6 +589,10 @@ button[data-collapse-target][aria-expanded="true"] {
 .affiliation-logo--anu {
         padding: 10px;
         object-position: center 56%;
+    }
+
+    .related-link-entry {
+        padding-left: 9px;
     }
 }
 
