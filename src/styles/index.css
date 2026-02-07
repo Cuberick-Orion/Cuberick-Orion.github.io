@@ -103,6 +103,53 @@ article.heti blockquote p {
     margin-block-end: 12px;
 }
 
+article.heti .research_h1 {
+    display: block;
+    line-height: 1.45;
+    margin: 0;
+    padding: 2px 0 8px;
+}
+
+article.heti .research_h1 > strong {
+    font-size: 1.01em;
+    font-weight: 650;
+    color: #1f2937;
+    letter-spacing: 0.005em;
+}
+
+article.heti .research_h1 .coming-soon-badge,
+article.heti .research_h1 .news-badge {
+    vertical-align: baseline;
+    margin-left: 6px;
+}
+
+article.heti .research_h1 > br {
+    display: block;
+    margin-top: 6px;
+    content: "";
+}
+
+article.heti .research_h1 .research-authors,
+article.heti .research_h1 .research-venue {
+    display: block;
+    line-height: 1.5;
+    font-size: 0.93em;
+    font-weight: 400;
+    color: #5f6876;
+}
+
+article.heti .research_h1 .research-authors {
+    margin-top: 6px;
+}
+
+article.heti .research_h1 .research-venue {
+    margin-top: 1px;
+}
+
+article.heti .research_h1 > details {
+    margin-top: 8px;
+}
+
 article.heti details {
     margin: 8px 0 14px;
 }
@@ -399,7 +446,7 @@ button[data-collapse-target][aria-expanded="true"] {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 13px;
     color: #1f2937;
     letter-spacing: 0.3px;
 }
@@ -410,24 +457,39 @@ button[data-collapse-target][aria-expanded="true"] {
     margin: 0;
 }
 
-.affiliation-item--multi .affiliation-text {
-    display: grid;
-    gap: 6px;
-}
-
 .affiliation-name {
-    font-weight: bold;
+    font-weight: 700;
+    color: #111827;
 }
 
-.affiliation-roles {
+.affiliation-meta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+    line-height: 1.3;
+}
+
+.affiliation-location {
+    font-size: 0.9em;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.affiliation-role-primary {
+    margin-top: 2px;
+    font-size: 0.94em;
+    color: #4b5563;
+}
+
+.affiliation-role-group {
     display: grid;
-    gap: 4px;
-    padding-left: 2px;
+    gap: 2px;
 }
 
-.affiliation-role {
-    font-size: 0.95em;
-    color: #374151;
+.affiliation-role-secondary {
+    font-size: 0.94em;
+    color: #4b5563;
 }
 
 .affiliation-text {
