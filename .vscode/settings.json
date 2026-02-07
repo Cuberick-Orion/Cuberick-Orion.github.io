@@ -9,4 +9,5 @@
       "strings": "on"
     }
   },
+  "chatgpt.openOnStartup": true,
 }

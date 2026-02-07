@@ -1,4 +1,4 @@
----
+﻿---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
 import { Image } from 'astro:assets';
 
@@ -83,118 +83,125 @@ const { translate: t } = Astro.locals
 
   <section id="news" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      <center><About_Content_News /></center>
+      <About_Content_News />
     </article>
+    <hr class="hr-heti" />
   </section>  
 
   <section id="recent-research" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
-      <div style="font-size: 13.5pt; font-weight: bold; padding-bottom: 15px"><center>Recent Research</center></div>
+      <h5 class="section-heading">Recent Research</h5>
       
       <div id="recent-research">
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={flowertune_img} alt="flowertune_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_flowertune />
             </div>
           </div>
         </div>
 
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={frame_wise_conditioning_img} alt="frame_wise_conditioning_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_frame_wise_conditioning />
             </div>
           </div>
         </div>
         
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={eccv2024_0_colab_img} alt="eccv2024_0_colab_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_eccv2024_0_colab />
             </div>
           </div>
         </div>
-        
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+      
+        <div class="text-gray-500 collapse-toggle-wrap" style="transition:all .3s ease-in-out; padding-top: 15px">
+          <button
+            type="button"
+            data-collapse-target="collapsible-content"
+            data-expand-label="See more"
+            data-collapse-label="See fewer"
+            aria-expanded="false"
+          >
+            <span class="label">See more</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="collapsible-content" class="collapse-content collapse-content--research">
+
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={anu_logo_img} alt="anu_logo_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_phd_thesis />
             </div>
           </div>
         </div>
-      
-        <div class="text-gray-500" style="transition:all .3s ease-in-out; padding-top: 15px"><center>
-          <button id="toggle-button">
-            <span class="label">Click to Expand</span>
-            <span class="arrow">▼</span>
-        </center></div>
-      </div>
 
-      <div id="collapsible-content">
-
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={tmlr2024_0_img} alt="tmlr2024_0_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_tmlr2024_0 />
             </div>
           </div>
         </div>
 
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={wacv2024_0_img} alt="wacv2024_0_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_wacv2024_0 />
             </div>
           </div>
         </div>
 
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2023_0_colab_img} alt="iccv2023_0_colab_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_iccv2023_0_colab />
             </div>
           </div>
         </div>
 
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_cvpr2023_0_colab />
             </div>
           </div>
         </div>
 
-        <div class="max-w-full mx-auto overflow-hidden md:max-w-2xl">
+        <div class="w-full overflow-hidden">
           <div class="md:flex">
-            <div class="p-3 -mb-6 md:shrink-0">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2021_0_img} alt="iccv2021_0_img"> 
             </div>
-            <div class="p-3 leading-tight text-slate-700">
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_iccv2021_0 />
             </div>
           </div>
@@ -207,7 +214,7 @@ const { translate: t } = Astro.locals
   <section id="affiliations" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
-      <div style="font-size: 13.5pt; font-weight: bold; padding-bottom: 15px"><center>Affiliations</center></div>
+      <h5 class="section-heading">Affiliations</h5>
       <div class="affiliations">
         <div class="affiliation-timeline">
           <div class="affiliation-item">
@@ -230,19 +237,27 @@ const { translate: t } = Astro.locals
           </div>
         </div>
       </div>
+      <hr class="hr-heti" />
     </article>
-    <hr class="hr-heti" />
   </section>  
 
   <section id="links" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
-      <center><Links /></center>
+      <Links />
     </article>
   </section>  
 
   </main>
+  <button id="back-to-top" class="back-to-top" type="button" aria-label="Return to top" aria-hidden="true" hidden>
+    <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
+      <path d="M12 18V6M7 11l5-5 5 5" />
+    </svg>
+  </button>
   </br> 
   <hr style="height:1.5px;border-width:0;color:rgba(188, 188, 188, 0.589);background-color:rgba(129, 129, 129, 0.306)"> 
 
   </LayoutDefault>
+
+
+

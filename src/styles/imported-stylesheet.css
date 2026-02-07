@@ -33,6 +33,20 @@ details {
     line-height: 16px;
 }
 
+details > :not(summary) {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: max-height 0.32s ease, opacity 0.22s ease, margin-top 0.22s ease;
+}
+
+details[open] > :not(summary) {
+    max-height: 900px;
+    opacity: 1;
+    margin-top: 6px;
+}
+
 /* Soften bibtex/code blocks inside details */
 details pre,
 details code {
@@ -47,6 +61,12 @@ details summary>* {
     text-indent: -2%;
     /* text-decoration: underline #4f4f4f7f dotted; */
     text-underline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    details > :not(summary) {
+        transition: none;
+    }
 }
 
 .text-transition {
