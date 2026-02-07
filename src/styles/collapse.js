@@ -129,6 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     summary.addEventListener('click', (event) => {
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest('a, button, input, textarea, select, [role="button"]')
+      ) {
+        // Let interactive elements inside summary (e.g. paper links) behave normally.
+        return;
+      }
+
       if (isAnimating) {
         event.preventDefault();
         return;
