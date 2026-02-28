@@ -8,6 +8,7 @@ import {Content as About_Content_Recent_Research} from '~/pages/about_recent_res
 import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 import {Content as Links} from '~/pages/related_links.mdx'
+import {Content as Domain_Knowledge} from '~/pages/domain_knowledge.mdx'
 
 import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
 import placeholder_1_img from '~/pages/research_publications_mdx/placeholder_1.png';
@@ -228,6 +229,14 @@ const { translate: t } = Astro.locals
       <hr class="hr-heti" />
     </article>
   </section> 
+
+  <section id="area-of-expertise" contain-layout un-flex="~ col gap-7.5">
+    <article class="heti">
+      <h5 class="section-heading">Area of Expertise / Domain Knowledge</h5>
+      <Domain_Knowledge />
+      <hr class="hr-heti" />
+    </article>
+  </section>
 
   <section id="affiliations" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">

@@ -570,6 +570,33 @@ article.heti .related-link-actions a:hover {
     text-decoration: underline;
 }
 
+article.heti .related-link-actions--text span {
+    padding: 0;
+    line-height: 1.5;
+    font-size: 0.93em;
+    font-weight: 400;
+    color: #5f6876;
+}
+
+article.heti .related-link-actions--text {
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+article.heti .related-link-actions--text span + span {
+    margin-left: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+
+article.heti .related-link-actions--text span + span::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(100, 116, 139, 0.7);
+}
+
 @media (max-width: 640px) {
     .affiliation-timeline::before {
         left: 27px;
