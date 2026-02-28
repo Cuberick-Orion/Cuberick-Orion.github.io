@@ -265,11 +265,13 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
     text-indent: 0;
 }
 
-#links .section-heading {
+#links .section-heading,
+#affiliations .section-heading {
     margin-top: 6px !important;
 }
 
-#links > article.heti {
+#links > article.heti,
+#affiliations > article.heti {
     padding-top: 6px;
 }
 
