@@ -1,14 +1,17 @@
 ﻿---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import ResearchItem from '~/components/ResearchItem.astro'
+import { Image } from 'astro:assets';
 
 import {Content as About_Content_Main} from '~/pages/about_main.md'
 import {Content as About_Content} from '~/pages/about.md'
 import {Content as About_Content_Recent_Research} from '~/pages/about_recent_research.md'
+import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 import {Content as Links} from '~/pages/related_links.mdx'
 import {Content as Domain_Knowledge} from '~/pages/domain_knowledge.mdx'
 
+import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
+import placeholder_1_img from '~/pages/research_publications_mdx/placeholder_1.png';
 import eccv2026_straight_path_flow_matching_img from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching.png';
 import flowertune_img from '~/pages/research_publications_mdx/flowertune.png';
 import frame_wise_conditioning_img from '~/pages/research_publications_mdx/frame-wise_conditioning.png';
@@ -31,11 +34,14 @@ import {Content as Research_iccv2023_0_colab} from '~/pages/research_publication
 import {Content as Research_cvpr2023_0_colab} from '~/pages/research_publications_mdx/cvpr2023_0_colab.mdx'
 import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/iccv2021_0.mdx'
 
+
+const { translate: t } = Astro.locals
+
 // const apiUrl_time = "https://timeapi.io/api/Time/current/zone?timeZone=Australia/Adelaide"
 
 ---
   <LayoutDefault>
-  <div class="homepage-content"> 
+  <main un-lg="py-20 min-w-xl animate-fadein-down" class="py-7.5 px-4 md:p-7.5"> 
   
     <div id="profile-top" class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
     <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
@@ -74,79 +80,73 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
       </div>
 
     </div>
-  <section id="about" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="about" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
+      </br>
+      </br>
       <About_Content_Main />
     </article>
   </section>  
   
-  <section class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
+      </br>
       <About_Content />
     </article>
   </section>  
 
-  <section id="recent-research-section" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="recent-research-section" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
+      </br>
       <About_Content_Recent_Research />
     </article>
   </section>  
 
-  <section id="news" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="news" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <About_Content_News />
     </article>
     <hr class="hr-heti" />
   </section>  
 
-  <section id="recent-research" class="homepage-section homepage-section--research" contain-layout un-flex="~ col gap-7.5">
+  <section id="recent-research" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Recent Research</h5>
       
-      <div class="research-list">
-        <ResearchItem image={eccv2026_straight_path_flow_matching_img} alt="straight_path_flow_matching_img">
-          <Research_eccv2026_straight_path_flow_matching />
-        </ResearchItem>
+      <div id="recent-research">
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={eccv2026_straight_path_flow_matching_img} alt="straight_path_flow_matching_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_eccv2026_straight_path_flow_matching />
+            </div>
+          </div>
+        </div>
 
-        <ResearchItem image={flowertune_img} alt="flowertune_img">
-          <Research_flowertune />
-        </ResearchItem>
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={flowertune_img} alt="flowertune_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_flowertune />
+            </div>
+          </div>
+        </div>
 
-        <ResearchItem image={frame_wise_conditioning_img} alt="frame_wise_conditioning_img">
-          <Research_frame_wise_conditioning />
-        </ResearchItem>
-
-      <div id="collapsible-content" class="collapse-content collapse-content--research">
-
-        <ResearchItem image={eccv2024_0_colab_img} alt="eccv2024_0_colab_img">
-          <Research_eccv2024_0_colab />
-        </ResearchItem>
-
-        <ResearchItem image={anu_logo_img} alt="anu_logo_img">
-          <Research_phd_thesis />
-        </ResearchItem>
-
-        <ResearchItem image={tmlr2024_0_img} alt="tmlr2024_0_img">
-          <Research_tmlr2024_0 />
-        </ResearchItem>
-
-        <ResearchItem image={wacv2024_0_img} alt="wacv2024_0_img">
-          <Research_wacv2024_0 />
-        </ResearchItem>
-
-        <ResearchItem image={iccv2023_0_colab_img} alt="iccv2023_0_colab_img">
-          <Research_iccv2023_0_colab />
-        </ResearchItem>
-
-        <ResearchItem image={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img">
-          <Research_cvpr2023_0_colab />
-        </ResearchItem>
-
-        <ResearchItem image={iccv2021_0_img} alt="iccv2021_0_img">
-          <Research_iccv2021_0 />
-        </ResearchItem>
-      </div>
-        <div class="text-gray-500 collapse-toggle-wrap">
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={frame_wise_conditioning_img} alt="frame_wise_conditioning_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_frame_wise_conditioning />
+            </div>
+          </div>
+        </div>
+        <div class="text-gray-500 collapse-toggle-wrap" style="transition:all .3s ease-in-out; padding-top: 15px">
           <button
             type="button"
             data-collapse-target="collapsible-content"
@@ -158,11 +158,91 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
           </button>
         </div>
       </div>
+
+      <div id="collapsible-content" class="collapse-content collapse-content--research">
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={eccv2024_0_colab_img} alt="eccv2024_0_colab_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_eccv2024_0_colab />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={anu_logo_img} alt="anu_logo_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_phd_thesis />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={tmlr2024_0_img} alt="tmlr2024_0_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_tmlr2024_0 />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={wacv2024_0_img} alt="wacv2024_0_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_wacv2024_0 />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2023_0_colab_img} alt="iccv2023_0_colab_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_iccv2023_0_colab />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_cvpr2023_0_colab />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full overflow-hidden">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2021_0_img} alt="iccv2021_0_img"> 
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_iccv2021_0 />
+            </div>
+          </div>
+        </div>
+      </div>
       <hr class="hr-heti" />
     </article>
   </section> 
 
-  <section id="area-of-expertise" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="area-of-expertise" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Area of Expertise / Domain Knowledge</h5>
       <Domain_Knowledge />
@@ -170,13 +250,13 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
     </article>
   </section>
 
-  <section id="affiliations" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="affiliations" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Affiliations</h5>
       <div class="affiliations">
         <div class="affiliation-timeline">
           <div class="affiliation-item">
-            <div class="affiliation-logo affiliation-logo--text">2025</div>
+            <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2025</div>
             <div class="affiliation-text">
               <div class="affiliation-meta">
                 <span class="affiliation-name">Oracle Health AI</span>
@@ -186,7 +266,7 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
             </div>
           </div>
           <div class="affiliation-item">
-            <div class="affiliation-logo affiliation-logo--text">2024</div>
+            <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2024</div>
             <div class="affiliation-text">
               <div class="affiliation-meta">
                 <span class="affiliation-name">Australian Institute for Machine Learning (AIML)</span>
@@ -196,7 +276,7 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
             </div>
           </div>
           <div class="affiliation-item">
-           <div class="affiliation-logo affiliation-logo--text">2015</div>
+           <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2015</div>
             <div class="affiliation-text">
               <div class="affiliation-meta">
                 <span class="affiliation-name">Australian National University (ANU)</span>
@@ -214,14 +294,14 @@ import {Content as Research_iccv2021_0} from '~/pages/research_publications_mdx/
     </article>
   </section>  
 
-  <section id="links" class="homepage-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="links" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Related Links</h5>
       <Links />
     </article>
   </section>  
 
-  </div>
+  </main>
   <button id="back-to-top" class="back-to-top" type="button" aria-label="Return to top" aria-hidden="true" hidden>
     <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false">
       <path d="M12 18V6M7 11l5-5 5 5" />
