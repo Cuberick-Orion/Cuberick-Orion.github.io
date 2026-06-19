@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const detailsElements = document.querySelectorAll('article.heti details');
+  const detailsElements = document.querySelectorAll('article.heti details:not(.affiliation-role-details)');
 
   detailsElements.forEach((details) => {
     const summary = details.querySelector('summary');
@@ -138,6 +138,107 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      if (isAnimating) {
+        event.preventDefault();
+        return;
+      }
+
+      if (reduceMotion) {
+        return;
+      }
+
+      event.preventDefault();
+      isAnimating = true;
+
+      if (details.open) {
+        collapse();
+      } else {
+        expand();
+      }
+    });
+  });
+
+  const affiliationDetailsElements = document.querySelectorAll('article.heti details.affiliation-role-details');
+
+  affiliationDetailsElements.forEach((details) => {
+    const summary = details.querySelector('summary');
+    const body = details.querySelector('.affiliation-role-details-body');
+
+    if (!summary || details.dataset.animatedAffiliationDetails === 'true') {
+      return;
+    }
+    details.dataset.animatedAffiliationDetails = 'true';
+
+    let isAnimating = false;
+    let fallbackTimer = null;
+
+    const finish = (shouldOpen) => {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+
+      details.open = shouldOpen;
+      details.classList.remove('affiliation-details-animating');
+      details.style.height = '';
+      details.style.overflow = '';
+
+      if (body instanceof HTMLElement) {
+        body.style.opacity = '';
+        body.style.transform = '';
+      }
+
+      isAnimating = false;
+    };
+
+    const animate = (startHeight, endHeight, shouldOpen) => {
+      details.classList.add('affiliation-details-animating');
+      details.style.overflow = 'hidden';
+      details.style.height = `${startHeight}px`;
+
+      if (body instanceof HTMLElement) {
+        body.style.opacity = shouldOpen ? '0' : '1';
+        body.style.transform = shouldOpen ? 'translateY(-3px)' : 'translateY(0)';
+      }
+
+      requestAnimationFrame(() => {
+        details.style.height = `${endHeight}px`;
+
+        if (body instanceof HTMLElement) {
+          body.style.opacity = shouldOpen ? '1' : '0';
+          body.style.transform = shouldOpen ? 'translateY(0)' : 'translateY(-3px)';
+        }
+      });
+
+      const handleEnd = (event) => {
+        if (event.propertyName !== 'height') {
+          return;
+        }
+        details.removeEventListener('transitionend', handleEnd);
+        finish(shouldOpen);
+      };
+
+      details.addEventListener('transitionend', handleEnd);
+      fallbackTimer = window.setTimeout(() => {
+        details.removeEventListener('transitionend', handleEnd);
+        finish(shouldOpen);
+      }, 420);
+    };
+
+    const expand = () => {
+      const startHeight = details.offsetHeight;
+      details.open = true;
+      const endHeight = details.scrollHeight;
+      animate(startHeight, endHeight, true);
+    };
+
+    const collapse = () => {
+      const startHeight = details.offsetHeight;
+      const endHeight = summary.offsetHeight;
+      animate(startHeight, endHeight, false);
+    };
+
+    summary.addEventListener('click', (event) => {
       if (isAnimating) {
         event.preventDefault();
         return;

@@ -61,6 +61,13 @@ a.normal:hover {
     background-color: transparent;
 }
 
+.site-nav a,
+.site-nav a:link,
+.site-nav a:hover {
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
 article.heti a:hover {
     padding-block-end: 0px;
     border-block-end: 1px solid rgba(0, 0, 0, 0);
@@ -440,7 +447,7 @@ button[data-collapse-target][aria-expanded="true"] {
 .affiliation-item {
     display: grid;
     grid-template-columns: 62px 1fr;
-    align-items: center;
+    align-items: start;
     gap: 14px;
     width: 100%;
     max-width: 620px;
@@ -499,6 +506,79 @@ button[data-collapse-target][aria-expanded="true"] {
     margin-top: 2px;
     font-size: 0.94em;
     color: #4b5563;
+}
+
+article.heti .affiliation-role-details {
+    margin: 2px 0 0;
+    font-size: 0.94em;
+    color: #4b5563;
+}
+
+article.heti .affiliation-role-details summary {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    color: #4b5563;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+article.heti .affiliation-role-details summary:hover {
+    color: #111827;
+}
+
+article.heti .affiliation-role-details summary::before {
+    content: none;
+    display: none;
+}
+
+article.heti details.affiliation-role-details > .affiliation-role-details-body {
+    display: grid;
+    gap: 4px;
+    margin-top: 7px;
+    padding: 9px 12px 10px 22px;
+    border-radius: 5px;
+    background: rgba(100, 116, 139, 0.055);
+    color: #5f6876;
+    line-height: 1.42;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    transition: none;
+}
+
+article.heti details.affiliation-role-details.affiliation-details-animating {
+    overflow: hidden;
+    transition: height 0.32s ease;
+}
+
+article.heti details.affiliation-role-details.affiliation-details-animating > .affiliation-role-details-body {
+    transition: opacity 0.22s ease, transform 0.32s ease;
+    will-change: opacity, transform;
+}
+
+article.heti .affiliation-expertise-label {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+article.heti .affiliation-expertise-label--spaced {
+    margin-top: 6px;
+}
+
+article.heti .affiliation-expertise-list {
+    margin: 1px 0 0;
+    padding-left: 1.2em;
+    list-style: disc;
+    list-style-position: outside;
+}
+
+article.heti .affiliation-expertise-list li {
+    margin: 1px 0;
+    padding-left: 0.45em;
 }
 
 .affiliation-role-group {

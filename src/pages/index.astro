@@ -8,7 +8,6 @@ import {Content as About_Content_Recent_Research} from '~/pages/about_recent_res
 import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 import {Content as Links} from '~/pages/related_links.mdx'
-import {Content as Domain_Knowledge} from '~/pages/domain_knowledge.mdx'
 
 import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
 import placeholder_1_img from '~/pages/research_publications_mdx/placeholder_1.png';
@@ -242,14 +241,6 @@ const { translate: t } = Astro.locals
     </article>
   </section> 
 
-  <section id="area-of-expertise" contain-layout un-flex="~ col gap-7.5">
-    <article class="heti">
-      <h5 class="section-heading">Area of Expertise / Domain Knowledge</h5>
-      <Domain_Knowledge />
-      <hr class="hr-heti" />
-    </article>
-  </section>
-
   <section id="affiliations" contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Affiliations</h5>
@@ -262,7 +253,20 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-name">Oracle Health AI</span>
                 <span class="affiliation-location">Melbourne, Australia</span>
               </div>
-              <div class="affiliation-role-primary">Senior Applied Scientist</div>
+              <details class="affiliation-role-details">
+                <summary>Senior Applied Scientist</summary>
+                <div class="affiliation-role-details-body">
+                  <div class="affiliation-expertise-label">Area of Research</div>
+                  <div>Large Language Model</div>
+                  <div class="affiliation-expertise-label affiliation-expertise-label--spaced">Area of Expertise / Domain Knowledge</div>
+                  <div>Medical AI, Clinical Revenue Cycle</div>
+                  <ul class="affiliation-expertise-list">
+                    <li>Clinical Documentation Improvement (CDI)</li>
+                    <li>Healthcare Reimbursement</li>
+                    <li>Clinical Coding</li>
+                  </ul>
+                </div>
+              </details>
             </div>
           </div>
           <div class="affiliation-item">
@@ -272,7 +276,15 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-name">Australian Institute for Machine Learning (AIML)</span>
                 <span class="affiliation-location">Adelaide, Australia</span>
               </div>
-              <div class="affiliation-role-primary">Postdoctoral Research Fellow</div>
+              <details class="affiliation-role-details">
+                <summary>Postdoctoral Research Fellow</summary>
+                <div class="affiliation-role-details-body">
+                  <div class="affiliation-expertise-label">Area of Research</div>
+                  <div>Video generative / video editing models</div>
+                  <div>Efficient fine-tuning</div>
+                  <div>Adapter design</div>
+                </div>
+              </details>
             </div>
           </div>
           <div class="affiliation-item">
@@ -283,7 +295,17 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-location">Canberra, Australia</span>
               </div>
               <div class="affiliation-role-group">
-                <div class="affiliation-role-primary">PhD Student</div>
+                <details class="affiliation-role-details">
+                  <summary>PhD Student</summary>
+                  <div class="affiliation-role-details-body">
+                    <div class="affiliation-expertise-label">Area of Research</div>
+                    <div>Vision-language</div>
+                    <ul class="affiliation-expertise-list">
+                      <li>Composed image retrieval</li>
+                    </ul>
+                    <div>Multi-modal learning</div>
+                  </div>
+                </details>
                 <div class="affiliation-role-secondary">Undergraduate Student</div>
               </div>
             </div>
