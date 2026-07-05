@@ -1,5 +1,6 @@
 ---
 import '~/styles/index.css'
+import '~/styles/sao-op-credits.css'
 // https://sivan.github.io/heti
 import '~/styles/heti.min.css'
 import Header from '~/components/Header.astro'
@@ -73,6 +74,8 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
       </main>
       <Footer class="lg:hidden p-7.5" />
     </div>
+    <script is:inline src="/sao-op-credits.js"></script>
+    <script is:inline src="/sao-text-animations.js"></script>
     <script src="~/styles/collapse.js"></script>
   </body>
 </html>
