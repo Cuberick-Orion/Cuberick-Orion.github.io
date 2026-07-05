@@ -24,9 +24,6 @@ const title = props.title ?? themeConfig.title
 const desc = props.desc ?? themeConfig.desc
 const canonical = themeConfig.website
 const disableIntroAnimations = props.disableIntroAnimations ?? false
-const containerMaxLg = disableIntroAnimations ? "" : "animate-fadein-down"
-const sidebarLg = `sticky top-0 h-screen py-20${disableIntroAnimations ? "" : " animate-fadein-left"} gap-8`
-const contentLg = `py-20 min-w-xl${disableIntroAnimations ? "" : " animate-fadein-down"}`
 
 const image =
   props.banner &&
@@ -69,12 +66,24 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
     <Tooltips  />
   </head>
   <body>
-    <div un-max-lg={containerMaxLg} un-lg="flex flex-row-reverse justify-between gap-4 px-8 mx-auto max-w-6xl" class="container contain-layout m-a">
-      <div un-lg={sidebarLg} un-lg:flex="~ col justify-between items-start gap-4" class="p-7.5">
+    <div class:list={[
+      'container contain-layout m-a',
+      'lg:flex lg:flex-row-reverse lg:justify-between lg:gap-4 lg:px-8 lg:mx-auto lg:max-w-6xl',
+      !disableIntroAnimations && 'max-lg:animate-fadein-down',
+    ]}>
+      <div class:list={[
+        'p-7.5',
+        'lg:sticky lg:top-0 lg:h-screen lg:py-20 lg:flex lg:flex-col lg:justify-between lg:items-start lg:gap-4',
+        !disableIntroAnimations && 'lg:animate-fadein-left',
+      ]}>
         <Header />
         <Footer class="max-lg:hidden" />
       </div>
-      <main un-lg={contentLg} class="py-7.5 px-4 md:p-7.5">
+      <main class:list={[
+        'py-7.5 px-4 md:p-7.5',
+        'lg:py-20 lg:min-w-xl',
+        !disableIntroAnimations && 'lg:animate-fadein-down',
+      ]}>
         <slot />
       </main>
       <Footer class="lg:hidden p-7.5" />
