@@ -1240,26 +1240,26 @@
 }
 
 .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="playing"] {
-  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) var(--home-op-enter-easing, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
+  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) steps(10, end) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
 
 .home-progressive-text .op-credit--home-visual[data-home-progressive-state="playing"] {
-  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) var(--home-op-enter-easing, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
+  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) steps(10, end) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
 
 .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="exiting"] {
-  animation: home-op-name-exit var(--home-op-exit-duration, 200ms) var(--home-op-exit-easing, cubic-bezier(0.4, 0, 0.2, 1)) both;
+  animation: home-op-name-exit var(--home-op-exit-duration, 200ms) steps(10, end) both;
   animation-delay: var(--home-op-exit-delay, 0ms);
   pointer-events: none;
   will-change: opacity, clip-path, filter, transform;
 }
 
 .home-progressive-text .op-credit--home-visual[data-home-progressive-state="exiting"] {
-  animation: home-op-visual-exit var(--home-op-exit-duration, 200ms) var(--home-op-exit-easing, cubic-bezier(0.4, 0, 0.2, 1)) both;
+  animation: home-op-visual-exit var(--home-op-exit-duration, 200ms) steps(10, end) both;
   animation-delay: var(--home-op-exit-delay, 0ms);
   pointer-events: none;
   will-change: opacity, clip-path, filter, transform;
@@ -1507,7 +1507,7 @@
   border-left-color: transparent;
   color: inherit;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(10, end) backwards;
   animation-delay: var(--sidebar-op-delay, 0ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1564,7 +1564,7 @@
   line-height: 1.05;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(10, end) backwards;
   animation-delay: var(--sidebar-op-delay, 128ms);
   transition: color 80ms linear;
   will-change: opacity, transform, clip-path, filter;
@@ -1617,12 +1617,12 @@
 }
 
 .site-sidebar .site-sidebar-link[data-home-section-transition="activate"] .site-sidebar-link-sweep {
-  animation: sidebar-op-state-activate 190ms var(--sidebar-op-easing) both;
+  animation: sidebar-op-state-activate 190ms steps(10, end) both;
   transform-origin: left center;
 }
 
 .site-sidebar .site-sidebar-link[data-home-section-transition="deactivate"] .site-sidebar-link-sweep {
-  animation: sidebar-op-state-deactivate 225ms var(--sidebar-op-easing) both;
+  animation: sidebar-op-state-deactivate 225ms steps(10, end) both;
   transform-origin: right center;
 }
 
@@ -1664,7 +1664,7 @@
 }
 
 .site-sidebar .site-sidebar-link[data-home-section-transition="activate"]::before {
-  animation: sidebar-op-state-activate 190ms var(--sidebar-op-easing) both;
+  animation: sidebar-op-state-activate 190ms steps(10, end) both;
   transform-origin: left center;
 }
 
@@ -1733,7 +1733,7 @@
   background-color: currentColor;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(10, end) backwards;
   animation-delay: var(--sidebar-op-delay, 288ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1757,7 +1757,7 @@
     -5px 7px 0 rgba(46, 64, 91, 0.12),
     0 0 5px rgba(46, 64, 91, 0.22);
   pointer-events: none;
-  animation: sidebar-op-deco-out 480ms linear forwards;
+  animation: sidebar-op-deco-out 620ms steps(10, end) forwards;
   animation-delay: var(--sidebar-social-marker-fade-delay);
 }
 
