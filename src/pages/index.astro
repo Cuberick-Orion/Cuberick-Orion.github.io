@@ -342,6 +342,9 @@ const { translate: t } = Astro.locals
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"]';
+        const revealLeadDelay = 72;
+        const collapseRevealLeadDelay = 48;
+        const revealStagger = 24;
         const startElement = (element, delayOverride) => {
           if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveState !== 'waiting') {
             return;
@@ -364,7 +367,7 @@ const { translate: t } = Astro.locals
           revealedTargets.push(...content.querySelectorAll(progressiveTargetSelector));
 
           revealedTargets.forEach((element, index) => {
-            startElement(element, index * 32);
+            startElement(element, collapseRevealLeadDelay + index * revealStagger);
           });
         };
         const bindCollapseRevealAnimations = () => {
@@ -403,7 +406,7 @@ const { translate: t } = Astro.locals
               .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
               .forEach((entry, index) => {
                 observer.unobserve(entry.target);
-                startElement(entry.target, index * 32);
+                startElement(entry.target, revealLeadDelay + index * revealStagger);
               });
           }, { threshold: 0.18 });
 

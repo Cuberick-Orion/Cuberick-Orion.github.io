@@ -283,19 +283,28 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
 }
 
 .collapse-content {
-    max-height: 0;
+    height: 0;
+    max-height: none;
     overflow: hidden;
-    transition: max-height 0.7s ease-out, padding 0.3s ease;
+    transition:
+        height 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+        padding 0.42s cubic-bezier(0.4, 0, 0.2, 1),
+        margin-top 0.42s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: #fefefe74;
-    padding: 0 0 15px;
+    padding: 0;
     /* border: 1px solid #cccccc2d; */
     margin-top: 10px;
     box-sizing: border-box;
+    will-change: height, padding, margin-top;
 }
 
 .collapse-content.open {
-    max-height: 5000px; /* Adjust this if you have more content */
+    height: auto;
     padding: 15px 0;
+}
+
+.collapse-content.collapse-animating {
+    overflow: hidden;
 }
 
 .collapse-content--research {
@@ -313,7 +322,6 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
     background-color: transparent;
     padding: 0;
     margin-top: 8px;
-    transition: max-height 0.45s ease-out, padding 0.2s ease;
 }
 
 .collapse-content--news.open {

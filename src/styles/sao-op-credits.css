@@ -1174,13 +1174,13 @@
 }
 
 .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="playing"] {
-  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) steps(4, end) both;
+  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) steps(8, end) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
 
 .home-progressive-text .op-credit--home-visual[data-home-progressive-state="playing"] {
-  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) steps(4, end) both;
+  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) steps(8, end) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
@@ -1337,9 +1337,26 @@
   border-left-color: transparent;
   color: inherit;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(4, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
   animation-delay: var(--sidebar-op-delay, 0ms);
   will-change: opacity, transform, clip-path, filter;
+}
+
+.site-sidebar-title-card h1 {
+  white-space: nowrap;
+}
+
+@media (max-width: 1023.9px) {
+  .site-sidebar-title-card {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 330px) {
+  .site-sidebar-title-card h1 {
+    font-size: 1.8rem;
+  }
 }
 
 .site-sidebar-title-card:hover {
@@ -1370,7 +1387,7 @@
   line-height: 1.05;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(4, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
   animation-delay: var(--sidebar-op-delay, 128ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1410,7 +1427,7 @@
     -5px 7px 0 rgba(255, 255, 255, 0.12),
     0 0 5px rgba(255, 255, 255, 0.32);
   pointer-events: none;
-  animation: sidebar-op-deco-out 620ms steps(5, end) forwards;
+  animation: sidebar-op-deco-out 620ms steps(8, end) forwards;
   animation-delay: var(--sidebar-marker-fade-delay);
 }
 
@@ -1449,7 +1466,7 @@
   background-color: currentColor;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(4, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
   animation-delay: var(--sidebar-op-delay, 288ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1473,7 +1490,7 @@
     -5px 7px 0 rgba(46, 64, 91, 0.12),
     0 0 5px rgba(46, 64, 91, 0.22);
   pointer-events: none;
-  animation: sidebar-op-deco-out 620ms steps(5, end) forwards;
+  animation: sidebar-op-deco-out 620ms steps(8, end) forwards;
   animation-delay: var(--sidebar-social-marker-fade-delay);
 }
 

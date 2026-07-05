@@ -19,17 +19,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const expandLabel = button.getAttribute('data-expand-label') ?? 'See more';
     const collapseLabel = button.getAttribute('data-collapse-label') ?? 'See fewer';
+    let isAnimating = false;
+    let fallbackTimer = null;
 
     const updateButtonState = (isOpen) => {
       label.textContent = isOpen ? collapseLabel : expandLabel;
       button.setAttribute('aria-expanded', String(isOpen));
     };
 
+    const finishAnimation = (isOpen) => {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+
+      content.classList.toggle('open', isOpen);
+      content.classList.remove('collapse-animating');
+      content.style.height = '';
+      content.style.overflow = '';
+      isAnimating = false;
+    };
+
+    const animateContent = (isOpen) => {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+
+      const startHeight = content.getBoundingClientRect().height;
+      content.classList.add('collapse-animating');
+      content.style.overflow = 'hidden';
+      content.style.height = `${startHeight}px`;
+
+      if (isOpen) {
+        content.classList.add('open');
+      }
+
+      const endHeight = isOpen
+        ? content.scrollHeight
+        : 0;
+
+      if (!isOpen) {
+        content.classList.remove('open');
+      }
+
+      requestAnimationFrame(() => {
+        content.style.height = `${endHeight}px`;
+      });
+
+      const handleEnd = (event) => {
+        if (event.propertyName !== 'height') {
+          return;
+        }
+
+        content.removeEventListener('transitionend', handleEnd);
+        finishAnimation(isOpen);
+      };
+
+      content.addEventListener('transitionend', handleEnd);
+      fallbackTimer = window.setTimeout(() => {
+        content.removeEventListener('transitionend', handleEnd);
+        finishAnimation(isOpen);
+      }, 520);
+    };
+
     updateButtonState(content.classList.contains('open'));
+    if (!content.classList.contains('open')) {
+      content.style.height = '0px';
+    }
 
     button.addEventListener('click', () => {
-      content.classList.toggle('open');
-      updateButtonState(content.classList.contains('open'));
+      if (isAnimating) {
+        return;
+      }
+
+      const shouldOpen = !content.classList.contains('open');
+      updateButtonState(shouldOpen);
+
+      if (reduceMotion) {
+        content.classList.toggle('open', shouldOpen);
+        content.style.height = '';
+        return;
+      }
+
+      isAnimating = true;
+      animateContent(shouldOpen);
     });
   });
 
