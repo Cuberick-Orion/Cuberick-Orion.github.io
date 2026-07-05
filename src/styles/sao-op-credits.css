@@ -1103,21 +1103,21 @@
     opacity: 0;
     transform: translate3d(0, 0, 0);
     clip-path: inset(0 100% 0 0);
-    filter: blur(2px) brightness(1.6);
+    filter: blur(var(--home-op-start-blur, 1.15px)) brightness(var(--home-op-start-brightness, 1.34));
   }
 
   55% {
     opacity: 1;
-    transform: translate3d(1px, 0, 0);
+    transform: translate3d(var(--home-op-mid-shift, 0.75px), 0, 0);
     clip-path: inset(0 28% 0 0);
-    filter: blur(0) brightness(1.15);
+    filter: blur(0) brightness(var(--home-op-mid-brightness, 1.08));
   }
 
   100% {
     opacity: 1;
-    transform: none;
-    clip-path: none;
-    filter: none;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+    filter: blur(0) brightness(1);
   }
 }
 
@@ -1126,29 +1126,38 @@
     opacity: 0;
     transform: translate3d(-2px, 0, 0);
     clip-path: inset(0 100% 0 0);
-    filter: blur(2px) brightness(1.55) contrast(1.08);
+    filter: blur(var(--home-op-start-blur, 1px)) brightness(var(--home-op-start-brightness, 1.28)) contrast(1.04);
   }
 
   48% {
     opacity: 1;
-    transform: translate3d(1px, 0, 0);
+    transform: translate3d(var(--home-op-mid-shift, 0.75px), 0, 0);
     clip-path: inset(0 34% 0 0);
-    filter: blur(0) brightness(1.14) contrast(1.04);
+    filter: blur(0) brightness(var(--home-op-mid-brightness, 1.06)) contrast(1.02);
   }
 
   100% {
     opacity: 1;
-    transform: none;
-    clip-path: none;
-    filter: none;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+    filter: blur(0) brightness(1) contrast(1);
   }
 }
 
 .home-progressive-text .op-credit--home-name-line {
+  --home-op-enter-easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --home-op-start-blur: 1.15px;
+  --home-op-start-brightness: 1.34;
+  --home-op-mid-brightness: 1.08;
+  --home-op-mid-shift: 0.75px;
   position: relative;
 }
 
 .home-progressive-text .op-credit--home-visual {
+  --home-op-start-blur: 1px;
+  --home-op-start-brightness: 1.28;
+  --home-op-mid-brightness: 1.06;
+  --home-op-mid-shift: 0.75px;
   transform-origin: left center;
   transition-property: box-shadow !important;
   transition-duration: 300ms !important;
@@ -1174,13 +1183,13 @@
 }
 
 .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="playing"] {
-  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) steps(8, end) both;
+  animation: home-op-name-enter var(--home-op-enter-duration, 180ms) var(--home-op-enter-easing, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
 
 .home-progressive-text .op-credit--home-visual[data-home-progressive-state="playing"] {
-  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) steps(8, end) both;
+  animation: home-op-visual-enter var(--home-op-enter-duration, 180ms) var(--home-op-enter-easing, cubic-bezier(0.22, 0.61, 0.36, 1)) both;
   animation-delay: var(--home-op-delay, 0ms);
   will-change: opacity, clip-path, filter, transform;
 }
@@ -1201,6 +1210,16 @@
   filter: none;
   animation: none;
   will-change: auto;
+}
+
+@media (max-width: 767.9px) {
+  .home-progressive-text .op-credit--home-name-line,
+  .home-progressive-text .op-credit--home-visual {
+    --home-op-start-blur: 0.45px;
+    --home-op-start-brightness: 1.16;
+    --home-op-mid-brightness: 1.04;
+    --home-op-mid-shift: 0.35px;
+  }
 }
 
 .home-progressive-text .op-credit--home-name-line.op-credit--flow {
@@ -1276,14 +1295,14 @@
     opacity: 0;
     transform: translate3d(0, 0, 0);
     clip-path: inset(0 100% 0 0);
-    filter: blur(2px) brightness(1.6);
+    filter: blur(var(--sidebar-op-start-blur, 1.15px)) brightness(var(--sidebar-op-start-brightness, 1.34));
   }
 
   55% {
     opacity: 1;
-    transform: translate3d(1px, 0, 0);
+    transform: translate3d(var(--sidebar-op-mid-shift, 0.75px), 0, 0);
     clip-path: inset(0 28% 0 0);
-    filter: blur(0) brightness(1.15);
+    filter: blur(0) brightness(var(--sidebar-op-mid-brightness, 1.08));
   }
 
   100% {
@@ -1323,6 +1342,11 @@
 
 .site-sidebar {
   --sidebar-op-duration: 180ms;
+  --sidebar-op-easing: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --sidebar-op-start-blur: 1.15px;
+  --sidebar-op-start-brightness: 1.34;
+  --sidebar-op-mid-brightness: 1.08;
+  --sidebar-op-mid-shift: 0.75px;
   --sidebar-marker-fade-delay: calc(var(--sidebar-op-duration) + 256ms + 120ms);
   --sidebar-social-marker-fade-delay: calc(var(--sidebar-op-duration) + 416ms + 120ms);
 }
@@ -1337,7 +1361,7 @@
   border-left-color: transparent;
   color: inherit;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
   animation-delay: var(--sidebar-op-delay, 0ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1347,6 +1371,13 @@
 }
 
 @media (max-width: 1023.9px) {
+  .site-sidebar {
+    --sidebar-op-start-blur: 0.45px;
+    --sidebar-op-start-brightness: 1.16;
+    --sidebar-op-mid-brightness: 1.04;
+    --sidebar-op-mid-shift: 0.35px;
+  }
+
   .site-sidebar-title-card {
     padding-right: 0;
     padding-left: 0;
@@ -1387,7 +1418,7 @@
   line-height: 1.05;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
   animation-delay: var(--sidebar-op-delay, 128ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1427,7 +1458,7 @@
     -5px 7px 0 rgba(255, 255, 255, 0.12),
     0 0 5px rgba(255, 255, 255, 0.32);
   pointer-events: none;
-  animation: sidebar-op-deco-out 620ms steps(8, end) forwards;
+  animation: sidebar-op-deco-out 480ms linear forwards;
   animation-delay: var(--sidebar-marker-fade-delay);
 }
 
@@ -1466,7 +1497,7 @@
   background-color: currentColor;
   text-decoration: none;
   text-shadow: none;
-  animation: sidebar-op-plate-enter var(--sidebar-op-duration) steps(8, end) backwards;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration) var(--sidebar-op-easing) backwards;
   animation-delay: var(--sidebar-op-delay, 288ms);
   will-change: opacity, transform, clip-path, filter;
 }
@@ -1490,7 +1521,7 @@
     -5px 7px 0 rgba(46, 64, 91, 0.12),
     0 0 5px rgba(46, 64, 91, 0.22);
   pointer-events: none;
-  animation: sidebar-op-deco-out 620ms steps(8, end) forwards;
+  animation: sidebar-op-deco-out 480ms linear forwards;
   animation-delay: var(--sidebar-social-marker-fade-delay);
 }
 
