@@ -3,19 +3,19 @@ import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'header'>
 
-const { ...attrs } = Astro.props
+const { class: className, ...attrs } = Astro.props
 
 const { title, author, socials, navs } = Astro.locals.config
 
 const { translate: t } = Astro.locals
 ---
 
-<header un-lg="grow-1 justify-between items-start" un-flex="~ col gap-2.5" class="text-center" {...attrs}>
+<header un-lg="grow-1 justify-between items-start" un-flex="~ col gap-2.5" class:list={['site-sidebar', 'text-center', className]} {...attrs}>
   <hgroup
     un-hover:lg="bg-foreground color-background pt-3.75 pb-8.75 "
     un-lg=" write-vertical-right items-start px-2.5 pb-12 b-l-2px b-l-foreground-solid text-left"
     un-flex="~ col gap-2.5"
-    class="cursor-pointer transition-[padding,background] duration-800 ease-in-out"
+    class="site-sidebar-title-card cursor-pointer transition-[padding,background] duration-800 ease-in-out"
   >
     <a class="normal" href="/">
       <h3 class="text-5 font-extrabold font-serif">{author}</h3>
@@ -28,7 +28,7 @@ const { translate: t } = Astro.locals
       {
         navs.map((nav) => (
           <li>
-            <a href={nav.href}>{t(nav.name)}</a>
+            <a class="site-sidebar-link" href={nav.href}>{t(nav.name)}</a>
           </li>
         ))
       }
