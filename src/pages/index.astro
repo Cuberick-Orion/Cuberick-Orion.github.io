@@ -341,6 +341,7 @@ const { translate: t } = Astro.locals
         }
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"]';
         const startElement = (element, delayOverride) => {
           if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveState !== 'waiting') {
             return;
@@ -357,10 +358,10 @@ const { translate: t } = Astro.locals
             return;
           }
 
-          const revealedTargets = content.matches('[data-home-progressive-text="true"]')
+          const revealedTargets = content.matches(progressiveTargetSelector)
             ? [content]
             : [];
-          revealedTargets.push(...content.querySelectorAll('[data-home-progressive-text="true"]'));
+          revealedTargets.push(...content.querySelectorAll(progressiveTargetSelector));
 
           revealedTargets.forEach((element, index) => {
             startElement(element, index * 32);
@@ -389,7 +390,7 @@ const { translate: t } = Astro.locals
           });
         };
         const activate = () => {
-          const targets = root.querySelectorAll('[data-home-progressive-text="true"]');
+          const targets = root.querySelectorAll(progressiveTargetSelector);
 
           if (!('IntersectionObserver' in window)) {
             targets.forEach((element) => startElement(element));
@@ -397,14 +398,13 @@ const { translate: t } = Astro.locals
           }
 
           const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) {
-                return;
-              }
-
-              observer.unobserve(entry.target);
-              startElement(entry.target);
-            });
+            entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+              .forEach((entry, index) => {
+                observer.unobserve(entry.target);
+                startElement(entry.target, index * 32);
+              });
           }, { threshold: 0.18 });
 
           targets.forEach((element) => {
@@ -435,18 +435,24 @@ const { translate: t } = Astro.locals
           return;
         }
 
-        const prepare = (element, delay) => {
-          if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveText === 'true') {
+        const prepare = (element, delay, options = {}) => {
+          const {
+            flag = 'homeProgressiveText',
+            className = 'op-credit--home-name-line',
+            animationName = 'home-op-name-enter'
+          } = options;
+
+          if (!(element instanceof HTMLElement) || element.dataset[flag] === 'true') {
             return;
           }
 
-          element.dataset.homeProgressiveText = 'true';
+          element.dataset[flag] = 'true';
           element.dataset.homeProgressiveState = 'waiting';
           element.style.setProperty('--home-op-delay', `${delay}ms`);
-          element.classList.add('op-credit--home-name-line');
+          element.classList.add(className);
 
           element.addEventListener('animationend', (event) => {
-            if (event.animationName !== 'home-op-name-enter') {
+            if (event.animationName !== animationName) {
               return;
             }
 
@@ -454,24 +460,35 @@ const { translate: t } = Astro.locals
           }, { once: true });
         };
 
-        const prepareAll = (selector, baseDelay, step = 32) => {
+        const prepareAll = (selector, baseDelay, step = 32, prepareTarget = prepare) => {
           root.querySelectorAll(selector).forEach((element, index) => {
-            prepare(element, baseDelay + index * step);
+            prepareTarget(element, baseDelay + index * step);
           });
         };
 
         root.dataset.homeProgressiveTextBound = 'true';
 
+        const prepareVisual = (element, delay) => {
+          prepare(element, delay, {
+            flag: 'homeProgressiveVisual',
+            className: 'op-credit--home-visual',
+            animationName: 'home-op-visual-enter'
+          });
+        };
+
+        prepareAll('#profile-top img', 0, 32, prepareVisual);
         prepareAll('#profile-top [data-hscroll-content] > div:first-child', 0);
         prepareAll('#profile-top [data-hscroll-content] li', 32, 32);
         prepareAll('#profile-top [data-hscroll-content] > div:last-child', 128);
 
         root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
           const baseDelay = 160 + sectionIndex * 48;
-          section.querySelectorAll([
+          const progressiveSelectors = [
             ':scope > article.heti > h5',
             ':scope > article.heti > p',
             ':scope > article.heti > article > p',
+            ':scope img',
+            ':scope .affiliation-logo',
             '.news-entry > p',
             '.research_h1 > p',
             '.affiliation-meta',
@@ -481,8 +498,17 @@ const { translate: t } = Astro.locals
             '.related-link-title',
             '.related-link-actions',
             '.related-link-actions--text'
-          ].join(',')).forEach((element, index) => {
-            prepare(element, baseDelay + index * 32);
+          ].join(',');
+
+          section.querySelectorAll(progressiveSelectors).forEach((element, index) => {
+            const delay = baseDelay + index * 32;
+
+            if (element.matches('img, .affiliation-logo')) {
+              prepareVisual(element, delay);
+              return;
+            }
+
+            prepare(element, delay);
           });
         });
 

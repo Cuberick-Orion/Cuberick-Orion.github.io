@@ -7,12 +7,12 @@ const { ...attrs } = Astro.props
 
 const year = new Date().getFullYear()
 
-const { website, title, author } = Astro.locals.config
+const { title } = Astro.locals.config
 ---
 
 <footer font-bold text-3 un-flex="~ col gap-1" un-lg="gap-3.5" {...attrs}>
   <p>
     © {year}
-    <a target="_blank" href={website} rel="noopener noreferrer">{title}</a> <a target="_blank" href="https://www.zheyuanliu.me/landing_page0/" rel="noopener noreferrer">✨🎵</a>
+    <a target="_blank" href="https://www.zheyuanliu.me/landing_page0/" rel="noopener noreferrer">{title}</a>
   </p>
 </footer>
