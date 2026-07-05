@@ -263,6 +263,12 @@ article.heti details pre.bib-copy-target .bib-copy-button svg {
     box-sizing: border-box;
 }
 
+.publication-extra-list {
+    padding: 15px 0 0;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
 .section-heading {
     margin: 0 0 12px;
     font-size: 11.5pt;

@@ -43,9 +43,10 @@ const { translate: t } = Astro.locals
   <script is:inline>
     document.documentElement.classList.add('home-progressive-js');
   </script>
-  <main data-home-progressive-column data-home-progressive-pending="true" un-lg="py-20 min-w-xl" class="home-progressive-text py-7.5 px-4 md:p-7.5"> 
+  <main data-home-progressive-column data-home-section-root data-home-active-section="about" data-home-progressive-pending="true" un-lg="py-20 min-w-xl" class="home-progressive-text py-7.5 px-4 md:p-7.5">
   
-    <div id="profile-top" class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
+  <section id="profile-top" class="home-section-panel" data-home-section-panel="about" data-home-section-state="active" aria-label="About">
+    <div class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
     <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
 
       <div>
@@ -82,40 +83,41 @@ const { translate: t } = Astro.locals
       </div>
 
     </div>
-  <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       </br>
       <About_Content_Main />
     </article>
-  </section>  
+    </section>
   
-  <section data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <section data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       <About_Content />
     </article>
-  </section>  
+    </section>
 
-  <section id="recent-research-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <section id="recent-research-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       <About_Content_Recent_Research />
     </article>
-  </section>  
+    </section>
 
-  <section id="news" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <section id="news" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <About_Content_News />
     </article>
     <hr class="hr-heti" />
-  </section>  
+    </section>
+  </section>
 
-  <section id="recent-research" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+  <section id="recent-research" class="home-section-panel" data-home-section-panel="publications" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
       <h5 class="section-heading">Recent Research</h5>
       
-      <div id="recent-research">
+      <div id="recent-research-list">
         <div class="w-full overflow-hidden">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
@@ -148,20 +150,9 @@ const { translate: t } = Astro.locals
             </div>
           </div>
         </div>
-        <div class="text-gray-500 collapse-toggle-wrap" style="transition:all .3s ease-in-out; padding-top: 15px">
-          <button
-            type="button"
-            data-collapse-target="collapsible-content"
-            data-expand-label="See more"
-            data-collapse-label="See fewer"
-            aria-expanded="false"
-          >
-            <span class="label">See more</span>
-          </button>
-        </div>
       </div>
 
-      <div id="collapsible-content" class="collapse-content collapse-content--research">
+      <div class="publication-extra-list">
 
         <div class="w-full overflow-hidden">
           <div class="md:flex">
@@ -244,7 +235,7 @@ const { translate: t } = Astro.locals
     </article>
   </section> 
 
-  <section id="affiliations" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+  <section id="affiliations" class="home-section-panel" data-home-section-panel="affiliations" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
       <h5 class="section-heading">Affiliations</h5>
       <div class="affiliations">
@@ -256,7 +247,7 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-name">Oracle Health AI</span>
                 <span class="affiliation-location">Melbourne, Australia</span>
               </div>
-              <details class="affiliation-role-details">
+              <details class="affiliation-role-details" open>
                 <summary>Senior Applied Scientist</summary>
                 <div class="affiliation-role-details-body">
                   <div class="affiliation-expertise-label">Area of Research</div>
@@ -279,7 +270,7 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-name">Australian Institute for Machine Learning (AIML)</span>
                 <span class="affiliation-location">Adelaide, Australia</span>
               </div>
-              <details class="affiliation-role-details">
+              <details class="affiliation-role-details" open>
                 <summary>Postdoctoral Research Fellow</summary>
                 <div class="affiliation-role-details-body">
                   <div class="affiliation-expertise-label">Area of Research</div>
@@ -298,7 +289,7 @@ const { translate: t } = Astro.locals
                 <span class="affiliation-location">Canberra, Australia</span>
               </div>
               <div class="affiliation-role-group">
-                <details class="affiliation-role-details">
+                <details class="affiliation-role-details" open>
                   <summary>PhD Student</summary>
                   <div class="affiliation-role-details-body">
                     <div class="affiliation-expertise-label">Area of Research</div>
@@ -319,7 +310,7 @@ const { translate: t } = Astro.locals
     </article>
   </section>  
 
-  <section id="links" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+  <section id="links" class="home-section-panel" data-home-section-panel="links" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
       <h5 class="section-heading">Related Links</h5>
       <Links />
@@ -342,9 +333,56 @@ const { translate: t } = Astro.locals
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"]';
+        const panelSelector = '[data-home-section-panel]';
+        const sectionKeyByHash = {
+          '#profile-top': 'about',
+          '#about': 'about',
+          '#news': 'about',
+          '#recent-research': 'publications',
+          '#affiliations': 'affiliations',
+          '#links': 'links',
+        };
+        const sectionHashByKey = {
+          about: '#profile-top',
+          publications: '#recent-research',
+          affiliations: '#affiliations',
+          links: '#links',
+        };
         const revealLeadDelay = 72;
         const collapseRevealLeadDelay = 48;
         const revealStagger = 24;
+        const exitStagger = 12;
+        const exitFallbackBase = 340;
+        let activeObserver = null;
+        let isSwitching = false;
+        let queuedSelection = null;
+
+        const getPanels = () => Array.from(root.querySelectorAll(panelSelector))
+          .filter((panel) => panel instanceof HTMLElement);
+        const getPanel = (key) => getPanels()
+          .find((panel) => panel instanceof HTMLElement && panel.dataset.homeSectionPanel === key);
+        const normalizeSection = (key) => (key && getPanel(key) ? key : 'about');
+        const getSectionFromHash = () => sectionKeyByHash[window.location.hash] ?? 'about';
+        const getTargetHash = (key, fallbackHash) => fallbackHash || sectionHashByKey[key] || '#profile-top';
+        const normalizeHash = (hash) => (hash && hash.startsWith('#') ? hash : '');
+        const getPanelTargets = (panel) => Array.from(panel.querySelectorAll(progressiveTargetSelector))
+          .filter((element) => element instanceof HTMLElement);
+        const navLinks = Array.from(document.querySelectorAll('[data-home-section-nav]'))
+          .filter((link) => link instanceof HTMLAnchorElement);
+
+        const clearActiveObserver = () => {
+          if (activeObserver) {
+            activeObserver.disconnect();
+            activeObserver = null;
+          }
+        };
+
+        const resetElement = (element) => {
+          element.dataset.homeProgressiveState = 'waiting';
+          element.style.removeProperty('--home-op-delay');
+          element.style.removeProperty('--home-op-exit-delay');
+        };
+
         const startElement = (element, delayOverride) => {
           if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveState !== 'waiting') {
             return;
@@ -354,8 +392,262 @@ const { translate: t } = Astro.locals
             element.style.setProperty('--home-op-delay', `${delayOverride}ms`);
           }
 
+          element.style.removeProperty('--home-op-exit-delay');
           element.dataset.homeProgressiveState = reduceMotion() ? 'entered' : 'playing';
         };
+
+        const exitElement = (element, delayOverride) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveState === 'waiting') {
+            return false;
+          }
+
+          if (reduceMotion()) {
+            resetElement(element);
+            return false;
+          }
+
+          element.style.setProperty('--home-op-exit-delay', `${delayOverride}ms`);
+          element.style.removeProperty('--home-op-delay');
+          element.dataset.homeProgressiveState = 'exiting';
+          return true;
+        };
+
+        const replayNavAnimation = (link, transition) => {
+          if (!(link instanceof HTMLElement) || reduceMotion()) {
+            return;
+          }
+
+          link.removeAttribute('data-home-section-transition');
+          link.removeAttribute('data-home-section-deco');
+          void link.offsetWidth;
+          link.dataset.homeSectionTransition = transition;
+          if (transition === 'activate') {
+            link.dataset.homeSectionDeco = 'replay';
+          }
+
+          window.setTimeout(() => {
+            if (link.dataset.homeSectionTransition === transition) {
+              link.removeAttribute('data-home-section-transition');
+            }
+            if (link.dataset.homeSectionDeco === 'replay') {
+              link.removeAttribute('data-home-section-deco');
+            }
+          }, 860);
+        };
+
+        const setNavState = (key, targetHash = '') => {
+          const activeHash = normalizeHash(targetHash);
+          navLinks.forEach((link) => {
+            const linkHash = normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || '');
+            const isActive = activeHash
+              ? linkHash === activeHash
+              : link.dataset.homeSectionNav === key;
+            const wasActive = link.dataset.homeSectionActive === 'true';
+            link.dataset.homeSectionActive = String(isActive);
+            link.toggleAttribute('aria-current', isActive);
+            if (isActive) {
+              link.setAttribute('aria-current', 'page');
+            }
+
+            if (wasActive !== isActive) {
+              replayNavAnimation(link, isActive ? 'activate' : 'deactivate');
+            }
+          });
+        };
+
+        const setPanelState = (key, targetHash = '') => {
+          getPanels().forEach((panel) => {
+            const isActive = panel.dataset.homeSectionPanel === key;
+            panel.dataset.homeSectionState = isActive ? 'active' : 'inactive';
+            panel.hidden = !isActive;
+            panel.setAttribute('aria-hidden', String(!isActive));
+          });
+
+          root.dataset.homeActiveSection = key;
+          setNavState(key, targetHash);
+        };
+
+        const revealRoot = () => {
+          root.removeAttribute('data-home-progressive-pending');
+        };
+
+        const activatePanelTargets = (panel) => {
+          clearActiveObserver();
+          if (!(panel instanceof HTMLElement)) {
+            return;
+          }
+
+          const targets = getPanelTargets(panel)
+            .filter((element) => element.dataset.homeProgressiveState === 'waiting');
+          const deferredTargets = [];
+          let visibleIndex = 0;
+
+          targets.forEach((element) => {
+            const rect = element.getBoundingClientRect();
+            const isVisibleNow = rect.bottom > 0 && rect.top < window.innerHeight * 0.96 && rect.width > 0 && rect.height > 0;
+
+            if (isVisibleNow) {
+              startElement(element, revealLeadDelay + visibleIndex * revealStagger);
+              visibleIndex += 1;
+              return;
+            }
+
+            deferredTargets.push(element);
+          });
+
+          if (!('IntersectionObserver' in window)) {
+            deferredTargets.forEach((element, index) => startElement(element, revealLeadDelay + (visibleIndex + index) * revealStagger));
+            return;
+          }
+
+          activeObserver = new IntersectionObserver((entries) => {
+            entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+              .forEach((entry, index) => {
+                if (activeObserver) {
+                  activeObserver.unobserve(entry.target);
+                }
+                startElement(entry.target, revealLeadDelay + (visibleIndex + index) * revealStagger);
+              });
+          }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
+
+          deferredTargets.forEach((element) => {
+            activeObserver.observe(element);
+          });
+        };
+
+        const resetPanelTargets = (panel) => {
+          if (!(panel instanceof HTMLElement)) {
+            return;
+          }
+
+          getPanelTargets(panel).forEach(resetElement);
+        };
+
+        const exitPanelTargets = (panel) => new Promise((resolve) => {
+          if (!(panel instanceof HTMLElement) || reduceMotion()) {
+            if (panel instanceof HTMLElement) {
+              resetPanelTargets(panel);
+            }
+            resolve();
+            return;
+          }
+
+          const exitingTargets = getPanelTargets(panel)
+            .filter((element) => element.dataset.homeProgressiveState !== 'waiting');
+
+          if (exitingTargets.length === 0) {
+            resolve();
+            return;
+          }
+
+          exitingTargets.forEach((element, index) => {
+            exitElement(element, index * exitStagger);
+          });
+
+          window.setTimeout(resolve, exitFallbackBase + exitingTargets.length * exitStagger);
+        });
+
+        const getScrollTarget = (targetHash) => {
+          const hash = normalizeHash(targetHash);
+          if (!hash) {
+            return root;
+          }
+
+          const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+          return target instanceof HTMLElement ? target : root;
+        };
+
+        const scrollPanelIntoView = (targetHash = '') => {
+          const target = getScrollTarget(targetHash);
+          const rect = target.getBoundingClientRect();
+          if (rect.top < 0 || rect.top > window.innerHeight * 0.28) {
+            window.scrollTo({
+              top: Math.max(0, window.scrollY + rect.top),
+              behavior: reduceMotion() ? 'auto' : 'smooth',
+            });
+          }
+        };
+
+        const showPanel = (key, targetHash = '') => {
+          const panel = getPanel(key);
+          if (!(panel instanceof HTMLElement)) {
+            return;
+          }
+
+          resetPanelTargets(panel);
+          setPanelState(key, targetHash);
+          scrollPanelIntoView(targetHash);
+          window.requestAnimationFrame(() => {
+            activatePanelTargets(panel);
+            document.dispatchEvent(new CustomEvent('home-section-change', { detail: { section: key } }));
+          });
+        };
+
+        const selectSection = async (requestedKey, options = {}) => {
+          const key = normalizeSection(requestedKey);
+          const {
+            updateHash = true,
+            animate = true,
+            targetHash: requestedTargetHash = '',
+          } = options;
+          const targetHash = getTargetHash(key, requestedTargetHash);
+
+          if (isSwitching) {
+            queuedSelection = { key, targetHash, updateHash, animate };
+            return;
+          }
+
+          const currentKey = normalizeSection(root.dataset.homeActiveSection);
+          if (key === currentKey) {
+            setNavState(key, targetHash);
+            scrollPanelIntoView(targetHash);
+            if (updateHash && targetHash) {
+              history.replaceState(null, '', targetHash);
+            }
+            return;
+          }
+
+          const currentPanel = getPanel(currentKey);
+          const nextPanel = getPanel(key);
+          if (!(nextPanel instanceof HTMLElement)) {
+            return;
+          }
+
+          if (updateHash && targetHash) {
+            history.pushState(null, '', targetHash);
+          }
+
+          setNavState(key, targetHash);
+          clearActiveObserver();
+          isSwitching = true;
+
+          if (animate) {
+            await exitPanelTargets(currentPanel);
+          }
+
+          if (currentPanel instanceof HTMLElement) {
+            resetPanelTargets(currentPanel);
+          }
+
+          showPanel(key, targetHash);
+          isSwitching = false;
+
+          if (queuedSelection && (queuedSelection.key !== key || queuedSelection.targetHash !== targetHash)) {
+            const nextQueuedSelection = queuedSelection;
+            queuedSelection = null;
+            selectSection(nextQueuedSelection.key, {
+              updateHash: nextQueuedSelection.updateHash,
+              animate: nextQueuedSelection.animate,
+              targetHash: nextQueuedSelection.targetHash,
+            });
+            return;
+          }
+
+          queuedSelection = null;
+        };
+
         const playRevealedContent = (content) => {
           if (!(content instanceof HTMLElement)) {
             return;
@@ -370,6 +662,44 @@ const { translate: t } = Astro.locals
             startElement(element, collapseRevealLeadDelay + index * revealStagger);
           });
         };
+
+        const getDetailsBodyTargets = (details) => Array.from(details.querySelectorAll(progressiveTargetSelector))
+          .filter((element) => element instanceof HTMLElement && !element.closest('summary'));
+
+        const playDetailsBodyContent = (details) => {
+          getDetailsBodyTargets(details).forEach((element, index) => {
+            startElement(element, collapseRevealLeadDelay + index * revealStagger);
+          });
+        };
+
+        const exitDetailsBodyContent = (details) => {
+          getDetailsBodyTargets(details).forEach((element, index) => {
+            exitElement(element, index * exitStagger);
+          });
+        };
+
+        const bindDetailsRevealAnimations = () => {
+          if (root.dataset.homeProgressiveDetailsBound === 'true') {
+            return;
+          }
+
+          root.dataset.homeProgressiveDetailsBound = 'true';
+          root.addEventListener('home-progressive-details-open', (event) => {
+            const target = event.target;
+            if (target instanceof HTMLElement) {
+              window.requestAnimationFrame(() => {
+                playDetailsBodyContent(target);
+              });
+            }
+          });
+          root.addEventListener('home-progressive-details-close', (event) => {
+            const target = event.target;
+            if (target instanceof HTMLElement) {
+              exitDetailsBodyContent(target);
+            }
+          });
+        };
+
         const bindCollapseRevealAnimations = () => {
           root.querySelectorAll('[data-collapse-target]').forEach((button) => {
             if (!(button instanceof HTMLElement) || button.dataset.homeProgressiveCollapseBound === 'true') {
@@ -392,38 +722,55 @@ const { translate: t } = Astro.locals
             });
           });
         };
-        const activate = () => {
-          const targets = root.querySelectorAll(progressiveTargetSelector);
 
-          if (!('IntersectionObserver' in window)) {
-            targets.forEach((element) => startElement(element));
-            return;
-          }
-
-          const observer = new IntersectionObserver((entries) => {
-            entries
-              .filter((entry) => entry.isIntersecting)
-              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
-              .forEach((entry, index) => {
-                observer.unobserve(entry.target);
-                startElement(entry.target, revealLeadDelay + index * revealStagger);
-              });
-          }, { threshold: 0.18 });
-
-          targets.forEach((element) => {
-            if (element instanceof HTMLElement && element.dataset.homeProgressiveState === 'waiting') {
-              observer.observe(element);
+        const bindSectionNavigation = () => {
+          navLinks.forEach((link) => {
+            if (link.dataset.homeSectionNavBound === 'true') {
+              return;
             }
+
+            link.dataset.homeSectionNavBound = 'true';
+            link.addEventListener('click', (event) => {
+              const key = link.dataset.homeSectionNav;
+              if (!key) {
+                return;
+              }
+
+              event.preventDefault();
+              selectSection(key, {
+                targetHash: normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || ''),
+              });
+            });
           });
+
+          if (root.dataset.homePopstateBound !== 'true') {
+            root.dataset.homePopstateBound = 'true';
+            window.addEventListener('popstate', () => {
+              selectSection(getSectionFromHash(), {
+                updateHash: false,
+                targetHash: window.location.hash,
+              });
+            });
+          }
         };
-        const reveal = () => {
-          root.removeAttribute('data-home-progressive-pending');
-        };
+
         const revealAndActivate = () => {
-          reveal();
+          const initialSection = normalizeSection(getSectionFromHash());
+          const initialTargetHash = getTargetHash(initialSection, window.location.hash);
+          setPanelState(initialSection, initialTargetHash);
+          revealRoot();
           bindCollapseRevealAnimations();
-          activate();
+          bindDetailsRevealAnimations();
+          bindSectionNavigation();
+          activatePanelTargets(getPanel(initialSection));
+          if (initialTargetHash && initialTargetHash !== '#profile-top') {
+            window.requestAnimationFrame(() => {
+              scrollPanelIntoView(initialTargetHash);
+            });
+          }
+          document.dispatchEvent(new CustomEvent('home-section-change', { detail: { section: initialSection } }));
         };
+
         const whenTypographyReady = (callback) => {
           if (document.fonts?.ready) {
             document.fonts.ready.then(callback, callback);
@@ -442,7 +789,8 @@ const { translate: t } = Astro.locals
           const {
             flag = 'homeProgressiveText',
             className = 'op-credit--home-name-line',
-            animationName = 'home-op-name-enter'
+            animationName = 'home-op-name-enter',
+            exitAnimationName = 'home-op-name-exit',
           } = options;
 
           if (!(element instanceof HTMLElement) || element.dataset[flag] === 'true') {
@@ -451,16 +799,21 @@ const { translate: t } = Astro.locals
 
           element.dataset[flag] = 'true';
           element.dataset.homeProgressiveState = 'waiting';
+          element.dataset.homeProgressiveEnterAnimation = animationName;
+          element.dataset.homeProgressiveExitAnimation = exitAnimationName;
           element.style.setProperty('--home-op-delay', `${delay}ms`);
           element.classList.add(className);
 
           element.addEventListener('animationend', (event) => {
-            if (event.animationName !== animationName) {
+            if (event.animationName === element.dataset.homeProgressiveEnterAnimation && element.dataset.homeProgressiveState === 'playing') {
+              element.dataset.homeProgressiveState = 'entered';
               return;
             }
 
-            element.dataset.homeProgressiveState = 'entered';
-          }, { once: true });
+            if (event.animationName === element.dataset.homeProgressiveExitAnimation && element.dataset.homeProgressiveState === 'exiting') {
+              resetElement(element);
+            }
+          });
         };
 
         const prepareAll = (selector, baseDelay, step = 32, prepareTarget = prepare) => {
@@ -475,7 +828,8 @@ const { translate: t } = Astro.locals
           prepare(element, delay, {
             flag: 'homeProgressiveVisual',
             className: 'op-credit--home-visual',
-            animationName: 'home-op-visual-enter'
+            animationName: 'home-op-visual-enter',
+            exitAnimationName: 'home-op-visual-exit',
           });
         };
 
@@ -494,9 +848,14 @@ const { translate: t } = Astro.locals
             ':scope .affiliation-logo',
             '.news-entry > p',
             '.research_h1 > p',
+            '.research_h1 details > summary',
+            '.research_h1 details > p',
+            '.research_h1 details pre',
             '.affiliation-meta',
             '.affiliation-role-primary',
             '.affiliation-role-details > summary',
+            '.affiliation-role-details-body > div',
+            '.affiliation-role-details-body li',
             '.affiliation-role-secondary',
             '.related-link-title',
             '.related-link-actions',

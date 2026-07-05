@@ -8,6 +8,14 @@ const { class: className, ...attrs } = Astro.props
 const { title, author, socials, navs } = Astro.locals.config
 
 const { translate: t } = Astro.locals
+
+const homeSectionByHref: Record<string, string> = {
+  '#profile-top': 'about',
+  '#news': 'about',
+  '#recent-research': 'publications',
+  '#affiliations': 'affiliations',
+  '#links': 'links',
+}
 ---
 
 <header un-lg="grow-1 justify-between items-start" un-flex="~ col gap-2.5" class:list={['site-sidebar', 'text-center', className]} {...attrs}>
@@ -26,11 +34,23 @@ const { translate: t } = Astro.locals
   <nav class="site-nav text-center font-bold" un-flex="~ col gap-2">
     <ul un-lg="flex-col items-start text-4" class="text-3.5" un-flex="~ row gap-2 justify-center">
       {
-        navs.map((nav) => (
+        navs.map((nav) => {
+          const homeSection = homeSectionByHref[nav.href]
+
+          return (
           <li>
-            <a class="site-sidebar-link" href={nav.href}>{t(nav.name)}</a>
+            <a
+              class="site-sidebar-link"
+              href={nav.href}
+              data-home-section-nav={homeSection}
+              data-home-section-target={nav.href}
+              aria-current={nav.href === '#profile-top' ? 'page' : undefined}
+            >
+              <span class="site-sidebar-link-sweep" aria-hidden="true"></span>
+              <span class="site-sidebar-link-label">{t(nav.name)}</span>
+            </a>
           </li>
-        ))
+        )})
       }
     </ul>
     <ul un-flex="~ row gap-1.5 justify-center">

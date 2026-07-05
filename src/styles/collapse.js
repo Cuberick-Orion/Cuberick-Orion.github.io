@@ -161,6 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isAnimating = false;
 
+    const dispatchHomeDetailsEvent = (name) => {
+      details.dispatchEvent(new CustomEvent(name, {
+        bubbles: true,
+        detail: { details },
+      }));
+    };
+
     const finish = (shouldOpen) => {
       details.open = shouldOpen;
       details.classList.remove('details-animating');
@@ -192,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const expand = () => {
       const startHeight = details.offsetHeight;
       details.open = true;
+      dispatchHomeDetailsEvent('home-progressive-details-open');
       const endHeight = details.scrollHeight;
       animate(startHeight, endHeight, true);
     };
@@ -199,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const collapse = () => {
       const startHeight = details.offsetHeight;
       const endHeight = summary.offsetHeight;
+      dispatchHomeDetailsEvent('home-progressive-details-close');
       animate(startHeight, endHeight, false);
     };
 
@@ -245,6 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isAnimating = false;
     let fallbackTimer = null;
+
+    const dispatchHomeDetailsEvent = (name) => {
+      details.dispatchEvent(new CustomEvent(name, {
+        bubbles: true,
+        detail: { details },
+      }));
+    };
 
     const finish = (shouldOpen) => {
       if (fallbackTimer) {
@@ -302,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const expand = () => {
       const startHeight = details.offsetHeight;
       details.open = true;
+      dispatchHomeDetailsEvent('home-progressive-details-open');
       const endHeight = details.scrollHeight;
       animate(startHeight, endHeight, true);
     };
@@ -309,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const collapse = () => {
       const startHeight = details.offsetHeight;
       const endHeight = summary.offsetHeight;
+      dispatchHomeDetailsEvent('home-progressive-details-close');
       animate(startHeight, endHeight, false);
     };
 
