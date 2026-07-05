@@ -39,8 +39,11 @@ const { translate: t } = Astro.locals
 // const apiUrl_time = "https://timeapi.io/api/Time/current/zone?timeZone=Australia/Adelaide"
 
 ---
-  <LayoutDefault>
-  <main un-lg="py-20 min-w-xl animate-fadein-down" class="py-7.5 px-4 md:p-7.5"> 
+  <LayoutDefault disableIntroAnimations>
+  <script is:inline>
+    document.documentElement.classList.add('home-progressive-js');
+  </script>
+  <main data-home-progressive-column data-home-progressive-pending="true" un-lg="py-20 min-w-xl" class="home-progressive-text py-7.5 px-4 md:p-7.5"> 
   
     <div id="profile-top" class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
     <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
@@ -79,7 +82,7 @@ const { translate: t } = Astro.locals
       </div>
 
     </div>
-  <section id="about" contain-layout un-flex="~ col gap-7.5">
+  <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       </br>
@@ -87,28 +90,28 @@ const { translate: t } = Astro.locals
     </article>
   </section>  
   
-  <section contain-layout un-flex="~ col gap-7.5">
+  <section data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       <About_Content />
     </article>
   </section>  
 
-  <section id="recent-research-section" contain-layout un-flex="~ col gap-7.5">
+  <section id="recent-research-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       </br>
       <About_Content_Recent_Research />
     </article>
   </section>  
 
-  <section id="news" contain-layout un-flex="~ col gap-7.5">
+  <section id="news" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <About_Content_News />
     </article>
     <hr class="hr-heti" />
   </section>  
 
-  <section id="recent-research" contain-layout un-flex="~ col gap-7.5">
+  <section id="recent-research" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Recent Research</h5>
       
@@ -241,7 +244,7 @@ const { translate: t } = Astro.locals
     </article>
   </section> 
 
-  <section id="affiliations" contain-layout un-flex="~ col gap-7.5">
+  <section id="affiliations" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Affiliations</h5>
       <div class="affiliations">
@@ -316,7 +319,7 @@ const { translate: t } = Astro.locals
     </article>
   </section>  
 
-  <section id="links" contain-layout un-flex="~ col gap-7.5">
+  <section id="links" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <h5 class="section-heading">Related Links</h5>
       <Links />
@@ -331,6 +334,161 @@ const { translate: t } = Astro.locals
   </button>
   <script is:inline>
     (() => {
+      const bindProgressiveText = () => {
+        const root = document.querySelector('[data-home-progressive-column]');
+        if (!(root instanceof HTMLElement)) {
+          return;
+        }
+
+        const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const startElement = (element, delayOverride) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveState !== 'waiting') {
+            return;
+          }
+
+          if (delayOverride != null) {
+            element.style.setProperty('--home-op-delay', `${delayOverride}ms`);
+          }
+
+          element.dataset.homeProgressiveState = reduceMotion() ? 'entered' : 'playing';
+        };
+        const playRevealedContent = (content) => {
+          if (!(content instanceof HTMLElement)) {
+            return;
+          }
+
+          const revealedTargets = content.matches('[data-home-progressive-text="true"]')
+            ? [content]
+            : [];
+          revealedTargets.push(...content.querySelectorAll('[data-home-progressive-text="true"]'));
+
+          revealedTargets.forEach((element, index) => {
+            startElement(element, index * 32);
+          });
+        };
+        const bindCollapseRevealAnimations = () => {
+          root.querySelectorAll('[data-collapse-target]').forEach((button) => {
+            if (!(button instanceof HTMLElement) || button.dataset.homeProgressiveCollapseBound === 'true') {
+              return;
+            }
+
+            button.dataset.homeProgressiveCollapseBound = 'true';
+            button.addEventListener('click', () => {
+              const targetId = button.getAttribute('data-collapse-target');
+              if (!targetId) {
+                return;
+              }
+
+              window.requestAnimationFrame(() => {
+                const content = document.getElementById(targetId);
+                if (content instanceof HTMLElement && content.classList.contains('open')) {
+                  playRevealedContent(content);
+                }
+              });
+            });
+          });
+        };
+        const activate = () => {
+          const targets = root.querySelectorAll('[data-home-progressive-text="true"]');
+
+          if (!('IntersectionObserver' in window)) {
+            targets.forEach((element) => startElement(element));
+            return;
+          }
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              observer.unobserve(entry.target);
+              startElement(entry.target);
+            });
+          }, { threshold: 0.18 });
+
+          targets.forEach((element) => {
+            if (element instanceof HTMLElement && element.dataset.homeProgressiveState === 'waiting') {
+              observer.observe(element);
+            }
+          });
+        };
+        const reveal = () => {
+          root.removeAttribute('data-home-progressive-pending');
+        };
+        const revealAndActivate = () => {
+          reveal();
+          bindCollapseRevealAnimations();
+          activate();
+        };
+        const whenTypographyReady = (callback) => {
+          if (document.fonts?.ready) {
+            document.fonts.ready.then(callback, callback);
+            return;
+          }
+
+          callback();
+        };
+
+        if (root.dataset.homeProgressiveTextBound === 'true') {
+          whenTypographyReady(revealAndActivate);
+          return;
+        }
+
+        const prepare = (element, delay) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeProgressiveText === 'true') {
+            return;
+          }
+
+          element.dataset.homeProgressiveText = 'true';
+          element.dataset.homeProgressiveState = 'waiting';
+          element.style.setProperty('--home-op-delay', `${delay}ms`);
+          element.classList.add('op-credit--home-name-line');
+
+          element.addEventListener('animationend', (event) => {
+            if (event.animationName !== 'home-op-name-enter') {
+              return;
+            }
+
+            element.dataset.homeProgressiveState = 'entered';
+          }, { once: true });
+        };
+
+        const prepareAll = (selector, baseDelay, step = 32) => {
+          root.querySelectorAll(selector).forEach((element, index) => {
+            prepare(element, baseDelay + index * step);
+          });
+        };
+
+        root.dataset.homeProgressiveTextBound = 'true';
+
+        prepareAll('#profile-top [data-hscroll-content] > div:first-child', 0);
+        prepareAll('#profile-top [data-hscroll-content] li', 32, 32);
+        prepareAll('#profile-top [data-hscroll-content] > div:last-child', 128);
+
+        root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
+          const baseDelay = 160 + sectionIndex * 48;
+          section.querySelectorAll([
+            ':scope > article.heti > h5',
+            ':scope > article.heti > p',
+            ':scope > article.heti > article > p',
+            '.news-entry > p',
+            '.research_h1 > p',
+            '.affiliation-meta',
+            '.affiliation-role-primary',
+            '.affiliation-role-details > summary',
+            '.affiliation-role-secondary',
+            '.related-link-title',
+            '.related-link-actions',
+            '.related-link-actions--text'
+          ].join(',')).forEach((element, index) => {
+            prepare(element, baseDelay + index * 32);
+          });
+        });
+
+        whenTypographyReady(revealAndActivate);
+      };
+
       const bindHorizontalIndicator = () => {
         const panel = document.querySelector('[data-hscroll-panel]');
         const content = document.querySelector('[data-hscroll-content]');
@@ -371,12 +529,15 @@ const { translate: t } = Astro.locals
         }
       };
 
+      bindProgressiveText();
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', bindHorizontalIndicator, { once: true });
       } else {
         bindHorizontalIndicator();
       }
 
+      document.addEventListener('astro:page-load', bindProgressiveText);
       document.addEventListener('astro:page-load', bindHorizontalIndicator);
     })();
   </script>

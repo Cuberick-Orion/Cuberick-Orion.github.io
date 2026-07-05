@@ -35,12 +35,68 @@
     return positiveNumber(options.speed ?? element.dataset.opSpeed, globalSpeed);
   }
 
+  function dataOption(element, options, key, parser = (value) => value) {
+    if (options[key] != null) {
+      return options[key];
+    }
+
+    const attrKey = `op${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+    const value = element.dataset[attrKey] ?? element.dataset[key];
+    return value == null || value === "" ? undefined : parser(value);
+  }
+
+  function animationOptionsFor(element, options = {}) {
+    const next = {
+      preset: presetFor(element, options),
+      speed: speedFor(element, options),
+      previewDuration: positiveNumber(options.previewDuration ?? element.dataset.opPreviewDuration, 1600),
+    };
+
+    [
+      "delay",
+      "enter",
+      "hold",
+      "exit",
+      "stagger",
+      "exitStagger",
+      "containerExit",
+      "markerFadeDuration",
+      "holdJitterDuration"
+    ].forEach((key) => {
+      const value = dataOption(element, options, key, Number);
+      if (Number.isFinite(value)) {
+        next[key] = value;
+      }
+    });
+
+    const selector = dataOption(element, options, "partSelector");
+    if (selector) {
+      next.selector = selector;
+    }
+
+    return next;
+  }
+
   function hasCreditParts(element) {
     return Boolean(
       element.querySelector(
         ".op-credit__row, .op-credit__role, .op-credit__name, .op-credit__plain-line, .op-credit__letter, .op-credit__title"
       )
     );
+  }
+
+  function preserveFlowTypography(element) {
+    if (element.style.getPropertyValue("--op-flow-font-size")) {
+      return;
+    }
+
+    const style = window.getComputedStyle(element);
+    element.style.setProperty("--op-flow-font-family", style.fontFamily);
+    element.style.setProperty("--op-flow-font-size", style.fontSize);
+    element.style.setProperty("--op-flow-font-style", style.fontStyle);
+    element.style.setProperty("--op-flow-font-weight", style.fontWeight);
+    element.style.setProperty("--op-flow-line-height", style.lineHeight);
+    element.style.setProperty("--op-flow-letter-spacing", style.letterSpacing);
   }
 
   function moveChildrenInto(element, wrapper) {
@@ -114,6 +170,7 @@
     if (!element.classList.contains("op-credit")) {
       const display = window.getComputedStyle(element).display;
       const flow = element.dataset.opFlow || (display.startsWith("inline") ? "inline" : "block");
+      preserveFlowTypography(element);
       element.dataset.opFlow = flow;
       element.classList.add("op-credit", "op-credit--flow", "op-credit--plain-text");
       wrapPlainElement(element, preset);
@@ -134,11 +191,7 @@
       return [];
     }
 
-    return api.previewPhase(credit, modeFor(credit, options), {
-      preset: presetFor(credit, options),
-      speed: speedFor(credit, options),
-      previewDuration: positiveNumber(options.previewDuration ?? credit.dataset.opPreviewDuration, 1600),
-    });
+    return api.previewPhase(credit, modeFor(credit, options), animationOptionsFor(credit, options));
   }
 
   function playAll(root = document, options = {}) {
