@@ -570,7 +570,7 @@ const { translate: t } = Astro.locals
           }
         };
 
-        const showPanel = (key, targetHash = '') => {
+        const showPanel = (key, targetHash = '', options = {}) => {
           const panel = getPanel(key);
           if (!(panel instanceof HTMLElement)) {
             return;
@@ -578,7 +578,9 @@ const { translate: t } = Astro.locals
 
           resetPanelTargets(panel);
           setPanelState(key, targetHash);
-          scrollPanelIntoView(targetHash);
+          if (options.scrollToTarget) {
+            scrollPanelIntoView(targetHash);
+          }
           window.requestAnimationFrame(() => {
             activatePanelTargets(panel);
             document.dispatchEvent(new CustomEvent('home-section-change', { detail: { section: key } }));
@@ -591,18 +593,21 @@ const { translate: t } = Astro.locals
             updateHash = true,
             animate = true,
             targetHash: requestedTargetHash = '',
+            scrollToTarget = false,
           } = options;
           const targetHash = getTargetHash(key, requestedTargetHash);
 
           if (isSwitching) {
-            queuedSelection = { key, targetHash, updateHash, animate };
+            queuedSelection = { key, targetHash, updateHash, animate, scrollToTarget };
             return;
           }
 
           const currentKey = normalizeSection(root.dataset.homeActiveSection);
           if (key === currentKey) {
             setNavState(key, targetHash);
-            scrollPanelIntoView(targetHash);
+            if (scrollToTarget) {
+              scrollPanelIntoView(targetHash);
+            }
             if (updateHash && targetHash) {
               history.replaceState(null, '', targetHash);
             }
@@ -631,7 +636,7 @@ const { translate: t } = Astro.locals
             resetPanelTargets(currentPanel);
           }
 
-          showPanel(key, targetHash);
+          showPanel(key, targetHash, { scrollToTarget });
           isSwitching = false;
 
           if (queuedSelection && (queuedSelection.key !== key || queuedSelection.targetHash !== targetHash)) {
@@ -641,6 +646,7 @@ const { translate: t } = Astro.locals
               updateHash: nextQueuedSelection.updateHash,
               animate: nextQueuedSelection.animate,
               targetHash: nextQueuedSelection.targetHash,
+              scrollToTarget: nextQueuedSelection.scrollToTarget,
             });
             return;
           }
@@ -737,8 +743,10 @@ const { translate: t } = Astro.locals
               }
 
               event.preventDefault();
+              const targetHash = normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || '');
               selectSection(key, {
-                targetHash: normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || ''),
+                targetHash,
+                scrollToTarget: targetHash === '#news',
               });
             });
           });

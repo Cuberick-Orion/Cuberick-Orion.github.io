@@ -1133,18 +1133,46 @@
     filter: blur(0) brightness(1);
   }
 
-  42% {
+  16.67% {
     opacity: 1;
-    transform: translate3d(var(--home-op-exit-shift, -0.5px), 0, 0);
-    clip-path: inset(0 28% 0 0);
-    filter: blur(0) brightness(var(--home-op-exit-brightness, 1.05));
+    transform: translate3d(1px, 0, 0);
+    clip-path: inset(0 9% 0 0);
+    filter: blur(0) brightness(1.16);
+  }
+
+  33.33% {
+    opacity: 0.94;
+    transform: translate3d(-1px, 1px, 0);
+    clip-path: inset(12% 0 4% 10%);
+    filter: blur(0) brightness(1.35);
+  }
+
+  50% {
+    opacity: 0.76;
+    transform: translate3d(2px, 0, 0);
+    clip-path: inset(24% 0 14% 22%);
+    filter: blur(0) brightness(1.58);
+  }
+
+  66.67% {
+    opacity: 0.52;
+    transform: translate3d(-2px, 1px, 0);
+    clip-path: inset(0 0 44% 42%);
+    filter: blur(var(--home-op-exit-blur, 0.35px)) brightness(1.74);
+  }
+
+  83.33% {
+    opacity: 0.24;
+    transform: translate3d(2px, 0, 0);
+    clip-path: inset(0 0 70% 68%);
+    filter: blur(var(--home-op-exit-blur, 0.35px)) brightness(1.9);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(var(--home-op-exit-shift, -0.5px), 0, 0);
-    clip-path: inset(0 100% 0 0);
-    filter: blur(var(--home-op-exit-blur, 0.35px)) brightness(var(--home-op-exit-brightness, 1.05));
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 100% 100%);
+    filter: blur(var(--home-op-exit-blur, 0.35px)) brightness(2);
   }
 }
 
@@ -1179,18 +1207,46 @@
     filter: blur(0) brightness(1) contrast(1);
   }
 
-  42% {
+  16.67% {
     opacity: 1;
-    transform: translate3d(var(--home-op-exit-shift, -0.5px), 0, 0);
-    clip-path: inset(0 34% 0 0);
-    filter: blur(0) brightness(var(--home-op-exit-brightness, 1.05)) contrast(1.01);
+    transform: translate3d(1px, 0, 0);
+    clip-path: inset(0 9% 0 0);
+    filter: blur(0) brightness(1.16);
+  }
+
+  33.33% {
+    opacity: 0.94;
+    transform: translate3d(-1px, 1px, 0);
+    clip-path: inset(12% 0 4% 10%);
+    filter: blur(0) brightness(1.35);
+  }
+
+  50% {
+    opacity: 0.76;
+    transform: translate3d(2px, 0, 0);
+    clip-path: inset(24% 0 14% 22%);
+    filter: blur(0) brightness(1.58);
+  }
+
+  66.67% {
+    opacity: 0.52;
+    transform: translate3d(-2px, 1px, 0);
+    clip-path: inset(0 0 44% 42%);
+    filter: blur(var(--home-op-exit-blur, 0.3px)) brightness(1.74);
+  }
+
+  83.33% {
+    opacity: 0.24;
+    transform: translate3d(2px, 0, 0);
+    clip-path: inset(0 0 70% 68%);
+    filter: blur(var(--home-op-exit-blur, 0.3px)) brightness(1.9);
   }
 
   100% {
     opacity: 0;
-    transform: translate3d(var(--home-op-exit-shift, -0.5px), 0, 0);
-    clip-path: inset(0 100% 0 0);
-    filter: blur(var(--home-op-exit-blur, 0.3px)) brightness(var(--home-op-exit-brightness, 1.05)) contrast(1.01);
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 100% 100%);
+    filter: blur(var(--home-op-exit-blur, 0.3px)) brightness(2);
   }
 }
 
