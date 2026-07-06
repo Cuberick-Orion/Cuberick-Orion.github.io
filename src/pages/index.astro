@@ -46,66 +46,66 @@ const { translate: t } = Astro.locals
   <main data-home-progressive-column data-home-section-root data-home-active-section="about" data-home-progressive-pending="true" un-lg="py-20 min-w-xl" class="home-progressive-text py-7.5 px-4 md:p-7.5">
   
   <section id="profile-top" class="home-section-panel" data-home-section-panel="about" data-home-section-state="active" aria-label="About">
-    <div class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
-    <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
+    <div class="home-copy-plate home-copy-plate--about">
+      <div class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
+      <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
 
-      <div>
-        <img class="rounded" style="display:block;width:120px;max-width:120px;height:auto;" src="/zheyuan_david_avatar_4_5.png" alt="profile picture"> 
-      </div>
-
-      <div class="min-w-0" style="height:100%;position:relative;">
-        <article
-          class="heti"
-          data-hscroll-panel
-          style="height:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;padding-right:1.2rem;box-sizing:border-box;scrollbar-gutter:stable;"
-        >
-          <div data-hscroll-content style="display:inline-block;min-width:max-content;white-space:nowrap;">
-            <div style="margin-bottom:0.35em;font-size: 12pt;font-weight: 600;">Research Interest</div>
-            <ul style="margin: 0 0 0.6em 1.2em; font-size: 11.5pt;">
-              <li>large language model;</li>
-              <li>video generative / video editing models;</li>
-              <li>vision-and-language, multi-modal learning.</li>
-            </ul>
-
-            <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:email-arrow-left">Icon</span>zheyuan.david.liu [at] outlook.com</div>
-            <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:contact-phone">Icon</span><a href="https://openreview.net/profile?id=%7EZheyuan_Liu2">OpenReview Profile</a></div> -->
-            <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:file-download">Icon</span><a href="cv_plain.html">Curriculum Vitae</a></div> -->
-          </div>
-      
-        </article>
-        <div
-          data-hscroll-indicator
-          aria-hidden="true"
-          style="position:absolute;top:0;right:0;height:100%;width:1.4rem;display:flex;align-items:center;justify-content:flex-end;padding-right:0.2rem;background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.88));color:rgba(71,85,105,0.72);font-size:15px;pointer-events:none;opacity:0;visibility:hidden;transition:opacity 0.16s ease;"
-        >
-          &#8250;
+        <div>
+          <img class="rounded" style="display:block;width:120px;max-width:120px;height:auto;" src="/zheyuan_david_avatar_4_5.png" alt="profile picture">
         </div>
+
+        <div class="min-w-0" style="height:100%;position:relative;">
+          <article
+            class="heti"
+            data-hscroll-panel
+            style="height:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;padding-right:1.2rem;box-sizing:border-box;scrollbar-gutter:stable;"
+          >
+            <div data-hscroll-content style="display:inline-block;min-width:max-content;white-space:nowrap;">
+              <div style="margin-bottom:0.35em;font-size: 12pt;font-weight: 600;">Research Interest</div>
+              <ul style="margin: 0 0 0.6em 1.2em; font-size: 11.5pt;">
+                <li>large language model;</li>
+                <li>video generative / video editing models;</li>
+                <li>vision-and-language, multi-modal learning.</li>
+              </ul>
+
+              <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:email-arrow-left">Icon</span>zheyuan.david.liu [at] outlook.com</div>
+              <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:contact-phone">Icon</span><a href="https://openreview.net/profile?id=%7EZheyuan_Liu2">OpenReview Profile</a></div> -->
+              <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:file-download">Icon</span><a href="cv_plain.html">Curriculum Vitae</a></div> -->
+            </div>
+
+          </article>
+          <div
+            data-hscroll-indicator
+            aria-hidden="true"
+            style="position:absolute;top:0;right:0;height:100%;width:1.4rem;display:flex;align-items:center;justify-content:flex-end;padding-right:0.2rem;background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.88));color:rgba(71,85,105,0.72);font-size:15px;pointer-events:none;opacity:0;visibility:hidden;transition:opacity 0.16s ease;"
+          >
+            &#8250;
+          </div>
+        </div>
+
       </div>
+      <div class="home-about-copy">
+        <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+        <article class="heti">
+          <About_Content_Main />
+        </article>
+        </section>
 
+        <section data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+        <article class="heti">
+          <About_Content />
+        </article>
+        </section>
+
+        <section id="recent-research-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+        <article class="heti">
+          <About_Content_Recent_Research />
+        </article>
+        </section>
+      </div>
     </div>
-    <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
-    <article class="heti">
-      </br>
-      </br>
-      <About_Content_Main />
-    </article>
-    </section>
-  
-    <section data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
-    <article class="heti">
-      </br>
-      <About_Content />
-    </article>
-    </section>
 
-    <section id="recent-research-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
-    <article class="heti">
-      </br>
-      <About_Content_Recent_Research />
-    </article>
-    </section>
-
-    <section id="news" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <section id="news" class="home-news-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
       <About_Content_News />
     </article>
@@ -115,10 +115,10 @@ const { translate: t } = Astro.locals
 
   <section id="recent-research" class="home-section-panel" data-home-section-panel="publications" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
-      <h5 class="section-heading">Recent Research</h5>
+      <h5 class="section-heading home-plate-title home-plate-title--black">Recent Research</h5>
       
       <div id="recent-research-list">
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={eccv2026_straight_path_flow_matching_img} alt="straight_path_flow_matching_img"> 
@@ -129,7 +129,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={flowertune_img} alt="flowertune_img"> 
@@ -140,7 +140,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={frame_wise_conditioning_img} alt="frame_wise_conditioning_img"> 
@@ -154,7 +154,7 @@ const { translate: t } = Astro.locals
 
       <div class="publication-extra-list">
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={eccv2024_0_colab_img} alt="eccv2024_0_colab_img"> 
@@ -165,7 +165,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={anu_logo_img} alt="anu_logo_img"> 
@@ -176,7 +176,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={tmlr2024_0_img} alt="tmlr2024_0_img"> 
@@ -187,7 +187,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={wacv2024_0_img} alt="wacv2024_0_img"> 
@@ -198,7 +198,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2023_0_colab_img} alt="iccv2023_0_colab_img"> 
@@ -209,7 +209,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img"> 
@@ -220,7 +220,7 @@ const { translate: t } = Astro.locals
           </div>
         </div>
 
-        <div class="w-full overflow-hidden">
+        <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
               <Image class="mt-3.5 rounded-md shadow-sm w-48 mx-auto object-cover hover:shadow-lg" style="transition:all .3s ease-in-out;" src={iccv2021_0_img} alt="iccv2021_0_img"> 
@@ -237,8 +237,8 @@ const { translate: t } = Astro.locals
 
   <section id="affiliations" class="home-section-panel" data-home-section-panel="affiliations" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
-      <h5 class="section-heading">Affiliations</h5>
-      <div class="affiliations">
+      <h5 class="section-heading home-plate-title home-plate-title--black">Affiliations</h5>
+      <div class="affiliations home-copy-plate home-copy-plate--section">
         <div class="affiliation-timeline">
           <div class="affiliation-item">
             <div class="affiliation-logo affiliation-logo--text hover:shadow-lg" style="transition:all .3s ease-in-out;">2025</div>
@@ -312,8 +312,10 @@ const { translate: t } = Astro.locals
 
   <section id="links" class="home-section-panel" data-home-section-panel="links" data-home-section-state="inactive" data-home-progressive-section contain-layout un-flex="~ col gap-7.5" hidden aria-hidden="true">
     <article class="heti">
-      <h5 class="section-heading">Related Links</h5>
-      <Links />
+      <h5 class="section-heading home-plate-title home-plate-title--black">Related Links</h5>
+      <div class="home-copy-plate home-copy-plate--section">
+        <Links />
+      </div>
     </article>
   </section>  
 
@@ -332,7 +334,7 @@ const { translate: t } = Astro.locals
         }
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"]';
+        const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"], [data-home-progressive-plate="true"]';
         const panelSelector = '[data-home-section-panel]';
         const sectionKeyByHash = {
           '#profile-top': 'about',
@@ -799,6 +801,7 @@ const { translate: t } = Astro.locals
             className = 'op-credit--home-name-line',
             animationName = 'home-op-name-enter',
             exitAnimationName = 'home-op-name-exit',
+            enterSettleDelay = null,
           } = options;
 
           if (!(element instanceof HTMLElement) || element.dataset[flag] === 'true') {
@@ -814,6 +817,23 @@ const { translate: t } = Astro.locals
 
           element.addEventListener('animationend', (event) => {
             if (event.animationName === element.dataset.homeProgressiveEnterAnimation && element.dataset.homeProgressiveState === 'playing') {
+              const settleDelay = enterSettleDelay ?? (
+                element.classList.contains('home-plate-title') ||
+                element.classList.contains('home-copy-plate') ||
+                element.classList.contains('home-publication-plate')
+                  ? (element.classList.contains('home-plate-title') ? 1280 : 820)
+                  : 0
+              );
+
+              if (settleDelay > 0) {
+                window.setTimeout(() => {
+                  if (element.dataset.homeProgressiveState === 'playing') {
+                    element.dataset.homeProgressiveState = 'entered';
+                  }
+                }, settleDelay);
+                return;
+              }
+
               element.dataset.homeProgressiveState = 'entered';
               return;
             }
@@ -841,6 +861,16 @@ const { translate: t } = Astro.locals
           });
         };
 
+        const preparePlate = (element, delay) => {
+          prepare(element, delay, {
+            flag: 'homeProgressivePlate',
+            className: 'home-progressive-plate',
+            animationName: 'home-op-plate-enter',
+            exitAnimationName: 'home-op-plate-exit',
+          });
+        };
+
+        prepareAll('#profile-top .home-copy-plate--about', 0, 34, preparePlate);
         prepareAll('#profile-top img', 0, 34, prepareVisual);
         prepareAll('#profile-top [data-hscroll-content] > div:first-child', 0);
         prepareAll('#profile-top [data-hscroll-content] li', 34, 34);
@@ -848,13 +878,22 @@ const { translate: t } = Astro.locals
 
         root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
           const baseDelay = 160 + sectionIndex * 48;
+          const plateSelectors = [
+            ':scope > article.heti > .home-copy-plate',
+            ':scope .home-publication-plate'
+          ].join(',');
+          section.querySelectorAll(plateSelectors).forEach((element, index) => {
+            preparePlate(element, Math.max(0, baseDelay - 48) + index * 34);
+          });
+
           const progressiveSelectors = [
             ':scope > article.heti > h5',
             ':scope > article.heti > p',
             ':scope > article.heti > article > p',
             ':scope img',
             ':scope .affiliation-logo',
-            '.news-entry > p',
+            '.news-entry',
+            '.collapse-toggle-wrap',
             '.research_h1 > p',
             '.research_h1 details > summary',
             '.research_h1 details > p',
