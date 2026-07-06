@@ -47,43 +47,6 @@ const { translate: t } = Astro.locals
   
   <section id="profile-top" class="home-section-panel" data-home-section-panel="about" data-home-section-state="active" aria-label="About">
     <div class="home-copy-plate home-copy-plate--about">
-      <div class="grid gap-4 items-stretch" style="grid-template-columns:120px minmax(0,1fr);">
-      <!-- <div class="flex grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"> -->
-
-        <div>
-          <img class="rounded" style="display:block;width:120px;max-width:120px;height:auto;" src="/zheyuan_david_avatar_4_5.png" alt="profile picture">
-        </div>
-
-        <div class="min-w-0" style="height:100%;position:relative;">
-          <article
-            class="heti"
-            data-hscroll-panel
-            style="height:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;padding-right:1.2rem;box-sizing:border-box;scrollbar-gutter:stable;"
-          >
-            <div data-hscroll-content style="display:inline-block;min-width:max-content;white-space:nowrap;">
-              <div style="margin-bottom:0.35em;font-size: 12pt;font-weight: 600;">Research Interest</div>
-              <ul style="margin: 0 0 0.6em 1.2em; font-size: 11.5pt;">
-                <li>large language model;</li>
-                <li>video generative / video editing models;</li>
-                <li>vision-and-language, multi-modal learning.</li>
-              </ul>
-
-              <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:email-arrow-left">Icon</span>zheyuan.david.liu [at] outlook.com</div>
-              <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:contact-phone">Icon</span><a href="https://openreview.net/profile?id=%7EZheyuan_Liu2">OpenReview Profile</a></div> -->
-              <!-- <div style="margin-bottom:0.2em;font-size: 11.5pt;"><span class="i-mdi:file-download">Icon</span><a href="cv_plain.html">Curriculum Vitae</a></div> -->
-            </div>
-
-          </article>
-          <div
-            data-hscroll-indicator
-            aria-hidden="true"
-            style="position:absolute;top:0;right:0;height:100%;width:1.4rem;display:flex;align-items:center;justify-content:flex-end;padding-right:0.2rem;background:linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.88));color:rgba(71,85,105,0.72);font-size:15px;pointer-events:none;opacity:0;visibility:hidden;transition:opacity 0.16s ease;"
-          >
-            &#8250;
-          </div>
-        </div>
-
-      </div>
       <div class="home-about-copy">
         <section id="about" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
         <article class="heti">
@@ -102,8 +65,34 @@ const { translate: t } = Astro.locals
           <About_Content_Recent_Research />
         </article>
         </section>
+
+        <section class="home-contact-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+        <article class="heti">
+          <p class="home-contact-line"><span class="i-mdi:email-arrow-left">Icon</span>zheyuan.david.liu [at] outlook.com</p>
+        </article>
+        </section>
       </div>
     </div>
+
+    <section id="research-interest" class="home-research-interest-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
+    <article class="heti">
+      <h5 class="section-heading home-plate-title home-plate-title--black">Research Interest</h5>
+      <div class="home-copy-plate home-copy-plate--research-interest">
+        <div class="home-research-interest-panel">
+          <div class="heti" data-hscroll-panel>
+            <div data-hscroll-content>
+              <ul class="home-research-interest-list">
+                <li>large language model;</li>
+                <li>video generative / video editing models;</li>
+                <li>vision-and-language, multi-modal learning.</li>
+              </ul>
+            </div>
+          </div>
+          <div data-hscroll-indicator aria-hidden="true">&#8250;</div>
+        </div>
+      </div>
+    </article>
+    </section>
 
     <section id="news" class="home-news-section" data-home-progressive-section contain-layout un-flex="~ col gap-7.5">
     <article class="heti">
@@ -871,10 +860,7 @@ const { translate: t } = Astro.locals
         };
 
         prepareAll('#profile-top .home-copy-plate--about', 0, 34, preparePlate);
-        prepareAll('#profile-top img', 0, 34, prepareVisual);
-        prepareAll('#profile-top [data-hscroll-content] > div:first-child', 0);
-        prepareAll('#profile-top [data-hscroll-content] li', 34, 34);
-        prepareAll('#profile-top [data-hscroll-content] > div:last-child', 128);
+        prepareAll('#research-interest [data-hscroll-content] li', 34, 34);
 
         root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
           const baseDelay = 160 + sectionIndex * 48;
@@ -925,43 +911,43 @@ const { translate: t } = Astro.locals
       };
 
       const bindHorizontalIndicator = () => {
-        const panel = document.querySelector('[data-hscroll-panel]');
-        const content = document.querySelector('[data-hscroll-content]');
-        const indicator = document.querySelector('[data-hscroll-indicator]');
-        if (
-          !(panel instanceof HTMLElement) ||
-          !(content instanceof HTMLElement) ||
-          !(indicator instanceof HTMLElement) ||
-          panel.dataset.hscrollBound === 'true'
-        ) {
-          return;
-        }
-
-        let hasScrolledRight = false;
-
-        const updateIndicator = () => {
-          if (panel.scrollLeft > 0) {
-            hasScrolledRight = true;
+        document.querySelectorAll('[data-hscroll-panel]').forEach((panel) => {
+          if (!(panel instanceof HTMLElement) || panel.dataset.hscrollBound === 'true') {
+            return;
           }
 
-          const hasOverflow = content.scrollWidth > panel.clientWidth + 1;
-          const shouldShow = hasOverflow && !hasScrolledRight;
-          indicator.style.opacity = shouldShow ? '1' : '0';
-          indicator.style.visibility = shouldShow ? 'visible' : 'hidden';
-        };
+          const content = panel.querySelector('[data-hscroll-content]');
+          const indicator = panel.parentElement?.querySelector('[data-hscroll-indicator]');
+          if (!(content instanceof HTMLElement) || !(indicator instanceof HTMLElement)) {
+            return;
+          }
 
-        panel.dataset.hscrollBound = 'true';
-        updateIndicator();
-        requestAnimationFrame(updateIndicator);
-        setTimeout(updateIndicator, 120);
-        panel.addEventListener('scroll', updateIndicator, { passive: true });
-        window.addEventListener('resize', updateIndicator, { passive: true });
-        window.addEventListener('load', updateIndicator, { passive: true });
+          let hasScrolledRight = false;
 
-        if ('ResizeObserver' in window) {
-          const observer = new ResizeObserver(updateIndicator);
-          observer.observe(panel);
-        }
+          const updateIndicator = () => {
+            if (panel.scrollLeft > 0) {
+              hasScrolledRight = true;
+            }
+
+            const hasOverflow = content.scrollWidth > panel.clientWidth + 1;
+            const shouldShow = hasOverflow && !hasScrolledRight;
+            indicator.style.opacity = shouldShow ? '1' : '0';
+            indicator.style.visibility = shouldShow ? 'visible' : 'hidden';
+          };
+
+          panel.dataset.hscrollBound = 'true';
+          updateIndicator();
+          requestAnimationFrame(updateIndicator);
+          setTimeout(updateIndicator, 120);
+          panel.addEventListener('scroll', updateIndicator, { passive: true });
+          window.addEventListener('resize', updateIndicator, { passive: true });
+          window.addEventListener('load', updateIndicator, { passive: true });
+
+          if ('ResizeObserver' in window) {
+            const observer = new ResizeObserver(updateIndicator);
+            observer.observe(panel);
+          }
+        });
       };
 
       bindProgressiveText();

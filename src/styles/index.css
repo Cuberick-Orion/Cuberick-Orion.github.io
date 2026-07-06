@@ -741,12 +741,12 @@ article.heti .related-link-actions--text span + span::before {
 }
 
 .home-copy-plate--about {
-    margin: 0 0 1.55rem;
-    padding: 0.68rem 0.9rem 0.75rem;
+    margin: 0 0 1rem;
+    padding: 0.8rem 1.05rem 0.9rem;
 }
 
 .home-about-copy {
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 .home-about-copy section + section {
@@ -755,6 +755,100 @@ article.heti .related-link-actions--text span + span::before {
 
 .home-about-copy article.heti p:last-child {
     margin-block-end: 0;
+}
+
+.home-contact-line {
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+}
+
+.home-contact-line [class^="i-"],
+.home-contact-line [class*=" i-"] {
+    flex: 0 0 auto;
+    transform: translateY(0.04em);
+}
+
+.home-copy-plate--research-interest {
+    margin: 0;
+    padding: 0.68rem 0.9rem 0.78rem;
+}
+
+.home-research-interest-section {
+    margin-bottom: 1.85rem;
+}
+
+.home-research-interest-panel {
+    position: relative;
+}
+
+.home-research-interest-panel [data-hscroll-panel] {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-right: 1.5rem;
+    padding-bottom: 7px;
+    box-sizing: border-box;
+    scrollbar-color: rgba(46, 64, 91, 0.46) rgba(46, 64, 91, 0.08);
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+}
+
+.home-research-interest-panel [data-hscroll-panel]::-webkit-scrollbar {
+    display: block;
+    height: 7px;
+}
+
+.home-research-interest-panel [data-hscroll-panel]::-webkit-scrollbar-track {
+    background: rgba(46, 64, 91, 0.08);
+    border-radius: 999px;
+}
+
+.home-research-interest-panel [data-hscroll-panel]::-webkit-scrollbar-thumb {
+    background: rgba(46, 64, 91, 0.46);
+    border-radius: 999px;
+}
+
+.home-research-interest-panel [data-hscroll-content] {
+    display: inline-block;
+    min-width: max-content;
+    white-space: nowrap;
+}
+
+.home-research-interest-list {
+    margin: 0;
+    padding-left: 1.2em;
+    font-size: 11.5pt;
+    white-space: nowrap;
+}
+
+.home-research-interest-list li {
+    margin: 0.08em 0;
+}
+
+.home-research-interest-panel [data-hscroll-indicator] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 14px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 2rem;
+    padding-right: 0.2rem;
+    color: rgba(71, 85, 105, 0.78);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.94) 58%);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.88);
+    transition: opacity 0.16s ease;
 }
 
 .home-copy-plate--news {
@@ -849,8 +943,12 @@ article.heti .related-link-actions--text span + span::before {
         padding: 0.62rem 0.68rem 0.7rem;
     }
 
-    .home-about-copy {
-        margin-top: 1.55rem;
+    .home-copy-plate--research-interest {
+        padding: 0.62rem 0.68rem 0.7rem;
+    }
+
+    .home-research-interest-panel [data-hscroll-panel] {
+        padding-right: 1.65rem;
     }
 
     .home-publication-plate {
