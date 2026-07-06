@@ -350,9 +350,9 @@ const { translate: t } = Astro.locals
         };
         const revealLeadDelay = 72;
         const collapseRevealLeadDelay = 48;
-        const revealStagger = 24;
-        const exitStagger = 12;
-        const exitFallbackBase = 340;
+        const revealStagger = 34;
+        const exitStagger = 0;
+        const exitFallbackBase = 380;
         let activeObserver = null;
         let isSwitching = false;
         let queuedSelection = null;
@@ -824,7 +824,7 @@ const { translate: t } = Astro.locals
           });
         };
 
-        const prepareAll = (selector, baseDelay, step = 32, prepareTarget = prepare) => {
+        const prepareAll = (selector, baseDelay, step = 34, prepareTarget = prepare) => {
           root.querySelectorAll(selector).forEach((element, index) => {
             prepareTarget(element, baseDelay + index * step);
           });
@@ -841,9 +841,9 @@ const { translate: t } = Astro.locals
           });
         };
 
-        prepareAll('#profile-top img', 0, 32, prepareVisual);
+        prepareAll('#profile-top img', 0, 34, prepareVisual);
         prepareAll('#profile-top [data-hscroll-content] > div:first-child', 0);
-        prepareAll('#profile-top [data-hscroll-content] li', 32, 32);
+        prepareAll('#profile-top [data-hscroll-content] li', 34, 34);
         prepareAll('#profile-top [data-hscroll-content] > div:last-child', 128);
 
         root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
@@ -871,7 +871,7 @@ const { translate: t } = Astro.locals
           ].join(',');
 
           section.querySelectorAll(progressiveSelectors).forEach((element, index) => {
-            const delay = baseDelay + index * 32;
+            const delay = baseDelay + index * 34;
 
             if (element.matches('img, .affiliation-logo')) {
               prepareVisual(element, delay);
