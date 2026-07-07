@@ -1569,6 +1569,38 @@
   will-change: auto;
 }
 
+.home-progressive-text .home-digital-word {
+  display: inline;
+  white-space: inherit;
+}
+
+.home-progressive-text .home-digital-glyph {
+  display: inline;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: inherit;
+  vertical-align: baseline;
+  text-decoration: inherit;
+}
+
+.home-progressive-text .home-digital-glyph.is-home-digital {
+  display: inline-block;
+  min-width: 0.52em;
+  line-height: inherit;
+  color: #1f2f46;
+  text-shadow:
+    0 0 0.45em rgba(46, 64, 91, 0.22),
+    1px 0 rgba(46, 64, 91, 0.3);
+  transform-origin: 50% 55%;
+  transform: skewX(-6deg) scaleX(0.96);
+}
+
+.home-progressive-text .home-digital-glyph.is-home-digital-resolving {
+  color: #627085;
+  filter: brightness(1.16);
+  transform: none;
+}
+
 .home-progressive-text .op-credit--home-visual[data-home-progressive-state="entered"] {
   opacity: 1;
   transform: none;

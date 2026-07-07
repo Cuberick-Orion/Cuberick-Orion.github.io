@@ -324,6 +324,8 @@ const { translate: t } = Astro.locals
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"], [data-home-progressive-plate="true"]';
+        const digitalGlyphs = '0123456789@#$%&*+=?<>/\\|!;:~';
+        const digitalEnterRate = 0.09;
         const panelSelector = '[data-home-section-panel]';
         const sectionKeyByHash = {
           '#profile-top': 'about',
@@ -360,6 +362,159 @@ const { translate: t } = Astro.locals
           .filter((element) => element instanceof HTMLElement);
         const navLinks = Array.from(document.querySelectorAll('[data-home-section-nav]'))
           .filter((link) => link instanceof HTMLAnchorElement);
+        const isDigitalEligibleChar = (char) => /^[A-Za-z0-9]$/.test(char);
+        const randomDigitalGlyph = () => digitalGlyphs[Math.floor(Math.random() * digitalGlyphs.length)];
+        const isIconElement = (element) => {
+          if (!(element instanceof HTMLElement)) {
+            return false;
+          }
+
+          return Array.from(element.classList).some((className) => className.startsWith('i-'));
+        };
+
+        const prepareDigitalTextNode = (node) => {
+          const text = node.nodeValue || '';
+          if (!text.trim()) {
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+          text.split(/(\s+)/).forEach((token) => {
+            if (!token) {
+              return;
+            }
+
+            if (/^\s+$/.test(token)) {
+              fragment.appendChild(document.createTextNode(token));
+              return;
+            }
+
+            const word = document.createElement('span');
+            word.className = 'home-digital-word';
+            Array.from(token).forEach((char) => {
+              const glyph = document.createElement('span');
+              glyph.className = 'home-digital-glyph';
+              glyph.dataset.homeDigitalFinal = char;
+              glyph.textContent = char;
+              word.appendChild(glyph);
+            });
+            fragment.appendChild(word);
+          });
+
+          node.parentNode?.replaceChild(fragment, node);
+        };
+
+        const prepareDigitalText = (element) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText === 'true') {
+            return;
+          }
+
+          element.dataset.homeDigitalText = 'true';
+          const walker = document.createTreeWalker(
+            element,
+            NodeFilter.SHOW_TEXT,
+            {
+              acceptNode(node) {
+                const parent = node.parentElement;
+                const ariaHiddenAncestor = parent.closest('[aria-hidden="true"]');
+                if (
+                  !parent ||
+                  isIconElement(parent) ||
+                  parent.closest('script, style, svg, .home-digital-word, .home-digital-glyph') ||
+                  (ariaHiddenAncestor && !ariaHiddenAncestor.matches('[data-home-section-panel]'))
+                ) {
+                  return NodeFilter.FILTER_REJECT;
+                }
+
+                return (node.nodeValue || '').trim()
+                  ? NodeFilter.FILTER_ACCEPT
+                  : NodeFilter.FILTER_REJECT;
+              },
+            }
+          );
+          const textNodes = [];
+          while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+          }
+          textNodes.forEach(prepareDigitalTextNode);
+        };
+
+        const restoreDigitalText = (element) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText !== 'true') {
+            return;
+          }
+
+          element.querySelectorAll('.home-digital-glyph').forEach((glyph) => {
+            if (!(glyph instanceof HTMLElement)) {
+              return;
+            }
+
+            const finalText = glyph.dataset.homeDigitalFinal || glyph.textContent || '';
+            glyph.textContent = finalText;
+            glyph.classList.remove('is-home-digital', 'is-home-digital-resolving');
+          });
+        };
+
+        const runDigitalEnter = (element, delayOverride) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText !== 'true' || reduceMotion()) {
+            return;
+          }
+
+          const glyphs = Array.from(element.querySelectorAll('.home-digital-glyph'))
+            .filter((glyph) => glyph instanceof HTMLElement && isDigitalEligibleChar(glyph.dataset.homeDigitalFinal || ''));
+          if (glyphs.length === 0) {
+            return;
+          }
+
+          const runId = `${Date.now()}-${Math.random()}`;
+          const delayMs = Number.isFinite(delayOverride)
+            ? delayOverride
+            : Number.parseFloat(element.style.getPropertyValue('--home-op-delay')) || 0;
+          element.dataset.homeDigitalRun = runId;
+          restoreDigitalText(element);
+
+          window.setTimeout(() => {
+            if (element.dataset.homeDigitalRun !== runId || element.dataset.homeProgressiveState !== 'playing') {
+              return;
+            }
+
+            const activeGlyphs = glyphs.filter(() => Math.random() < digitalEnterRate);
+            activeGlyphs.forEach((glyph) => {
+              glyph.textContent = randomDigitalGlyph();
+              glyph.classList.add('is-home-digital');
+            });
+
+            [0, 48, 96].forEach((tickDelay, tickIndex) => {
+              window.setTimeout(() => {
+                if (element.dataset.homeDigitalRun !== runId) {
+                  return;
+                }
+
+                activeGlyphs.forEach((glyph, index) => {
+                  if ((index + tickIndex) % 2 === 0 || Math.random() < digitalEnterRate) {
+                    glyph.textContent = randomDigitalGlyph();
+                  }
+                });
+              }, tickDelay);
+            });
+
+            activeGlyphs.forEach((glyph, index) => {
+              const burstDelay = (index % 3 === 0 ? 126 : 198) + (index % 6) * 12;
+              window.setTimeout(() => {
+                if (element.dataset.homeDigitalRun !== runId) {
+                  return;
+                }
+
+                glyph.textContent = glyph.dataset.homeDigitalFinal || glyph.textContent || '';
+                glyph.classList.remove('is-home-digital');
+                glyph.classList.add('is-home-digital-resolving');
+                window.setTimeout(() => {
+                  glyph.classList.remove('is-home-digital-resolving');
+                }, 50);
+              }, burstDelay);
+            });
+          }, delayMs + 78);
+        };
 
         const clearActiveObserver = () => {
           if (activeObserver) {
@@ -370,6 +525,8 @@ const { translate: t } = Astro.locals
 
         const resetElement = (element) => {
           element.dataset.homeProgressiveState = 'waiting';
+          element.removeAttribute('data-home-digital-run');
+          restoreDigitalText(element);
           element.style.removeProperty('--home-op-delay');
           element.style.removeProperty('--home-op-exit-delay');
         };
@@ -385,6 +542,7 @@ const { translate: t } = Astro.locals
 
           element.style.removeProperty('--home-op-exit-delay');
           element.dataset.homeProgressiveState = reduceMotion() ? 'entered' : 'playing';
+          runDigitalEnter(element, delayOverride);
         };
 
         const exitElement = (element, delayOverride) => {
@@ -797,12 +955,19 @@ const { translate: t } = Astro.locals
             return;
           }
 
+          if (flag === 'homeProgressiveText' && element.parentElement?.closest('[data-home-progressive-text="true"]')) {
+            return;
+          }
+
           element.dataset[flag] = 'true';
           element.dataset.homeProgressiveState = 'waiting';
           element.dataset.homeProgressiveEnterAnimation = animationName;
           element.dataset.homeProgressiveExitAnimation = exitAnimationName;
           element.style.setProperty('--home-op-delay', `${delay}ms`);
           element.classList.add(className);
+          if (flag === 'homeProgressiveText') {
+            prepareDigitalText(element);
+          }
 
           element.addEventListener('animationend', (event) => {
             if (event.animationName === element.dataset.homeProgressiveEnterAnimation && element.dataset.homeProgressiveState === 'playing') {
@@ -862,6 +1027,18 @@ const { translate: t } = Astro.locals
         prepareAll('#profile-top .home-copy-plate--about', 0, 34, preparePlate);
         prepareAll('#research-interest [data-hscroll-content] li', 34, 34);
 
+        const hasTextContent = (element) => (element.textContent || '').trim().length > 0;
+        const isVisualTarget = (element) => element instanceof HTMLElement && element.matches('img, .affiliation-logo');
+        const keepTopLevelTargets = (elements) => elements.filter((element, index, list) => (
+          element instanceof HTMLElement &&
+          (isVisualTarget(element) || hasTextContent(element)) &&
+          !list.some((other, otherIndex) => (
+            otherIndex !== index &&
+            other instanceof HTMLElement &&
+            other.contains(element)
+          ))
+        ));
+
         root.querySelectorAll('[data-home-progressive-section]').forEach((section, sectionIndex) => {
           const baseDelay = 160 + sectionIndex * 48;
           const plateSelectors = [
@@ -878,8 +1055,12 @@ const { translate: t } = Astro.locals
             ':scope > article.heti > article > p',
             ':scope img',
             ':scope .affiliation-logo',
+            ':scope .home-contact-line',
+            ':scope .home-research-interest-list > li',
             '.news-entry',
             '.collapse-toggle-wrap',
+            '.research_h1 > strong',
+            '.research_h1 > span',
             '.research_h1 > p',
             '.research_h1 details > summary',
             '.research_h1 details > p',
@@ -895,7 +1076,7 @@ const { translate: t } = Astro.locals
             '.related-link-actions--text'
           ].join(',');
 
-          section.querySelectorAll(progressiveSelectors).forEach((element, index) => {
+          keepTopLevelTargets(Array.from(section.querySelectorAll(progressiveSelectors))).forEach((element, index) => {
             const delay = baseDelay + index * 34;
 
             if (element.matches('img, .affiliation-logo')) {
