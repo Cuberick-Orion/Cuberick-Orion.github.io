@@ -326,6 +326,7 @@ const { translate: t } = Astro.locals
         const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"], [data-home-progressive-plate="true"]';
         const digitalGlyphs = '0123456789@#$%&*+=?<>/\\|!;:~';
         const digitalEnterRate = 0.09;
+        const aboutDigitalEnterRate = 0.07;
         const panelSelector = '[data-home-section-panel]';
         const sectionKeyByHash = {
           '#profile-top': 'about',
@@ -358,6 +359,11 @@ const { translate: t } = Astro.locals
         const getSectionFromHash = () => sectionKeyByHash[window.location.hash] ?? 'about';
         const getTargetHash = (key, fallbackHash) => fallbackHash || sectionHashByKey[key] || '#profile-top';
         const normalizeHash = (hash) => (hash && hash.startsWith('#') ? hash : '');
+        const digitalEnterRateFor = (element) => (
+          element.closest('[data-home-section-panel]')?.dataset.homeSectionPanel === 'about'
+            ? aboutDigitalEnterRate
+            : digitalEnterRate
+        );
         const getPanelTargets = (panel) => Array.from(panel.querySelectorAll(progressiveTargetSelector))
           .filter((element) => element instanceof HTMLElement);
         const navLinks = Array.from(document.querySelectorAll('[data-home-section-nav]'))
@@ -478,7 +484,8 @@ const { translate: t } = Astro.locals
               return;
             }
 
-            const activeGlyphs = glyphs.filter(() => Math.random() < digitalEnterRate);
+            const activeRate = digitalEnterRateFor(element);
+            const activeGlyphs = glyphs.filter(() => Math.random() < activeRate);
             activeGlyphs.forEach((glyph) => {
               glyph.textContent = randomDigitalGlyph();
               glyph.classList.add('is-home-digital');
@@ -491,7 +498,7 @@ const { translate: t } = Astro.locals
                 }
 
                 activeGlyphs.forEach((glyph, index) => {
-                  if ((index + tickIndex) % 2 === 0 || Math.random() < digitalEnterRate) {
+                  if ((index + tickIndex) % 2 === 0 || Math.random() < activeRate) {
                     glyph.textContent = randomDigitalGlyph();
                   }
                 });
