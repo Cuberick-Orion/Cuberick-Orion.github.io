@@ -847,6 +847,88 @@ const { translate: t } = Astro.locals
           });
         };
 
+        const animateAffiliationDetails = (details, shouldOpen) => {
+          const summary = details.querySelector('summary');
+          const body = details.querySelector('.affiliation-role-details-body');
+          if (!(summary instanceof HTMLElement) || !(body instanceof HTMLElement)) {
+            details.open = shouldOpen;
+            return;
+          }
+
+          if (details.dataset.affiliationDetailsAnimating === 'true') {
+            return;
+          }
+
+          if (reduceMotion()) {
+            details.open = shouldOpen;
+            details.dataset.affiliationDetailsExpanded = String(shouldOpen);
+            details.dispatchEvent(new CustomEvent(`home-progressive-details-${shouldOpen ? 'open' : 'close'}`, { bubbles: true }));
+            return;
+          }
+
+          details.open = true;
+          details.dataset.affiliationDetailsAnimating = 'true';
+          details.classList.add('affiliation-details-animating');
+
+          const getExpandedHeight = () => {
+            const bodyStyle = window.getComputedStyle(body);
+            const bodyMarginTop = Number.parseFloat(bodyStyle.marginTop) || 0;
+            const bodyMarginBottom = Number.parseFloat(bodyStyle.marginBottom) || 0;
+            return Math.ceil(summary.offsetHeight + bodyMarginTop + body.scrollHeight + bodyMarginBottom);
+          };
+
+          let cleanupTimer = 0;
+          const finish = () => {
+            window.clearTimeout(cleanupTimer);
+            details.removeEventListener('transitionend', onTransitionEnd);
+            details.open = shouldOpen;
+            details.classList.remove('affiliation-details-animating');
+            details.style.height = '';
+            body.style.opacity = '';
+            body.style.transform = '';
+            details.dataset.affiliationDetailsAnimating = 'false';
+            details.dataset.affiliationDetailsExpanded = String(shouldOpen);
+          };
+
+          const onTransitionEnd = (event) => {
+            if (event.target === details && event.propertyName === 'height') {
+              finish();
+            }
+          };
+
+          details.addEventListener('transitionend', onTransitionEnd);
+
+          if (shouldOpen) {
+            const startHeight = summary.offsetHeight;
+            const targetHeight = getExpandedHeight();
+            body.style.opacity = '0';
+            body.style.transform = 'translateY(-4px)';
+            details.style.height = `${startHeight}px`;
+            details.offsetHeight;
+            details.dispatchEvent(new CustomEvent('home-progressive-details-open', { bubbles: true }));
+            window.requestAnimationFrame(() => {
+              details.style.height = `${targetHeight}px`;
+              body.style.opacity = '1';
+              body.style.transform = 'translateY(0)';
+            });
+          } else {
+            const startHeight = getExpandedHeight();
+            const targetHeight = summary.offsetHeight;
+            details.style.height = `${startHeight}px`;
+            body.style.opacity = '1';
+            body.style.transform = 'translateY(0)';
+            details.offsetHeight;
+            details.dispatchEvent(new CustomEvent('home-progressive-details-close', { bubbles: true }));
+            window.requestAnimationFrame(() => {
+              details.style.height = `${targetHeight}px`;
+              body.style.opacity = '0';
+              body.style.transform = 'translateY(-4px)';
+            });
+          }
+
+          cleanupTimer = window.setTimeout(finish, 420);
+        };
+
         const bindDetailsRevealAnimations = () => {
           if (root.dataset.homeProgressiveDetailsBound === 'true') {
             return;
@@ -866,6 +948,25 @@ const { translate: t } = Astro.locals
             if (target instanceof HTMLElement) {
               exitDetailsBodyContent(target);
             }
+          });
+
+          root.querySelectorAll('details.affiliation-role-details > summary').forEach((summary) => {
+            if (!(summary instanceof HTMLElement)) {
+              return;
+            }
+
+            const details = summary.parentElement;
+            if (!(details instanceof HTMLDetailsElement) || details.dataset.affiliationDetailsBound === 'true') {
+              return;
+            }
+
+            details.dataset.affiliationDetailsBound = 'true';
+            details.dataset.affiliationDetailsExpanded = String(details.open);
+            summary.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              animateAffiliationDetails(details, details.dataset.affiliationDetailsExpanded !== 'true');
+            }, { capture: true });
           });
         };
 
