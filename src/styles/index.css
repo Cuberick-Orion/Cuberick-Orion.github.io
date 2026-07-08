@@ -439,8 +439,8 @@ button[data-collapse-target][aria-expanded="true"] {
 
 .affiliation-timeline {
     position: relative;
-    max-width: 680px;
-    width: min(640px, 100%);
+    max-width: none;
+    width: 100%;
     margin: 0;
     display: grid;
     gap: 18px;
@@ -451,7 +451,7 @@ button[data-collapse-target][aria-expanded="true"] {
 .affiliation-timeline::before {
     content: "";
     position: absolute;
-    left: 31px;
+    left: 56px;
     top: 8px;
     bottom: 8px;
     width: 2.5px;
@@ -460,11 +460,11 @@ button[data-collapse-target][aria-expanded="true"] {
 
 .affiliation-item {
     display: grid;
-    grid-template-columns: 62px 1fr;
+    grid-template-columns: 112px 1fr;
     align-items: start;
-    gap: 14px;
+    gap: 15px;
     width: 100%;
-    max-width: 620px;
+    max-width: 720px;
     margin: 0;
     position: relative;
 }
@@ -488,6 +488,17 @@ button[data-collapse-target][aria-expanded="true"] {
     font-size: 13px;
     color: #1f2937;
     letter-spacing: 0.3px;
+}
+
+.affiliation-date-range {
+    width: 112px;
+    height: 50px;
+    border-radius: 999px;
+    padding: 7px 10px;
+    font-size: 13.5px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    white-space: nowrap;
 }
 
 .affiliation-logo--anu {
@@ -518,7 +529,7 @@ button[data-collapse-target][aria-expanded="true"] {
 
 .affiliation-role-primary {
     margin-top: 2px;
-    font-size: 0.94em;
+    font-size: 0.99em;
     color: #4b5563;
 }
 
@@ -886,6 +897,11 @@ article.heti .related-link-actions--text span + span::before {
     margin-top: 0.55rem;
 }
 
+#affiliations .home-copy-plate--section {
+    width: min(100%, 49em);
+    padding-right: 1.55rem;
+}
+
 .home-publication-plate {
     width: 100%;
     margin: 0 0 1rem;
@@ -973,6 +989,11 @@ article.heti .related-link-actions--text span + span::before {
         padding: 0.62rem 0.68rem 0.7rem;
     }
 
+    #affiliations .home-copy-plate--section {
+        width: 100%;
+        padding-right: 0.82rem;
+    }
+
     .home-research-interest-panel [data-hscroll-panel] {
         padding-right: 1.65rem;
     }
@@ -987,11 +1008,11 @@ article.heti .related-link-actions--text span + span::before {
     }
 
     .affiliation-timeline::before {
-        left: 27px;
+        left: 46px;
     }
 
     .affiliation-item {
-        grid-template-columns: 54px 1fr;
+        grid-template-columns: 92px 1fr;
         gap: 12px;
     }
 
@@ -1001,7 +1022,14 @@ article.heti .related-link-actions--text span + span::before {
         padding: 6px;
     }
 
-.affiliation-logo--anu {
+    .affiliation-date-range {
+        width: 92px;
+        height: 44px;
+        padding: 6px 8px;
+        font-size: 11.75px;
+    }
+
+    .affiliation-logo--anu {
         padding: 10px;
         object-position: center 56%;
     }
