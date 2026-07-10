@@ -385,51 +385,14 @@ const { translate: t } = Astro.locals
           return Array.from(element.classList).some((className) => className.startsWith('i-'));
         };
 
-        const prepareDigitalTextNode = (node) => {
-          const text = node.nodeValue || '';
-          if (!text.trim()) {
-            return;
-          }
-
-          const fragment = document.createDocumentFragment();
-          text.split(/(\s+)/).forEach((token) => {
-            if (!token) {
-              return;
-            }
-
-            if (/^\s+$/.test(token)) {
-              fragment.appendChild(document.createTextNode(token));
-              return;
-            }
-
-            const word = document.createElement('span');
-            word.className = 'home-digital-word';
-            Array.from(token).forEach((char) => {
-              const glyph = document.createElement('span');
-              glyph.className = 'home-digital-glyph';
-              glyph.dataset.homeDigitalFinal = char;
-              glyph.textContent = char;
-              word.appendChild(glyph);
-            });
-            fragment.appendChild(word);
-          });
-
-          node.parentNode?.replaceChild(fragment, node);
-        };
-
-        const prepareDigitalText = (element) => {
-          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText === 'true') {
-            return;
-          }
-
-          element.dataset.homeDigitalText = 'true';
+        const collectDigitalTextNodes = (element) => {
           const walker = document.createTreeWalker(
             element,
             NodeFilter.SHOW_TEXT,
             {
               acceptNode(node) {
                 const parent = node.parentElement;
-                const ariaHiddenAncestor = parent.closest('[aria-hidden="true"]');
+                const ariaHiddenAncestor = parent?.closest('[aria-hidden="true"]');
                 if (
                   !parent ||
                   isIconElement(parent) ||
@@ -449,11 +412,89 @@ const { translate: t } = Astro.locals
           while (walker.nextNode()) {
             textNodes.push(walker.currentNode);
           }
-          textNodes.forEach(prepareDigitalTextNode);
+
+          return textNodes;
+        };
+
+        const activateDigitalTextNode = (node, activeRate) => {
+          const text = node.nodeValue || '';
+          if (!text.trim()) {
+            return [];
+          }
+
+          const fragment = document.createDocumentFragment();
+          const activeGlyphs = [];
+          text.split(/(\s+)/).forEach((token) => {
+            if (!token) {
+              return;
+            }
+
+            if (/^\s+$/.test(token)) {
+              fragment.appendChild(document.createTextNode(token));
+              return;
+            }
+
+            const chars = Array.from(token);
+            const activeIndexes = new Set();
+            chars.forEach((char, index) => {
+              if (isDigitalEligibleChar(char) && Math.random() < activeRate) {
+                activeIndexes.add(index);
+              }
+            });
+
+            if (activeIndexes.size === 0) {
+              fragment.appendChild(document.createTextNode(token));
+              return;
+            }
+
+            const word = document.createElement('span');
+            word.className = 'home-digital-word';
+            let plainText = '';
+            const flushPlainText = () => {
+              if (!plainText) {
+                return;
+              }
+
+              word.appendChild(document.createTextNode(plainText));
+              plainText = '';
+            };
+
+            chars.forEach((char, index) => {
+              if (!activeIndexes.has(index)) {
+                plainText += char;
+                return;
+              }
+
+              flushPlainText();
+              const glyph = document.createElement('span');
+              glyph.className = 'home-digital-glyph';
+              glyph.dataset.homeDigitalFinal = char;
+              glyph.textContent = char;
+              word.appendChild(glyph);
+              activeGlyphs.push(glyph);
+            });
+            flushPlainText();
+            fragment.appendChild(word);
+          });
+
+          if (activeGlyphs.length === 0) {
+            return [];
+          }
+
+          node.parentNode?.replaceChild(fragment, node);
+          return activeGlyphs;
+        };
+
+        const prepareDigitalText = (element) => {
+          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText === 'true') {
+            return;
+          }
+
+          element.dataset.homeDigitalText = 'true';
         };
 
         const restoreDigitalText = (element) => {
-          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText !== 'true') {
+          if (!(element instanceof HTMLElement)) {
             return;
           }
 
@@ -466,6 +507,25 @@ const { translate: t } = Astro.locals
             glyph.textContent = finalText;
             glyph.classList.remove('is-home-digital', 'is-home-digital-resolving');
           });
+
+          const parentsToNormalize = new Set();
+          element.querySelectorAll('.home-digital-word').forEach((word) => {
+            if (!(word instanceof HTMLElement)) {
+              return;
+            }
+
+            const parent = word.parentNode;
+            if (parent) {
+              parentsToNormalize.add(parent);
+            }
+            word.replaceWith(document.createTextNode(word.textContent || ''));
+          });
+          parentsToNormalize.forEach((parent) => parent.normalize());
+        };
+
+        const createActiveDigitalGlyphs = (element, activeRate) => {
+          restoreDigitalText(element);
+          return collectDigitalTextNodes(element).flatMap((node) => activateDigitalTextNode(node, activeRate));
         };
 
         const runDigitalEnter = (element, delayOverride) => {
@@ -473,9 +533,8 @@ const { translate: t } = Astro.locals
             return;
           }
 
-          const glyphs = Array.from(element.querySelectorAll('.home-digital-glyph'))
-            .filter((glyph) => glyph instanceof HTMLElement && isDigitalEligibleChar(glyph.dataset.homeDigitalFinal || ''));
-          if (glyphs.length === 0) {
+          const activeGlyphs = createActiveDigitalGlyphs(element, digitalEnterRateFor(element));
+          if (activeGlyphs.length === 0) {
             return;
           }
 
@@ -484,7 +543,6 @@ const { translate: t } = Astro.locals
             ? delayOverride
             : Number.parseFloat(element.style.getPropertyValue('--home-op-delay')) || 0;
           element.dataset.homeDigitalRun = runId;
-          restoreDigitalText(element);
 
           window.setTimeout(() => {
             if (element.dataset.homeDigitalRun !== runId || element.dataset.homeProgressiveState !== 'playing') {
@@ -492,7 +550,6 @@ const { translate: t } = Astro.locals
             }
 
             const activeRate = digitalEnterRateFor(element);
-            const activeGlyphs = glyphs.filter(() => Math.random() < activeRate);
             activeGlyphs.forEach((glyph) => {
               glyph.textContent = randomDigitalGlyph();
               glyph.classList.add('is-home-digital');
@@ -512,21 +569,46 @@ const { translate: t } = Astro.locals
               }, tickDelay);
             });
 
+            const resolvingGroups = new Map();
             activeGlyphs.forEach((glyph, index) => {
               const burstDelay = (index % 3 === 0 ? 126 : 198) + (index % 6) * 12;
+              const group = resolvingGroups.get(burstDelay) || [];
+              group.push(glyph);
+              resolvingGroups.set(burstDelay, group);
+            });
+
+            let latestBurstDelay = 0;
+            resolvingGroups.forEach((glyphs, burstDelay) => {
+              latestBurstDelay = Math.max(latestBurstDelay, burstDelay);
               window.setTimeout(() => {
                 if (element.dataset.homeDigitalRun !== runId) {
                   return;
                 }
 
-                glyph.textContent = glyph.dataset.homeDigitalFinal || glyph.textContent || '';
-                glyph.classList.remove('is-home-digital');
-                glyph.classList.add('is-home-digital-resolving');
+                glyphs.forEach((glyph) => {
+                  glyph.textContent = glyph.dataset.homeDigitalFinal || glyph.textContent || '';
+                  glyph.classList.remove('is-home-digital');
+                  glyph.classList.add('is-home-digital-resolving');
+                });
                 window.setTimeout(() => {
-                  glyph.classList.remove('is-home-digital-resolving');
+                  if (element.dataset.homeDigitalRun !== runId) {
+                    return;
+                  }
+                  glyphs.forEach((glyph) => {
+                    glyph.classList.remove('is-home-digital-resolving');
+                  });
                 }, 50);
               }, burstDelay);
             });
+
+            window.setTimeout(() => {
+              if (element.dataset.homeDigitalRun !== runId) {
+                return;
+              }
+
+              restoreDigitalText(element);
+              element.removeAttribute('data-home-digital-run');
+            }, latestBurstDelay + 70);
           }, delayMs + 78);
         };
 
