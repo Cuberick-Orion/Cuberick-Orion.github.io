@@ -357,6 +357,7 @@ const { translate: t } = Astro.locals
         let activeObserver = null;
         let isSwitching = false;
         let queuedSelection = null;
+        let navigationActionId = 0;
 
         const getPanels = () => Array.from(root.querySelectorAll(panelSelector))
           .filter((panel) => panel instanceof HTMLElement);
@@ -815,6 +816,84 @@ const { translate: t } = Astro.locals
           }
         };
 
+        const isSectionReady = (key, targetHash = '') => {
+          const panel = getPanel(key);
+          return panel instanceof HTMLElement &&
+            !panel.hidden &&
+            root.dataset.homeActiveSection === key &&
+            (!targetHash || window.location.hash === targetHash);
+        };
+
+        const waitForSectionReady = (key, targetHash = '') => {
+          if (isSectionReady(key, targetHash)) {
+            return Promise.resolve();
+          }
+
+          return new Promise((resolve) => {
+            let fallbackTimer = 0;
+            const finish = () => {
+              window.clearTimeout(fallbackTimer);
+              document.removeEventListener('home-section-change', handleSectionChange);
+              resolve();
+            };
+            const handleSectionChange = () => {
+              if (isSectionReady(key, targetHash)) {
+                finish();
+              }
+            };
+
+            document.addEventListener('home-section-change', handleSectionChange);
+            fallbackTimer = window.setTimeout(finish, 2000);
+          });
+        };
+
+        const waitForScrollToSettle = () => new Promise((resolve) => {
+          let settledTimer = 0;
+          let fallbackTimer = 0;
+          let isFinished = false;
+          const finish = () => {
+            if (isFinished) {
+              return;
+            }
+
+            isFinished = true;
+            window.clearTimeout(settledTimer);
+            window.clearTimeout(fallbackTimer);
+            window.removeEventListener('scroll', scheduleSettle);
+            if ('onscrollend' in window) {
+              window.removeEventListener('scrollend', finish);
+            }
+            resolve();
+          };
+          const scheduleSettle = () => {
+            window.clearTimeout(settledTimer);
+            settledTimer = window.setTimeout(finish, reduceMotion() ? 0 : 120);
+          };
+
+          window.addEventListener('scroll', scheduleSettle, { passive: true });
+          if ('onscrollend' in window) {
+            window.addEventListener('scrollend', finish, { once: true });
+          }
+          fallbackTimer = window.setTimeout(finish, 1600);
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(scheduleSettle);
+          });
+        });
+
+        const expandNewsList = () => {
+          const button = document.querySelector('[data-collapse-target="news-collapsible-content"]');
+          const content = document.getElementById('news-collapsible-content');
+          if (!(button instanceof HTMLButtonElement) || !(content instanceof HTMLElement)) {
+            return;
+          }
+
+          if (content.classList.contains('open') || button.getAttribute('aria-expanded') === 'true') {
+            return;
+          }
+
+          button.click();
+        };
+
         const showPanel = (key, targetHash = '', options = {}) => {
           const panel = getPanel(key);
           if (!(panel instanceof HTMLElement)) {
@@ -1082,18 +1161,35 @@ const { translate: t } = Astro.locals
             }
 
             link.dataset.homeSectionNavBound = 'true';
-            link.addEventListener('click', (event) => {
+            link.addEventListener('click', async (event) => {
               const key = link.dataset.homeSectionNav;
               if (!key) {
                 return;
               }
 
               event.preventDefault();
+              const actionId = ++navigationActionId;
               const targetHash = normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || '');
-              selectSection(key, {
+              await selectSection(key, {
                 targetHash,
                 scrollToTarget: true,
               });
+
+              if (targetHash !== '#news') {
+                return;
+              }
+
+              await waitForSectionReady(key, targetHash);
+              if (actionId !== navigationActionId || !isSectionReady(key, targetHash)) {
+                return;
+              }
+
+              await waitForScrollToSettle();
+              if (actionId !== navigationActionId || !isSectionReady(key, targetHash)) {
+                return;
+              }
+
+              expandNewsList();
             });
           });
 
