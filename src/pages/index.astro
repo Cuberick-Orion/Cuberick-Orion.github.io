@@ -1010,7 +1010,7 @@ const { translate: t } = Astro.locals
               const targetHash = normalizeHash(link.dataset.homeSectionTarget || link.getAttribute('href') || '');
               selectSection(key, {
                 targetHash,
-                scrollToTarget: targetHash === '#news',
+                scrollToTarget: true,
               });
             });
           });
