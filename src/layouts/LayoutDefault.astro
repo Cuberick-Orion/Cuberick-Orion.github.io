@@ -14,6 +14,7 @@ interface Props {
   desc?: string
   banner?: ImageMetadata
   disableIntroAnimations?: boolean
+  showProfileImage?: boolean
 }
 
 const props = Astro.props
@@ -24,6 +25,7 @@ const title = props.title ?? themeConfig.title
 const desc = props.desc ?? themeConfig.desc
 const canonical = themeConfig.website
 const disableIntroAnimations = props.disableIntroAnimations ?? false
+const showProfileImage = props.showProfileImage ?? false
 
 const image =
   props.banner &&
@@ -76,7 +78,7 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
         'lg:sticky lg:top-0 lg:h-screen lg:py-20 lg:flex lg:flex-col lg:justify-between lg:items-start lg:gap-4',
         !disableIntroAnimations && 'lg:animate-fadein-left',
       ]}>
-        <Header />
+        <Header showProfileImage={showProfileImage} />
         <Footer class="max-lg:hidden" />
       </div>
       <main class:list={[

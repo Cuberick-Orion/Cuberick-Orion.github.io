@@ -1,9 +1,11 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-type Props = HTMLAttributes<'header'>
+type Props = HTMLAttributes<'header'> & {
+  showProfileImage?: boolean
+}
 
-const { class: className, ...attrs } = Astro.props
+const { class: className, showProfileImage = false, ...attrs } = Astro.props
 
 const { title, author, socials, navs } = Astro.locals.config
 
@@ -19,20 +21,37 @@ const homeSectionByHref: Record<string, string> = {
 ---
 
 <header un-lg="grow-1 justify-between items-start" un-flex="~ col gap-2.5" class:list={['site-sidebar', 'text-center', className]} {...attrs}>
-  <hgroup
-    un-hover:lg="bg-foreground color-background pt-3.75 pb-8.75 "
-    un-lg=" write-vertical-right items-start px-2.5 pb-12 b-l-2px b-l-foreground-solid text-left"
-    un-flex="~ col gap-2.5"
-    class="site-sidebar-title-card cursor-pointer transition-[padding,background] duration-800 ease-in-out"
-  >
-    <a class="normal" href="/">
-      <h3 class="text-5 font-extrabold font-serif">{author}</h3>
-      <h1 class="text-8 font-extrabold font-serif">{title}</h1>
-    </a>
-  </hgroup>
+  <div class:list={['site-sidebar-identity', showProfileImage && 'has-profile-image']}>
+    {
+      showProfileImage && (
+        <div class="site-sidebar-avatar-frame" data-home-profile-visual>
+          <img
+            class="site-sidebar-avatar"
+            src="/zheyuan_david_avatar_4_5.png"
+            alt={`Portrait of ${title}`}
+            width="170"
+            height="213"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )
+    }
+    <hgroup
+      un-hover:lg="bg-foreground color-background pt-3.75 pb-8.75 "
+      un-lg=" write-vertical-right items-start px-2.5 pb-12 b-l-2px b-l-foreground-solid text-left"
+      un-flex="~ col gap-2.5"
+      class="site-sidebar-title-card cursor-pointer transition-[padding,background] duration-800 ease-in-out"
+    >
+      <a class="normal" href="/">
+        <h3 class="text-5 font-extrabold font-serif">{author}</h3>
+        <h1 class="text-8 font-extrabold font-serif">{title}</h1>
+      </a>
+    </hgroup>
+  </div>
 
   <nav class="site-nav text-center font-bold" un-flex="~ col gap-2">
-    <ul un-lg="flex-col items-start text-4" class="text-3.5" un-flex="~ row gap-2 justify-center">
+    <ul un-lg="flex-col items-start text-4" class="site-nav-sections text-3.5" un-flex="~ row gap-2 justify-center">
       {
         navs.map((nav) => {
           const homeSection = homeSectionByHref[nav.href]
@@ -53,7 +72,7 @@ const homeSectionByHref: Record<string, string> = {
         )})
       }
     </ul>
-    <ul un-flex="~ row gap-1.5 justify-center">
+    <ul class="site-nav-socials" un-flex="~ row gap-1.5 justify-center">
       {
         socials.map((soc) => (
           <li>
