@@ -66,6 +66,17 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
       }}
     />
     <Tooltips  />
+    <script is:inline>
+      (() => {
+        const phoneViewport = window.matchMedia('(max-width: 640px)');
+        const applyHomeAnimationMode = () => {
+          document.documentElement.dataset.homeAnimationMode = phoneViewport.matches ? 'smooth' : 'discrete';
+        };
+
+        applyHomeAnimationMode();
+        phoneViewport.addEventListener?.('change', applyHomeAnimationMode);
+      })();
+    </script>
   </head>
   <body>
     <div class:list={[

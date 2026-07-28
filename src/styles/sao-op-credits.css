@@ -2245,6 +2245,227 @@
   }
 }
 
+@keyframes home-op-name-enter-smooth {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes home-op-name-exit-smooth {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes home-op-visual-enter-smooth {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes home-op-visual-exit-smooth {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes home-op-plate-enter-smooth {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes home-op-plate-exit-smooth {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes sidebar-op-plate-enter-smooth {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes sidebar-op-state-activate-smooth {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+}
+
+@keyframes sidebar-op-state-deactivate-smooth {
+  from {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    filter: none;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    filter: none;
+    transform: none;
+  }
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text {
+  --home-op-smooth-enter-duration: 280ms;
+  --home-op-smooth-exit-duration: 260ms;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .home-progressive-plate[data-home-progressive-state="waiting"]::before {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  filter: none;
+  transform: none;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .home-progressive-plate[data-home-progressive-state="playing"]::before {
+  animation: home-op-plate-enter-smooth var(--home-op-smooth-enter-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--home-op-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .home-progressive-plate[data-home-progressive-state="exiting"]::before {
+  animation: home-op-plate-exit-smooth var(--home-op-smooth-exit-duration) cubic-bezier(0.4, 0, 0.6, 1) both;
+  animation-delay: var(--home-op-exit-delay, 0ms);
+  transform-origin: right center;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="playing"] {
+  animation: home-op-name-enter-smooth var(--home-op-smooth-enter-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--home-op-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .op-credit--home-name-line[data-home-progressive-state="exiting"] {
+  animation: home-op-name-exit-smooth var(--home-op-smooth-exit-duration) cubic-bezier(0.4, 0, 0.6, 1) both;
+  animation-delay: var(--home-op-exit-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .op-credit--home-visual[data-home-progressive-state="playing"] {
+  animation: home-op-visual-enter-smooth var(--home-op-smooth-enter-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--home-op-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .op-credit--home-visual[data-home-progressive-state="exiting"] {
+  animation: home-op-visual-exit-smooth var(--home-op-smooth-exit-duration) cubic-bezier(0.4, 0, 0.6, 1) both;
+  animation-delay: var(--home-op-exit-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .home-progressive-plate::after,
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .home-plate-title.op-credit--home-name-line::after,
+:where(html[data-home-animation-mode="smooth"]) .home-progressive-text .op-credit--home-name-line.op-credit--flow .op-credit__name--flow::after,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar-title-card::after,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-link::after,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-social-link::after {
+  display: none;
+  content: none;
+  opacity: 0;
+  animation: none;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar {
+  --sidebar-op-smooth-duration: 280ms;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar-title-card,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-link,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-social-link {
+  animation: sidebar-op-plate-enter-smooth var(--sidebar-op-smooth-duration) cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: var(--sidebar-op-delay, 0ms);
+}
+
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-link[data-home-section-transition="activate"] .site-sidebar-link-sweep,
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-link[data-home-section-transition="activate"]::before {
+  animation: sidebar-op-state-activate-smooth 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: left center;
+}
+
+:where(html[data-home-animation-mode="smooth"]) .site-sidebar .site-sidebar-link[data-home-section-transition="deactivate"] .site-sidebar-link-sweep {
+  animation: sidebar-op-state-deactivate-smooth 260ms cubic-bezier(0.4, 0, 0.6, 1) both;
+  transform-origin: right center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-sidebar-title-card,
   .site-sidebar .site-sidebar-link,

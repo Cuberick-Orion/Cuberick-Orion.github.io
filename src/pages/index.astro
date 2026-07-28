@@ -350,6 +350,10 @@ const { translate: t } = Astro.locals
         }
 
         const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const animationMode = () => document.documentElement.dataset.homeAnimationMode === 'smooth' ? 'smooth' : 'discrete';
+        const matchesAnimationMode = (animationName, expectedName) => (
+          animationName === expectedName || animationName === `${expectedName}-smooth`
+        );
         const progressiveTargetSelector = '[data-home-progressive-text="true"], [data-home-progressive-visual="true"], [data-home-progressive-plate="true"]';
         const digitalGlyphs = '0123456789@#$%&*+=?<>/\\|!;:~';
         const digitalEnterRate = 0.09;
@@ -373,7 +377,7 @@ const { translate: t } = Astro.locals
         const collapseRevealLeadDelay = 48;
         const revealStagger = 34;
         const exitStagger = 0;
-        const exitFallbackBase = 380;
+        const exitFallbackBase = () => animationMode() === 'smooth' ? 300 : 380;
         let activeObserver = null;
         let isSwitching = false;
         let queuedSelection = null;
@@ -550,7 +554,12 @@ const { translate: t } = Astro.locals
         };
 
         const runDigitalEnter = (element, delayOverride) => {
-          if (!(element instanceof HTMLElement) || element.dataset.homeDigitalText !== 'true' || reduceMotion()) {
+          if (
+            !(element instanceof HTMLElement) ||
+            element.dataset.homeDigitalText !== 'true' ||
+            reduceMotion() ||
+            animationMode() === 'smooth'
+          ) {
             return;
           }
 
@@ -687,7 +696,7 @@ const { translate: t } = Astro.locals
           link.removeAttribute('data-home-section-deco');
           void link.offsetWidth;
           link.dataset.homeSectionTransition = transition;
-          if (transition === 'activate') {
+          if (transition === 'activate' && animationMode() !== 'smooth') {
             link.dataset.homeSectionDeco = 'replay';
           }
 
@@ -812,7 +821,7 @@ const { translate: t } = Astro.locals
             exitElement(element, index * exitStagger);
           });
 
-          window.setTimeout(resolve, exitFallbackBase + exitingTargets.length * exitStagger);
+          window.setTimeout(resolve, exitFallbackBase() + exitingTargets.length * exitStagger);
         });
 
         const getScrollTarget = (targetHash) => {
@@ -1283,14 +1292,19 @@ const { translate: t } = Astro.locals
           }
 
           element.addEventListener('animationend', (event) => {
-            if (event.animationName === element.dataset.homeProgressiveEnterAnimation && element.dataset.homeProgressiveState === 'playing') {
-              const settleDelay = enterSettleDelay ?? (
-                element.classList.contains('home-plate-title') ||
-                element.classList.contains('home-copy-plate') ||
-                element.classList.contains('home-publication-plate')
-                  ? (element.classList.contains('home-plate-title') ? 1280 : 820)
-                  : 0
-              );
+            if (
+              matchesAnimationMode(event.animationName, element.dataset.homeProgressiveEnterAnimation) &&
+              element.dataset.homeProgressiveState === 'playing'
+            ) {
+              const settleDelay = animationMode() === 'smooth'
+                ? 0
+                : enterSettleDelay ?? (
+                  element.classList.contains('home-plate-title') ||
+                  element.classList.contains('home-copy-plate') ||
+                  element.classList.contains('home-publication-plate')
+                    ? (element.classList.contains('home-plate-title') ? 1280 : 820)
+                    : 0
+                );
 
               if (settleDelay > 0) {
                 window.setTimeout(() => {
@@ -1305,7 +1319,10 @@ const { translate: t } = Astro.locals
               return;
             }
 
-            if (event.animationName === element.dataset.homeProgressiveExitAnimation && element.dataset.homeProgressiveState === 'exiting') {
+            if (
+              matchesAnimationMode(event.animationName, element.dataset.homeProgressiveExitAnimation) &&
+              element.dataset.homeProgressiveState === 'exiting'
+            ) {
               resetElement(element);
             }
           });
