@@ -7,20 +7,12 @@ import {
 import transformerDirectives from "@unocss/transformer-directives";
 import { THEME_CONFIG } from "./src/theme.config";
 
-const {socials, academics, themeStyle} = THEME_CONFIG;
-
-let foreground = "#2e405b";
-let background = "#ffffff";
-
-if(THEME_CONFIG.themeStyle === 'dark') {
-  foreground = "#ffffff";
-  background = "#2e405b";
-}
+const {socials} = THEME_CONFIG;
 
 export default defineConfig({
   presets: [
     presetUno({
-      dark: themeStyle === 'auto' ? 'media' : 'class',
+      dark: 'class',
     }),
     presetAttributify({ nonValuedAttribute: true }),
     presetIcons({
@@ -30,8 +22,8 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      foreground,
-      background
+      foreground: "var(--color-foreground)",
+      background: "var(--color-background)"
     },
     fontFamily: {
       sans: '"Source Sans Pro","Roboto","Helvetica","Helvetica Neue","Source Han Sans SC","Source Han Sans TC","PingFang SC","PingFang HK","PingFang TC",sans-serif',

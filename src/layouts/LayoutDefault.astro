@@ -3,8 +3,10 @@ import '~/styles/index.css'
 import '~/styles/sao-op-credits.css'
 // https://sivan.github.io/heti
 import '~/styles/heti.min.css'
+import '~/styles/theme.css'
 import Header from '~/components/Header.astro'
 import Footer from '~/components/Footer.astro'
+import ThemeToggle from '~/components/ThemeToggle.astro'
 import { SEO } from 'astro-seo'
 import { getImage } from 'astro:assets'
 import { Tooltips } from 'astro-tooltips';
@@ -40,6 +42,37 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#ffffff" data-theme-color />
+    <script is:inline>
+      (() => {
+        const storageKey = 'zheyuan-color-theme';
+        let storedTheme = null;
+
+        try {
+          const candidate = window.localStorage.getItem(storageKey);
+          if (candidate === 'light' || candidate === 'dark') {
+            storedTheme = candidate;
+          }
+        } catch {
+          storedTheme = null;
+        }
+
+        const theme = storedTheme ?? (
+          window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        );
+        const root = document.documentElement;
+
+        root.dataset.theme = theme;
+        root.dataset.themePreference = storedTheme ? 'user' : 'system';
+        root.classList.toggle('dark', theme === 'dark');
+        root.style.colorScheme = theme;
+        document.querySelector('meta[data-theme-color]')?.setAttribute(
+          'content',
+          theme === 'dark' ? '#101318' : '#ffffff',
+        );
+      })();
+    </script>
     <SEO
       charset="utf-8"
       title={title}
@@ -79,6 +112,7 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
     </script>
   </head>
   <body>
+    <ThemeToggle />
     <div class:list={[
       'container contain-layout m-a',
       'lg:flex lg:flex-row-reverse lg:justify-between lg:gap-4 lg:px-8 lg:mx-auto lg:max-w-6xl',
@@ -103,6 +137,7 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
     </div>
     <script is:inline src="/sao-op-credits.js"></script>
     <script is:inline src="/sao-text-animations.js"></script>
+    <script is:inline src="/theme-controller.js"></script>
     <script src="~/styles/collapse.js"></script>
   </body>
 </html>

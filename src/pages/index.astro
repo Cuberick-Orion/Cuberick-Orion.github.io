@@ -1,6 +1,6 @@
 ﻿---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import { Image } from 'astro:assets';
+import ThemeImage from '~/components/ThemeImage.astro'
 
 import {Content as About_Content_Main} from '~/pages/about_main.md'
 import {Content as About_Content} from '~/pages/about.md'
@@ -9,18 +9,26 @@ import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 import {Content as Links} from '~/pages/related_links.mdx'
 
-import placeholder_img from '~/pages/research_publications_mdx/placeholder_0.png';
-import placeholder_1_img from '~/pages/research_publications_mdx/placeholder_1.png';
 import eccv2026_straight_path_flow_matching_img from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching.png';
+import eccv2026_straight_path_flow_matching_dark_img from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching_dark.png';
 import flowertune_img from '~/pages/research_publications_mdx/flowertune.png';
+import flowertune_dark_img from '~/pages/research_publications_mdx/flowertune_dark.png';
 import frame_wise_conditioning_img from '~/pages/research_publications_mdx/frame-wise_conditioning.png';
+import frame_wise_conditioning_dark_img from '~/pages/research_publications_mdx/frame-wise_conditioning_dark.png';
 import eccv2024_0_colab_img from '~/pages/research_publications_mdx/eccv2024_0_colab.png';
+import eccv2024_0_colab_dark_img from '~/pages/research_publications_mdx/eccv2024_0_colab_dark.png';
 import anu_logo_img from '~/pages/research_publications_mdx/anu_logo_0.png';
+import anu_logo_dark_img from '~/pages/research_publications_mdx/anu_logo_0_dark.png';
 import tmlr2024_0_img from '~/pages/research_publications_mdx/tmlr2024_0.png';
+import tmlr2024_0_dark_img from '~/pages/research_publications_mdx/tmlr2024_0_dark.png';
 import wacv2024_0_img from '~/pages/research_publications_mdx/wacv2024_0.png';
+import wacv2024_0_dark_img from '~/pages/research_publications_mdx/wacv2024_0_dark.png';
 import iccv2023_0_colab_img from '~/pages/research_publications_mdx/iccv2023_0_colab.png';
+import iccv2023_0_colab_dark_img from '~/pages/research_publications_mdx/iccv2023_0_colab_dark.png';
 import cvpr2023_0_colab_img from '~/pages/research_publications_mdx/cvpr2023_0_colab.png';
+import cvpr2023_0_colab_dark_img from '~/pages/research_publications_mdx/cvpr2023_0_colab_dark.png';
 import iccv2021_0_img from '~/pages/research_publications_mdx/iccv2021_0.png';
+import iccv2021_0_dark_img from '~/pages/research_publications_mdx/iccv2021_0_dark.png';
 
 import {Content as Research_eccv2026_straight_path_flow_matching} from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching.mdx'
 import {Content as Research_flowertune} from '~/pages/research_publications_mdx/flowertune.mdx'
@@ -114,7 +122,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={eccv2026_straight_path_flow_matching_img} alt="straight_path_flow_matching_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={eccv2026_straight_path_flow_matching_img} darkSrc={eccv2026_straight_path_flow_matching_dark_img} alt="Diagram of straight-path flow matching for incomplete multi-view clustering" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_eccv2026_straight_path_flow_matching />
@@ -129,7 +137,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={flowertune_img} alt="flowertune_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={flowertune_img} darkSrc={flowertune_dark_img} alt="FlowerTune federated fine-tuning benchmark overview" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_flowertune />
@@ -140,7 +148,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={frame_wise_conditioning_img} alt="frame_wise_conditioning_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={frame_wise_conditioning_img} darkSrc={frame_wise_conditioning_dark_img} alt="Frame-wise text conditioning method diagram" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_frame_wise_conditioning />
@@ -158,7 +166,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={eccv2024_0_colab_img} alt="eccv2024_0_colab_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={eccv2024_0_colab_img} darkSrc={eccv2024_0_colab_dark_img} alt="Bird image retrieval examples with composed text queries" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_eccv2024_0_colab />
@@ -169,7 +177,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={anu_logo_img} alt="anu_logo_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={anu_logo_img} darkSrc={anu_logo_dark_img} alt="Australian National University logo" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_phd_thesis />
@@ -180,7 +188,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={tmlr2024_0_img} alt="tmlr2024_0_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={tmlr2024_0_img} darkSrc={tmlr2024_0_dark_img} alt="Object retrieval examples and negative-sampling categories" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_tmlr2024_0 />
@@ -191,7 +199,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={wacv2024_0_img} alt="wacv2024_0_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={wacv2024_0_img} darkSrc={wacv2024_0_dark_img} alt="Carriage image editing in forward and reversed directions" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_wacv2024_0 />
@@ -206,7 +214,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={iccv2023_0_colab_img} alt="iccv2023_0_colab_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={iccv2023_0_colab_img} darkSrc={iccv2023_0_colab_dark_img} alt="Attention consistency method diagram with heatmaps" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_iccv2023_0_colab />
@@ -217,7 +225,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={cvpr2023_0_colab_img} alt="cvpr2023_0_colab_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={cvpr2023_0_colab_img} darkSrc={cvpr2023_0_colab_dark_img} alt="Drumming video and audio waveform relationship diagram" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_cvpr2023_0_colab />
@@ -232,7 +240,7 @@ const { translate: t } = Astro.locals
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
             <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
-              <Image class="mt-3.5 rounded-md w-48 mx-auto object-cover" src={iccv2021_0_img} alt="iccv2021_0_img">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={iccv2021_0_img} darkSrc={iccv2021_0_dark_img} alt="Dog image modification examples" />
             </div>
             <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
               <Research_iccv2021_0 />

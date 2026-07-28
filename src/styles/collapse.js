@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     details.dataset.animatedDetails = 'true';
 
     let isAnimating = false;
+    let fallbackTimer = null;
 
     const dispatchHomeDetailsEvent = (name) => {
       details.dispatchEvent(new CustomEvent(name, {
@@ -169,6 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const finish = (shouldOpen) => {
+      if (fallbackTimer) {
+        window.clearTimeout(fallbackTimer);
+        fallbackTimer = null;
+      }
+
       details.open = shouldOpen;
       details.classList.remove('details-animating');
       details.style.height = '';
@@ -194,6 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       details.addEventListener('transitionend', handleEnd);
+      fallbackTimer = window.setTimeout(() => {
+        details.removeEventListener('transitionend', handleEnd);
+        finish(shouldOpen);
+      }, 420);
     };
 
     const expand = () => {

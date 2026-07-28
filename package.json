@@ -7,6 +7,7 @@
     "dev": "astro check && astro dev",
     "preview": "astro preview",
     "build": "astro check && astro build",
+    "generate:dark-figures": "node scripts/generate-dark-publication-figures.mjs",
     "release": "esno scripts/release.ts",
     "astro": "astro",
     "new-post": "esno scripts/new-post.ts",

@@ -1,0 +1,452 @@
+:root,
+html[data-theme="light"] {
+  --color-background: #ffffff;
+  --color-foreground: #2e405b;
+  --theme-page: #ffffff;
+  --theme-surface: rgba(255, 255, 255, 0.88);
+  --theme-surface-raised: #ffffff;
+  --theme-surface-soft: rgba(100, 116, 139, 0.055);
+  --theme-text: #2e405b;
+  --theme-text-strong: #111827;
+  --theme-text-muted: #5f6876;
+  --theme-border: rgba(46, 64, 91, 0.14);
+  --theme-border-strong: rgba(46, 64, 91, 0.32);
+  --theme-grid: rgba(0, 0, 0, 0.04);
+  --theme-focus: #9b6d19;
+  --theme-shadow: rgba(46, 64, 91, 0.1);
+  --theme-figure-canvas: #ffffff;
+}
+
+html[data-theme="dark"] {
+  --color-background: #101318;
+  --color-foreground: #d8e2ef;
+  --theme-page: #101318;
+  --theme-surface: #171c23;
+  --theme-surface-raised: #1e2530;
+  --theme-surface-soft: #1a2029;
+  --theme-text: #d8e2ef;
+  --theme-text-strong: #f3f6fb;
+  --theme-text-muted: #98a6b8;
+  --theme-border: #354152;
+  --theme-border-strong: #526178;
+  --theme-grid: rgba(216, 226, 239, 0.055);
+  --theme-focus: #d4a95c;
+  --theme-shadow: rgba(0, 0, 0, 0.34);
+  --theme-figure-canvas: #171c23;
+}
+
+html[data-theme="dark"] body {
+  color: var(--theme-text);
+  background-color: var(--theme-page);
+  background-image:
+    linear-gradient(to right, var(--theme-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--theme-grid) 1px, transparent 1px);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.16);
+}
+
+html.theme-transitioning body,
+html.theme-transitioning .home-copy-plate::before,
+html.theme-transitioning .home-publication-plate::before,
+html.theme-transitioning .site-sidebar-avatar-frame::before,
+html.theme-transitioning .publication-year-bubble,
+html.theme-transitioning .affiliation-logo,
+html.theme-transitioning .affiliation-role-details-body,
+html.theme-transitioning .back-to-top,
+html.theme-transitioning button[data-collapse-target] {
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.site-theme-control {
+  position: fixed;
+  z-index: 50;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+}
+
+.site-theme-toggle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--theme-border);
+  border-radius: 4px;
+  color: var(--color-foreground);
+  background: var(--theme-surface-raised);
+  box-shadow: 0 5px 16px var(--theme-shadow);
+  cursor: pointer;
+  line-height: 1;
+  animation: sidebar-op-plate-enter var(--sidebar-op-duration, 190ms) steps(4, end) 448ms backwards;
+}
+
+.site-theme-toggle:hover {
+  color: var(--color-background);
+  background: var(--color-foreground);
+  border-color: var(--color-foreground);
+}
+
+.site-theme-toggle:focus-visible {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 3px;
+}
+
+.site-theme-icon {
+  grid-area: 1 / 1;
+  width: 1.05rem;
+  height: 1.05rem;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 140ms ease, transform 160ms ease;
+}
+
+.tippy-content {
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .site-sidebar {
+    padding-top: 2.25rem;
+  }
+}
+
+html[data-theme="light"] .site-theme-icon--sun,
+html[data-theme="dark"] .site-theme-icon--moon {
+  opacity: 0;
+  transform: scale(0.72);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  html[data-home-animation-mode="smooth"] .site-theme-toggle {
+    animation: sidebar-op-plate-enter-smooth 280ms cubic-bezier(0.22, 1, 0.36, 1) 448ms both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-theme-toggle,
+  .site-theme-icon {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Heti includes OS-level dark media queries. An explicit light selection must
+   take precedence over those rules so the original light design is retained. */
+html[data-theme="light"] .heti blockquote,
+html[data-theme="light"] .heti pre {
+  background-color: rgba(0, 0, 0, 0.054);
+}
+
+html[data-theme="light"] .heti hr {
+  background-color: #ccc;
+}
+
+html[data-theme="light"] .hr-heti,
+html[data-theme="light"] article.heti hr.hr-heti {
+  border-top-color: #ccc;
+}
+
+html[data-theme="light"] .heti table,
+html[data-theme="light"] .heti th,
+html[data-theme="light"] .heti td {
+  border-color: #ccc;
+}
+
+html[data-theme="light"] .heti mark {
+  background-color: rgba(255, 247, 0, 0.88);
+}
+
+html[data-theme="light"] .heti sup:target,
+html[data-theme="light"] .heti sup a:target,
+html[data-theme="light"] .heti .heti-fn li:target {
+  background-color: #dbedff;
+}
+
+html[data-theme="light"] .heti u[title] {
+  border-block-end-color: rgba(0, 0, 0, 0.54);
+}
+
+html[data-theme="light"] .heti .heti-fn {
+  border-block-start-color: #ccc;
+}
+
+html[data-theme="dark"] a:link,
+html[data-theme="dark"] article.heti a:link,
+html[data-theme="dark"] article.heti a code:link,
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] article.heti a:hover,
+html[data-theme="dark"] article.heti a code:hover {
+  text-decoration-color: rgba(216, 226, 239, 0.46);
+}
+
+html[data-theme="dark"] article.heti code {
+  color: #ff9fba;
+  background-color: #2c1e27;
+}
+
+html[data-theme="dark"] article.heti a code:hover {
+  color: #2c1e27;
+  background-color: #ff9fba;
+}
+
+html[data-theme="dark"] article.heti blockquote {
+  border-left-color: var(--theme-border-strong);
+  background: rgba(216, 226, 239, 0.045);
+}
+
+html[data-theme="dark"] article.heti .research_h1 > strong,
+html[data-theme="dark"] .affiliation-name,
+html[data-theme="dark"] article.heti .affiliation-expertise-label,
+html[data-theme="dark"] .related-link-title {
+  color: var(--theme-text-strong);
+}
+
+html[data-theme="dark"] article.heti .research_h1 .research-authors,
+html[data-theme="dark"] article.heti .research_h1 .research-venue,
+html[data-theme="dark"] article.heti .research_h1 > details summary .text-transition,
+html[data-theme="dark"] .affiliation-location,
+html[data-theme="dark"] .affiliation-role-primary,
+html[data-theme="dark"] article.heti .affiliation-role-details,
+html[data-theme="dark"] article.heti .affiliation-role-details summary,
+html[data-theme="dark"] .affiliation-role-secondary,
+html[data-theme="dark"] .affiliation-text,
+html[data-theme="dark"] article.heti .related-link-actions a,
+html[data-theme="dark"] article.heti .related-link-actions--text span,
+html[data-theme="dark"] .home-publication-plate .text-slate-700,
+html[data-theme="dark"] .home-publication-plate .text-gray-500 {
+  color: var(--theme-text-muted) !important;
+}
+
+html[data-theme="dark"] article.heti .affiliation-role-details summary:hover,
+html[data-theme="dark"] article.heti .related-link-actions a:hover {
+  color: var(--theme-text-strong);
+}
+
+html[data-theme="dark"] article.heti details pre.bib-copy-target .bib-copy-button {
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+  background: rgba(30, 37, 48, 0.92);
+}
+
+html[data-theme="dark"] article.heti details pre.bib-copy-target .bib-copy-button:hover {
+  color: var(--theme-text-strong);
+  border-color: var(--theme-border-strong);
+  background: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] article.heti details pre.bib-copy-target .bib-copy-button.copied {
+  color: #6ee7b7;
+  border-color: rgba(110, 231, 183, 0.5);
+  background: rgba(6, 78, 59, 0.48);
+}
+
+html[data-theme="dark"] .astro-code {
+  color: var(--shiki-dark, #a9b1d6) !important;
+  background-color: var(--shiki-dark-bg, #1a1b26) !important;
+  border: 1px solid rgba(216, 226, 239, 0.08);
+}
+
+html[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark, inherit) !important;
+  background-color: transparent !important;
+}
+
+html[data-theme="dark"] article.heti pre.astro-code code {
+  color: inherit;
+  background-color: transparent;
+}
+
+html[data-theme="dark"] .site-sidebar-avatar-frame::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 44%),
+    var(--theme-surface-raised);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 8px 20px rgba(0, 0, 0, 0.32);
+}
+
+html[data-theme="dark"] .site-sidebar-avatar-frame::after,
+html[data-theme="dark"] .home-copy-plate::after,
+html[data-theme="dark"] .home-publication-plate::after {
+  background: rgba(216, 226, 239, 0.64);
+  border-color: rgba(16, 19, 24, 0.7);
+  box-shadow:
+    -6px 8px 0 rgba(212, 169, 92, 0.24),
+    0 0 6px rgba(216, 226, 239, 0.2);
+}
+
+html[data-theme="dark"] .site-sidebar-avatar {
+  filter: none !important;
+}
+
+html[data-theme="dark"] .home-copy-plate::before,
+html[data-theme="dark"] .home-publication-plate::before {
+  background: var(--theme-surface);
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.075),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.56),
+    0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .home-plate-title {
+  color: #121821;
+}
+
+html[data-theme="dark"] .home-plate-title::before,
+html[data-theme="dark"] .home-progressive-text .home-plate-title.op-credit--home-name-line::before {
+  background: #d8e2ef;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.58),
+    inset 0 -1px 0 rgba(16, 19, 24, 0.28),
+    0 2px 8px rgba(0, 0, 0, 0.26);
+}
+
+html[data-theme="dark"] .home-plate-title::after {
+  background: #1d2734;
+  border-color: rgba(216, 226, 239, 0.74);
+  box-shadow:
+    -5px 7px 0 rgba(212, 169, 92, 0.42),
+    0 0 6px rgba(216, 226, 239, 0.28);
+}
+
+html[data-theme="dark"] .publication-year-bubble,
+html[data-theme="dark"] .affiliation-logo {
+  color: var(--theme-text-strong);
+  background: var(--theme-surface-raised);
+  border-color: var(--theme-border);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="dark"] .affiliation-timeline::before {
+  background: linear-gradient(180deg, rgba(152, 166, 184, 0.34), rgba(152, 166, 184, 0.14));
+}
+
+html[data-theme="dark"] article.heti details.affiliation-role-details > .affiliation-role-details-body {
+  color: var(--theme-text-muted);
+  background: var(--theme-surface-soft);
+  box-shadow: inset 0 0 0 1px rgba(216, 226, 239, 0.035);
+}
+
+html[data-theme="dark"] .related-link-entry {
+  border-left-color: var(--theme-border-strong);
+}
+
+html[data-theme="dark"] article.heti .related-link-actions a + a::before,
+html[data-theme="dark"] article.heti .related-link-actions--text span + span::before {
+  color: rgba(152, 166, 184, 0.72);
+}
+
+html[data-theme="dark"] .home-research-interest-panel [data-hscroll-panel] {
+  scrollbar-color: rgba(216, 226, 239, 0.42) rgba(216, 226, 239, 0.08);
+}
+
+html[data-theme="dark"] .home-research-interest-panel [data-hscroll-panel]::-webkit-scrollbar-track {
+  background: rgba(216, 226, 239, 0.08);
+}
+
+html[data-theme="dark"] .home-research-interest-panel [data-hscroll-panel]::-webkit-scrollbar-thumb {
+  background: rgba(216, 226, 239, 0.42);
+}
+
+html[data-theme="dark"] .home-research-interest-panel [data-hscroll-indicator] {
+  color: rgba(216, 226, 239, 0.82);
+  background: linear-gradient(to right, rgba(23, 28, 35, 0), rgba(23, 28, 35, 0.98) 58%);
+  text-shadow: 0 0 5px rgba(16, 19, 24, 0.92);
+}
+
+html[data-theme="dark"] button[data-collapse-target] {
+  color: var(--theme-text-muted);
+  border-color: var(--theme-border);
+  background: rgba(30, 37, 48, 0.78);
+}
+
+html[data-theme="dark"] button[data-collapse-target]:hover {
+  color: var(--theme-text-strong);
+  border-color: var(--theme-border-strong);
+  background: var(--theme-surface-raised);
+}
+
+html[data-theme="dark"] button[data-collapse-target][aria-expanded="true"] {
+  color: var(--theme-text-strong);
+  border-color: #66758b;
+  background: #283241;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.34);
+}
+
+html[data-theme="dark"] .news-time-badge {
+  color: var(--theme-text-strong);
+  background: var(--theme-surface-raised);
+  box-shadow:
+    inset 0 0 0 1px var(--theme-border),
+    0 4px 12px rgba(0, 0, 0, 0.24);
+}
+
+html[data-theme="dark"] .back-to-top {
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+  background: rgba(30, 37, 48, 0.92);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+}
+
+html[data-theme="dark"] .back-to-top:hover {
+  color: var(--theme-text-strong);
+  background: #283241;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.42);
+}
+
+html[data-theme="dark"] .hr-heti,
+html[data-theme="dark"] article.heti hr.hr-heti,
+html[data-theme="dark"] .heti hr {
+  border-color: var(--theme-border);
+  background-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .heti pre,
+html[data-theme="dark"] .heti blockquote {
+  background-color: rgba(216, 226, 239, 0.045);
+}
+
+html[data-theme="dark"] .heti table,
+html[data-theme="dark"] .heti th,
+html[data-theme="dark"] .heti td {
+  border-color: var(--theme-border);
+}
+
+html[data-theme="dark"] .heti mark {
+  background-color: rgba(212, 169, 92, 0.32);
+}
+
+html[data-theme="dark"] .tippy-box {
+  color: #101318;
+  background: #d8e2ef;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.34);
+}
+
+html[data-theme="dark"] .tippy-arrow {
+  color: #d8e2ef;
+}
+
+html[data-theme="dark"] .site-sidebar .site-sidebar-link[data-home-section-nav] {
+  --sidebar-link-plate-shadow: rgba(0, 0, 0, 0.26);
+}
+
+html[data-theme="dark"] .site-sidebar .site-sidebar-link[data-home-section-active="true"],
+html[data-theme="dark"] .site-sidebar .site-sidebar-link[aria-current="page"] {
+  --sidebar-link-plate-shadow: rgba(0, 0, 0, 0.36);
+}
+
+html[data-theme="dark"] .site-sidebar .site-sidebar-link::after,
+html[data-theme="dark"] .site-sidebar .site-sidebar-social-link::after {
+  background: rgba(216, 226, 239, 0.72);
+  border-color: rgba(16, 19, 24, 0.74);
+  box-shadow:
+    -5px 7px 0 rgba(212, 169, 92, 0.36),
+    0 0 5px rgba(216, 226, 239, 0.24);
+}
