@@ -27,6 +27,13 @@ const figures = [
     ],
   },
   { file: 'eccv2026_straight_path_flow_matching.png', preserve: [] },
+  {
+    file: 'emnlp2026_mango.png',
+    preserve: [
+      [0, 27, 187, 313],
+      [438, 14, 497, 139],
+    ],
+  },
   { file: 'flowertune.png', preserve: [] },
   {
     file: 'frame-wise_conditioning.png',

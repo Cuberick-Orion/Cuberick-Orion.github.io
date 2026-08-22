@@ -9,6 +9,8 @@ import {Content as About_Content_Contact} from '~/pages/about_contact.md'
 import {Content as About_Content_News} from '~/pages/about_news.mdx'
 import {Content as Links} from '~/pages/related_links.mdx'
 
+import emnlp2026_mango_img from '~/pages/research_publications_mdx/emnlp2026_mango.png';
+import emnlp2026_mango_dark_img from '~/pages/research_publications_mdx/emnlp2026_mango_dark.png';
 import eccv2026_straight_path_flow_matching_img from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching.png';
 import eccv2026_straight_path_flow_matching_dark_img from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching_dark.png';
 import flowertune_img from '~/pages/research_publications_mdx/flowertune.png';
@@ -30,6 +32,7 @@ import cvpr2023_0_colab_dark_img from '~/pages/research_publications_mdx/cvpr202
 import iccv2021_0_img from '~/pages/research_publications_mdx/iccv2021_0.png';
 import iccv2021_0_dark_img from '~/pages/research_publications_mdx/iccv2021_0_dark.png';
 
+import {Content as Research_emnlp2026_mango} from '~/pages/research_publications_mdx/emnlp2026_mango.mdx'
 import {Content as Research_eccv2026_straight_path_flow_matching} from '~/pages/research_publications_mdx/eccv2026_straight_path_flow_matching.mdx'
 import {Content as Research_flowertune} from '~/pages/research_publications_mdx/flowertune.mdx'
 import {Content as Research_frame_wise_conditioning} from '~/pages/research_publications_mdx/frame-wise_conditioning.mdx'
@@ -118,6 +121,17 @@ const { translate: t } = Astro.locals
         <h6 class="publication-year-row">
           <span class="publication-year-bubble">2026</span>
         </h6>
+
+        <div class="w-full overflow-hidden home-publication-plate">
+          <div class="md:flex">
+            <div class="pt-3 pr-3 pb-3 -mb-6 md:shrink-0">
+              <ThemeImage class="mt-3.5 rounded-md w-48 mx-auto object-cover" lightSrc={emnlp2026_mango_img} darkSrc={emnlp2026_mango_dark_img} alt="Overview of MANGO's active narrative sketching and unsupervised reward-based training pipeline for manga visual question answering" />
+            </div>
+            <div class="pt-3 pr-3 pb-3 leading-tight text-slate-700">
+              <Research_emnlp2026_mango />
+            </div>
+          </div>
+        </div>
 
         <div class="w-full overflow-hidden home-publication-plate">
           <div class="md:flex">
