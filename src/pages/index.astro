@@ -420,6 +420,9 @@ const { translate: t } = Astro.locals
         );
         const getPanelTargets = (panel) => Array.from(panel.querySelectorAll(progressiveTargetSelector))
           .filter((element) => element instanceof HTMLElement);
+        const isClosedDetailsBodyTarget = (element) => (
+          element.closest('details:not([open])') && !element.closest('summary')
+        );
         const navLinks = Array.from(document.querySelectorAll('[data-home-section-nav]'))
           .filter((link) => link instanceof HTMLAnchorElement);
         const isDigitalEligibleChar = (char) => /^[A-Za-z0-9]$/.test(char);
@@ -775,7 +778,10 @@ const { translate: t } = Astro.locals
           }
 
           const targets = getPanelTargets(panel)
-            .filter((element) => element.dataset.homeProgressiveState === 'waiting');
+            .filter((element) => (
+              element.dataset.homeProgressiveState === 'waiting' &&
+              !isClosedDetailsBodyTarget(element)
+            ));
           const deferredTargets = [];
           let visibleIndex = 0;
 
