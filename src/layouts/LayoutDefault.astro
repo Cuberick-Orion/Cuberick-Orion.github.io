@@ -120,7 +120,7 @@ const optimizedImage = new URL(image?.src??"/placeholder.png", Astro.url).toStri
     ]}>
       <div class:list={[
         'p-7.5',
-        'lg:sticky lg:top-0 lg:h-screen lg:py-20 lg:flex lg:flex-col lg:justify-between lg:items-start lg:gap-4',
+        'lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:shrink-0 lg:py-20 lg:flex lg:flex-col lg:justify-between lg:items-start lg:gap-4',
         !disableIntroAnimations && 'lg:animate-fadein-left',
       ]}>
         <Header showProfileImage={showProfileImage} />
